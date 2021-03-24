@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { useState } from 'react';
 
 const Navbar = () => {
@@ -53,7 +52,7 @@ const Navbar = () => {
                         <button onClick={handleClick} className='block focus:outline-none outline-none' type='button'><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg></button>
                     </div>
                     <div className='pl-0'>
-                        <Link href="/"><a><img src='/images/logo.svg' className='pl-0 h-10 w-28 md:h-12 md:w-40 
+                        <Link href="/"><a><img alt="didalla-logo" src='/images/logo.svg' className='pl-0 h-10 w-28 md:h-12 md:w-40 
                         ' /></a>
                         </Link>
                     </div>

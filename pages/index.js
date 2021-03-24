@@ -9,7 +9,7 @@ export default function Home() {
         <meta name="keywords" content="didalla content-creators marketplace content"/>
       </Head>
       <div>
-        <h1 className='mt-4 text-center'>Hello</h1>
+        <h1 className='my-4 text-center'>Hello</h1>
       </div>
     </>
   )
