@@ -39,7 +39,7 @@ const Footer = () => {
                         <div><h2 className='font-black text-base mb-4'>Follow Us</h2></div>
                         <div className='flex flex-row'>
                             {footerObjThree.map(item =>{
-                                return <div className='pr-3'>
+                                return <div key={item.id} className='pr-3'>
                                     <Link href="/">
                                         <a ><img src={`/images/${item.value}.svg`} alt='brand-logos'/></a>
                                     </Link>
@@ -51,11 +51,11 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-col mt-28 lg:mt-0">
                     <div><h2 className='font-black text-base mb-4 whitespace-nowrap'>Get the latest Didalla Updates</h2></div>
-                    <form className='flex flex-col md:flex-row'>
+                    <form className='flex flex-col md:flex-row pt-6'>
                         <div className='pr-0 md:pr-4 mb-3 md:mb-0'>
                             <input type="email" className='rounded p-3 border border-white
                             focus:border-didalla focus:shadow focus:outline-none bg-transparent
-                            ' placeHolder='Your Email'/>
+                            ' placeholder='Your Email'/>
                         </div>
                         <div className='mb-3 md:mb-0'>
                             <Link href="/">

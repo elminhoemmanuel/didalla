@@ -7,36 +7,41 @@ const Navbar = () => {
 
     const handleClick = () => {
         setMenuClick(!menuclick);
+        document.body.style.overflowY= 'hidden';
         
+    }
+    const handleClickMobile = () => {
+        setMenuClick(!menuclick);
+        document.body.style.overflowY= 'visible';
     }
     
 
     return ( 
         <>
             {/* mobile screens vertical nav */}
-            <div className={menuclick ? 'flex flex-col md:hidden bg-didallablack text-white w-full h-full absolute top-0 pt-8'
-            : 'hidden flex-col md:hidden bg-didallablack text-white w-full h-full absolute top-0 pt-8'}>
+            <div className={menuclick ? 'flex shadow-xl flex-col md:hidden bg-didallablack text-white w-full h-full fixed top-0 z-50 pt-8 max-w-screen-2xl'
+            : 'hidden shadow-xl flex-col md:hidden bg-didallablack text-white w-full h-full fixed top-0 z-30 pt-8 max-w-screen-2xl'}>
                 <div className='md:hidden flex flex-row justify-end pr-4'>
-                    <button onClick={handleClick} className='block focus:outline-none outline-none' type='button'><svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
+                    <button onClick={handleClickMobile} className='block focus:outline-none outline-none' type='button'><svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
                 </div>
                 <Link href="/" className="block cursor-pointer">
-                    <a className="py-4 block w-full text-center cursor-pointer hover:bg-didalla">Explore</a>
+                    <a onClick={handleClick}  className="py-4 block w-full text-center cursor-pointer hover:bg-didalla">Explore</a>
                 </Link>
                 <Link href="/" className="block cursor-pointer">
-                    <a className='py-4 w-full text-center whitespace-nowrap block cursor-pointer hover:bg-didalla'>Why Didalla?</a>
+                    <a onClick={handleClick} className='py-4 w-full text-center whitespace-nowrap block cursor-pointer hover:bg-didalla'>Why Didalla?</a>
                 </Link>
-                <Link href="/" className="block cursor-pointer">
-                    <a className="py-4 w-full text-center block cursor-pointer hover:bg-didalla">Support</a>
+                <Link  href="/" className="block cursor-pointer">
+                    <a onClick={handleClick} className="py-4 w-full text-center block cursor-pointer hover:bg-didalla">Support</a>
                 </Link>
                 <div className='py-2 text-center'>
-                        <Link href="/" className=''>
-                            <button className=' whitespace-nowrap px-32 py-2 bg-transparent text-white didalla border 
+                        <Link  href="/" className=''>
+                            <button onClick={handleClick} className=' whitespace-nowrap px-32 py-2 bg-transparent text-white didalla border 
                             border-didalla rounded hover:text-white hover:bg-didalla focus:outline-none'>Log&nbsp;In</button>
                         </Link>
                 </div>
                 <div className='py-2 text-center'>
-                        <Link href="/" className=''>
-                            <button className=' whitespace-nowrap px-32 py-2 bg-didalla
+                        <Link onClick={handleClick} href="/" className=''>
+                            <button onClick={handleClick} className=' whitespace-nowrap px-32 py-2 bg-didalla
                             border border-didalla rounded text-white hover:bg-green-600 hover:border-green-600
                             focus:outline-none'>Sign&nbsp;Up</button>
                         </Link>
@@ -46,7 +51,7 @@ const Navbar = () => {
             </div>
 
             {/* Navigation bar */}
-            <nav className='flex flex-row py-10 px-6 md:px-10 lg:px-16 justify-between items-center'>
+            <nav className='flex flex-row py-6 px-6 md:px-10 lg:px-16 justify-between items-center fixed top-0 w-full bg-white max-w-screen-2xl z-10'>
                 <div className='flex flex-row justify-start items-center text-base'>
                     <div className='md:hidden'>
                         <button onClick={handleClick} className='block focus:outline-none outline-none' type='button'><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg></button>

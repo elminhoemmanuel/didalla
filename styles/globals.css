@@ -16,6 +16,47 @@ html, body{
     position: relative;
 }
 
+body{
+    max-width: 1536px !important;
+}
+
+/* footer */
 .footer-box{
     border-bottom: 1px solid white;
+}
+
+/* hero search icon */
+.search-icon{
+    left:2.3%;
+    bottom: 24%;
+}
+
+.convex{
+    left:26%;
+    top: 35%;
+}
+.concave{
+    right:26%;
+    top: 47%;
+}
+
+.right-curve{
+    top: 28%;
+    right: 0%;
+}
+
+.left-curve{
+    bottom: 28%;
+    left: 0%;
+}
+
+.booster-holder h1, .booster-holder p{
+    color:white !important;
+}
+
+
+@media screen and (min-width:1536px){
+    body{
+        margin:0 auto;
+    }
 }
