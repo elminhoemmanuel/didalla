@@ -3,6 +3,7 @@ import ForVendors from '../components/ForVendors'
 import ForBoosters from '../components/ForBoosters'
 import Hero from '../components/Hero'
 import styles from '../styles/Home.module.css'
+import Testimonials from '../components/Testimonials'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
         <ForVendors />
         <ForBoosters />
+        <Testimonials />
       </div>
     </>
   )

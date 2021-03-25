@@ -13,3 +13,24 @@ export const vendorObjThree = {
     bold:'Pay Safely',
     description:'Dessert marzipan, halvah sweet chocolate bar, cookie icing. Chocolate cake lemon.'
 }
+export const boosterObjOne = {
+    image:'CreditCard',
+    bold:'No Hidden Fees',
+    description:'Dessert marzipan, halvah sweet chocolate bar, cookie icing. Chocolate cake lemon.'
+}
+export const boosterObjTwo = {
+    image:'DeviceMobile',
+    bold:'Simple signup',
+    description:'Dessert marzipan, halvah sweet chocolate bar, cookie icing. Chocolate cake lemon.'
+}
+export const boosterObjThree = {
+    image:'Ticket',
+    bold:'Installment payments',
+    description:'Dessert marzipan, halvah sweet chocolate bar, cookie icing. Chocolate cake lemon.'
+}
+export const boosterObjFour = {
+    image:'Chats',
+    bold:'Customer support',
+    description:'Dessert marzipan, halvah sweet chocolate bar, cookie icing. Chocolate cake lemon.'
+}
+

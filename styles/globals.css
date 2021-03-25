@@ -54,6 +54,16 @@ body{
     color:white !important;
 }
 
+/* styles for carousel */
+.swiper-container{
+    width:800px;
+    text-align: center;
+}
+
+.swiper-wrapper{
+    padding-inline-start: 0;
+}
+
 
 @media screen and (min-width:1536px){
     body{
