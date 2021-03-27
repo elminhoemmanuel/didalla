@@ -10,7 +10,8 @@ module.exports = {
         didallatitle:'#04023B',
         didallabody:'#4E4B66',
         footergray:'#FCFCFC',
-        didallateal:'#CDEFD1'
+        didallateal:'#CDEFD1',
+        downloadgray:'#F7F7FC'
       }
     },
   },

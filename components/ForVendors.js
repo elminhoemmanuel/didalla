@@ -5,7 +5,7 @@ import { headerObjOne } from './HeaderData'
 
 const ForVendors = () => {
     return ( 
-        <div className='px-6 md:px-10 lg:px-16 py-16'>
+        <div className='px-6 md:px-10 lg:px-16 py-20'>
             <HeaderTemplate headerObj={headerObjOne} />
             <div className='grid grid-cols-1 md:grid-cols-3 gap-2 text-center relative'>
                 {/* individual cards for the vendors section */}
