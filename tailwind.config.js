@@ -11,12 +11,16 @@ module.exports = {
         didallabody:'#4E4B66',
         footergray:'#FCFCFC',
         didallateal:'#CDEFD1',
-        downloadgray:'#F7F7FC'
+        downloadgray:'#F7F7FC',
+        grayborder:'#D6D8E7'
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['checked'],
+      borderColor: ['checked'],
+    }
   },
   plugins: [],
 }

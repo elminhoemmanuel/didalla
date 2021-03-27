@@ -9,8 +9,8 @@ const Footer = () => {
 
     return ( 
         <footer className='bg-didallablack pt-20 px-6 md:px-10 lg:px-16 text-white'>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 footer-box pb-12'>
-                <div className='flex lg:items-center'>
+            <div className='grid grid-cols-2 lg:grid-cols-4 gap-1 footer-box pb-12'>
+                <div className='flex items-center'>
                     <div className='pl-0'>
                         <Link href="/"><a><img alt="didalla-logo" src='/images/logo-footer.svg' className='pl-0 h-10 w-216 md:h-12 md:w-40' /></a>
                         </Link>
