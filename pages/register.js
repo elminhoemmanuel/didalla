@@ -3,6 +3,7 @@ import LogoNavbar from '../components/LogoNavbar'
 import Link from 'next/link';
 import { useState } from 'react';
 import AuthButton from '../components/AuthButton';
+import validate from '../components/ValidateAuth'
 
 export const getStaticProps = async () =>{
     const res = await fetch('https://reqres.in/api/users?page=2');
@@ -19,13 +20,24 @@ const RegisterEmail = ({ userData }) => {
 
     const [nextstage , setNextStage] = useState(false);
 
-    const [user, setUser] = useState({email:'', username:'', password:'' , passwordConfirm:''});
+    const [user, setUser] = useState({email:'', username:'', password:'' , password2:''});
+
+    const [errors, setErrors] = useState({});
 
     const handleEmailSubmit = (e) =>{
         e.preventDefault();
-        setNextStage(!nextstage);
-        console.log(nextstage);
+        setErrors(validate(user));
+        if(errors.email === ""){
+            setNextStage(!nextstage);
+        }
+        
     }
+
+    // useEffect(() =>{
+    //     if(Object.keys(errors).length === 0 && isSubmitting){
+    //         callback();
+    //     }
+    // }, [errors])
 
     return ( 
 
@@ -81,6 +93,7 @@ const RegisterEmail = ({ userData }) => {
                                  placeholder='Enter your email address here'
                                  required
                                 />
+                                {errors.email && <p className='text-red-400 text-xs'>{errors.email}</p>}
                             </div>
 
                             <AuthButton buttonText='Continue' />
@@ -110,7 +123,7 @@ const RegisterEmail = ({ userData }) => {
 
                     <form action="" className='mt-4 mb-3'>
                         <div className='mb-2'>
-                            <div className='mb-1'><label htmlFor="email" className='text-didallabody text-sm'>Username</label></div>
+                            <div className='mb-1'><label htmlFor="username" className='text-didallabody text-sm'>Username</label></div>
                             <div>
                                 <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
                                  type="text"
@@ -120,34 +133,37 @@ const RegisterEmail = ({ userData }) => {
                                  placeholder='Choose a username'
                                  required
                                 />
+                                {errors.username && <p className='text-red-400 text-xs'>{errors.username}</p>}
                             </div>
                         </div>
 
                         <div className='mb-2'>
-                            <div className='mb-1'><label htmlFor="email" className='text-didallabody text-sm'>Password</label></div>
+                            <div className='mb-1'><label htmlFor="password" className='text-didallabody text-sm'>Password</label></div>
                             <div>
                                 <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
                                  type="password"
-                                 id='userpassword'
+                                 id='password'
                                  value={user.password}
                                  onChange={(e) =>{setUser({...user, password:e.target.value})}}
                                  placeholder='Enter your password'
                                  required
                                 />
+                                {errors.password && <p className='text-red-400 text-xs'>{errors.password}</p>}
                             </div>
                         </div>
 
                         <div className='mb-3'>
-                            <div className='mb-1'><label htmlFor="email" className='text-didallabody text-sm'>Confirm Password</label></div>
+                            <div className='mb-1'><label htmlFor="password2" className='text-didallabody text-sm'>Confirm Password</label></div>
                             <div>
                                 <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
                                  type="password"
-                                 id='userconfirmpassword'
-                                 value={user.passwordConfirm}
-                                 onChange={(e) =>{setUser({...user, passwordConfirm:e.target.value})}}
+                                 id='password2'
+                                 value={user.password2}
+                                 onChange={(e) =>{setUser({...user, password2:e.target.value})}}
                                  placeholder='Confirm your password'
                                  required
                                 />
+                                {errors.password2 && <p className='text-red-400 text-xs'>{errors.password2}</p>}
                             </div>
                         </div>
 
