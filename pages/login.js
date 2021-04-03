@@ -1,14 +1,45 @@
 import Head from 'next/head'
 import LogoNavbar from '../components/LogoNavbar'
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import AuthButton from '../components/AuthButton';
+import AuthButtonDisabled from '../components/AuthButtonDisabled';
+import useForm from '../components/useForm'
 
 
 
 const Login = () => {
 
-    const [user, setUser] = useState({email:'', password:''});
+    //Define the state schema used for validation
+    const stateSchema = {
+        email:{value:"" , error:""},
+        password:{value:"" , error:""}
+    }
+
+    const stateValidatorSchema ={
+        email:{
+            required:true,
+            validator:{
+                func: value=> /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(value),
+                error:"invalid email format"
+            }
+        },
+        password:{
+            required:true,
+            validator:{
+                func: value=> /^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(value),
+                error:"password must be up to 6 characters and contain atleast one special character e.g '@,#,$,%,^,&,?,>,<'"
+            }
+        }
+    }
+
+    const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema)
+    const {email, password} = values;
+
+    const handleFormSubmit = (e)=>{
+        e.preventDefault();
+        console.log(values);
+    }
 
     return ( 
 
@@ -20,7 +51,9 @@ const Login = () => {
             </Head>
 
             <LogoNavbar />
+
             <div className='pt-24 h-screen '>
+
                 {/* collect email */}
                 <div className='w-3/4 md:w-1/2 lg:w-2/6 my-0 mx-auto block'>
                     <div className='mb-5'>
@@ -41,38 +74,49 @@ const Login = () => {
 
                     <p className='text-center text-black text-sm'>OR</p>
 
-                    <form action="" className='mt-6 mb-3' >
+                    <form action="" className='mt-6 mb-3' onSubmit={handleFormSubmit}>
                         <div className=''>
                             {/* Email */}
                             <div className='mb-3'>
                                 <div className='mb-1'><label htmlFor="email" className='text-didallabody text-sm'>Email Address</label></div>
-                                <div >
+                                <div className='mb-3'>
                                     <input className='p-4 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
                                     type="email"
+                                    name="email"
+                                    value={email}
+                                    onChange={handleOnChange}
                                     id='email'
-                                    value={user.email}
-                                    onChange={(e) =>{setUser({...user, email:e.target.value})}}
                                     placeholder='Enter your email address here'
                                     required
                                     />
+                                    {errors.email && dirty.email && (
+                                        <p className='text-red-500 text-xs'>{errors.email}</p>
+                                )}
                                 </div>
+                            
                             </div>
                             {/* password */}
                             <div className='mb-3'>
-                                <div className='mb-1'><label htmlFor="email" className='text-didallabody text-sm'>Password</label></div>
+                                <div className='mb-1'><label htmlFor="password" className='text-didallabody text-sm'>Password</label></div>
                                 <div>
                                     <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
                                     type="password"
-                                    id='userpassword'
-                                    value={user.password}
-                                    onChange={(e) =>{setUser({...user, password:e.target.value})}}
+                                    id='password'
+                                    name="password"
+                                    value={password}
+                                    onChange={handleOnChange}
                                     placeholder='Enter your password'
                                     required
                                     />
-                                </div>
+                                    {errors.password && dirty.password && (
+                                        <p className='text-red-500 text-xs'>{errors.password}</p>
+                                    )}
+                            </div>
                             </div>
 
-                            <AuthButton buttonText='Continue' />
+                            {email.length === 0 ||password.length===0 || errors.email ||errors.password 
+                                ? (<AuthButtonDisabled buttonText='Login'/>) : 
+                                (<AuthButton buttonText='Login' />)}
 
                         </div>
                     </form>
