@@ -88,6 +88,21 @@ body{
     background-size: contain;
 }
 
+.hero{
+    background-image: url('../public/images/world.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.dropdown{
+    font-size: 2rem;
+}
+
+.mobile-box{
+    transition: 0.5s;
+}
+
 
 @media screen and (min-width:1536px){
     body{

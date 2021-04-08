@@ -1,8 +1,8 @@
 const Hero = () => {
     return ( 
-        <div className='px-6'>
+        <div className='px-6 hero'>
             <div className='flex flex-col font-black md:items-center justify-start md:justify-center 
-                pt-3 md:pt-12 pb-6 text-3xl md:text-6xl text-didallatitle'>
+                pt-32 pb-6 text-3xl md:text-6xl text-didallatitle'>
                 <h1 className='whitespace-nowrap leading-tight'>Find a <span className='text-didalla'>content</span></h1>
                 <h1 className='whitespace-nowrap leading-tight'><span className='text-didalla'>creator</span>, promote</h1>
                 <h1 className='whitespace-nowrap leading-tight '>your business</h1>

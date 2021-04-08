@@ -20,14 +20,14 @@ const StepEmail = ({
     return (
         <div >
             <div className='w-3/4 md:w-1/2 lg:w-2/6 my-0 mx-auto' >
-                    <div className='mb-5'>
+                    <div className='mb-5 text-center'>
                         <h1 className='text-2xl font-bold text-didallatitle mb-3 tracking-wider'>Get started with <br/> <span className='text-didalla'>Didalla</span> for Free</h1>
                         <p className='text-xs text-didallabody mb-3'>Sign Up to your free account to access our services</p>
                     </div>
 
                     <Link href="">
-                        <a className='block mb-5'>
-                            <button type='button' className="p-4 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
+                        <a className='block mb-4'>
+                            <button type='button' className="p-3 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
                             font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
                                 <div className='mr-2'><img className='' src="images/GoogleLogo.svg" alt="Google logo"/></div> 
                                 <div>Continue with Google</div>
@@ -37,8 +37,8 @@ const StepEmail = ({
                     </Link>
 
                     <Link href="">
-                        <a className='block mb-5'>
-                            <button type='button' className="p-4 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
+                        <a className='block mb-4'>
+                            <button type='button' className="p-3 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
                             font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
                                 <div className='mr-2'><img className='' src="images/FacebookLogoRegister.svg" alt="Google logo"/></div> 
                                 <div>Continue with Facebook</div>
@@ -49,11 +49,11 @@ const StepEmail = ({
 
                     <p className='text-center text-black text-sm'>OR</p>
 
-                    <form action="" className='mt-6 mb-3' onSubmit={handleEmailSubmit}>
+                    <form action="" className='mt-4 mb-3' onSubmit={handleEmailSubmit}>
                         <div className=''>
                             <div className='mb-2'><label htmlFor="email" className='text-didallabody text-sm'>Email Address</label></div>
-                            <div className='mb-3'>
-                                <input className='p-4 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
+                            <div className='mb-2'>
+                                <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
                                  type="email"
                                  name="email"
                                  value={email}

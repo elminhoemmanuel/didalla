@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react';
+import { BiChevronDown } from 'react-icons/Bi';
 
 const Navbar = () => {
 
@@ -19,39 +20,52 @@ const Navbar = () => {
     return ( 
         <>
             {/* mobile screens vertical nav */}
-            <div className={menuclick ? 'flex shadow-xl flex-col md:hidden bg-didallablack text-white w-full h-full fixed top-0 z-50 pt-8 max-w-screen-2xl'
-            : 'hidden shadow-xl flex-col md:hidden bg-didallablack text-white w-full h-full fixed top-0 z-30 pt-8 max-w-screen-2xl'}>
-                <div className='md:hidden flex flex-row justify-end pr-4'>
-                    <button onClick={handleClickMobile} className='block focus:outline-none outline-none' type='button'><svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
-                </div>
-                <Link href="/" className="block cursor-pointer">
-                    <a onClick={handleClick}  className="py-4 block w-full text-center cursor-pointer hover:bg-didalla">Explore</a>
-                </Link>
-                <Link href="/" className="block cursor-pointer">
-                    <a onClick={handleClick} className='py-4 w-full text-center whitespace-nowrap block cursor-pointer hover:bg-didalla'>Why Didalla?</a>
-                </Link>
-                <Link  href="/" className="block cursor-pointer">
-                    <a onClick={handleClick} className="py-4 w-full text-center block cursor-pointer hover:bg-didalla">Support</a>
-                </Link>
-                <div className='py-2 text-center'>
-                        <Link  href="/" className=''>
-                            <button onClick={handleClick} className=' whitespace-nowrap px-32 py-2 bg-transparent text-white didalla border 
-                            border-didalla rounded hover:text-white hover:bg-didalla focus:outline-none'>Log&nbsp;In</button>
-                        </Link>
-                </div>
-                <div className='py-2 text-center'>
-                        <Link onClick={handleClick} href="/" className=''>
-                            <button onClick={handleClick} className=' whitespace-nowrap px-32 py-2 bg-didalla
-                            border border-didalla rounded text-white hover:bg-green-600 hover:border-green-600
-                            focus:outline-none'>Sign&nbsp;Up</button>
-                        </Link>
-                </div>
+            <div className={menuclick ? 'mobile-box flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0 right-24 z-50 pt-8 max-w-screen-2xl transition ease-in duration-200 '
+            : 'mobile-box flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0 right-full z-50 pt-8 max-w-screen-2xl transition duration-200 ease-out'}>
+                <div className=''>
+                    <div className='md:hidden flex flex-row justify-start pl-4 mb-6'>
+                        <button onClick={handleClickMobile} className='block focus:outline-none outline-none' type='button'><svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
+                    </div>
+                    <Link href="/" className="cursor-pointer ">
+                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
+                            <div className='text-2xl'>Login</div>
+                        </a>
+                    </Link>
 
+                    <Link href="/" className="cursor-pointer ">
+                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla border-b border-gray-300">
+                            <div className='text-2xl'>Get the App</div>
+                        </a>
+                    </Link>
 
+                    <Link href="/" className="cursor-pointer ">
+                        <a  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
+                            <div>Explore</div>
+                            <div><BiChevronDown className="dropdown" /></div>
+                        </a>
+                    </Link>
+                    <Link href="/" className="cursor-pointer ">
+                        <a  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
+                            <div>For&nbsp;Creators</div>
+                            <div><BiChevronDown className="dropdown" /></div>
+                        </a>
+                    </Link>
+                    <Link href="/" className="cursor-pointer ">
+                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
+                            <div>Contact</div>
+                        </a>
+                    </Link>
+                    <Link href="/" className="cursor-pointer ">
+                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
+                            <div>FAQS</div>
+                        </a>
+                    </Link>
+                </div>
+                
             </div>
 
             {/* Navigation bar */}
-            <nav className='flex flex-row py-6 px-6 md:px-10 lg:px-16 justify-between items-center fixed top-0 w-full bg-white max-w-screen-2xl z-10 shadow-lg'>
+            <nav className='flex flex-row py-4 px-6 md:px-10 lg:px-16 justify-between items-center fixed top-0 w-full bg-white max-w-screen-2xl z-10'>
                 <div className='flex flex-row justify-start items-center text-base'>
                     <div className='md:hidden'>
                         <button onClick={handleClick} className='mr-4 block focus:outline-none outline-none' type='button'><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg></button>
@@ -64,19 +78,15 @@ const Navbar = () => {
                     
                     <div className='pl-6 hidden md:block'>
                         <Link href="/">
-                            <a>Explore</a>
+                            <a className="whitespace-nowrap block">Explore&nbsp;<BiChevronDown className='inline'/></a>
                         </Link>
                     </div>
                     <div className='pl-6 hidden md:block'>
                         <Link href="/">
-                            <a className='whitespace-nowrap'>Why Didalla?</a>
+                            <a className='whitespace-nowrap block'>For Creators&nbsp;<BiChevronDown className='inline' /></a>
                         </Link>
                     </div>
-                    <div className='pl-6 hidden md:block'>
-                        <Link href="/">
-                            <a>Support</a>
-                        </Link>
-                    </div>
+
                 </div>
                 <div className='flex-row items-center flex'>
                     <div className='md:pr-4'>
@@ -89,7 +99,7 @@ const Navbar = () => {
                         <Link href="/">
                             <button className='whitespace-nowrap px-4 py-2 bg-didalla
                             border border-didalla rounded text-white hover:bg-green-600 hover:border-green-600
-                            focus:outline-none'>Sign&nbsp;Up</button>
+                            focus:outline-none'>Get&nbsp;Started</button>
                         </Link>
                     </div>
 

@@ -19,7 +19,7 @@ export default function Home() {
       </Head>
 
       <Navbar />
-        <div className='pt-32'>
+        <div className=''>
           <Hero />
           <ForVendors />
           <ForBoosters />

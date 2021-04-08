@@ -30,9 +30,9 @@ const Register = () => {
                 dirty={dirty}
                 handleOnChange={handleOnChange}
                 email={email}
-                username={username}
+                firstname={firstname}
+                lastname={firstname}
                 password={password}
-                confirmPassword={confirmPassword}
                  />
             case 1:
                 return <StepPassword
@@ -42,9 +42,9 @@ const Register = () => {
                 dirty={dirty}
                 handleOnChange={handleOnChange}
                 email={email}
-                username={username}
+                firstname={firstname}
+                lastname={lastname}
                 password={password}
-                confirmPassword={confirmPassword}
                 />
             case 2:
                 return <StepComplete />
@@ -58,10 +58,9 @@ const Register = () => {
                 dirty={dirty}
                 handleOnChange={handleOnChange}
                 email={email}
-                username={username}
+                firstname={firstname}
+                lastname={firstname}
                 password={password}
-                confirmPassword={confirmPassword}
-                handleFormSubmit={handleFormSubmit}
                  />
         }
     }
@@ -69,17 +68,24 @@ const Register = () => {
     //Define the state schema used for validation
     const stateSchema = {
         email:{value:"" , error:""},
-        username:{value:"" , error:""},
-        password:{value:"" , error:""},
-        confirmPassword:{value:"" , error:""}
+        firstname:{value:"" , error:""},
+        lastname:{value:"" , error:""},
+        password:{value:"" , error:""}
     }
 
     const stateValidatorSchema ={
-        username:{
+        firstname:{
             required:true,
             validator:{
                 func: value=> /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-]+)*/.test(value),
-                error:"username must be more than one character without space inbetween"
+                error:"First name must be more than one character without space inbetween"
+            }
+        },
+        lastname:{
+            required:true,
+            validator:{
+                func: value=> /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-]+)*/.test(value),
+                error:"Last name must be more than one character without space inbetween"
             }
         },
         email:{
@@ -99,7 +105,7 @@ const Register = () => {
     }
 
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema)
-    const {email, username, password , confirmPassword} = values;
+    const {email, firstname, lastname, password} = values;
 
     return (
         <>
