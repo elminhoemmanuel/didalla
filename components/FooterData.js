@@ -33,14 +33,17 @@ export const footerObjTwo = [
 export const footerObjThree = [
     {
         id:1,
-        value:'TwitterLogo'
+        value:'TwitterLogo',
+        url:'/'
     },
     {
         id:2,
-        value:'FacebookLogo'
+        value:'FacebookLogo',
+        url:'/'
     },
     {
         id:3,
-        value:'InstagramLogo'
+        value:'InstagramLogo',
+        url:'/'
     }
 ]

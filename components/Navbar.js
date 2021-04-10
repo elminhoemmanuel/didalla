@@ -21,11 +21,21 @@ const Navbar = () => {
     return ( 
         <>
             {/* mobile screens vertical nav */}
-            <div className={menuclick ? 'mobile-box flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0 z-50 pt-8 max-w-screen-2xl transition ease-in duration-200 '
-            : 'mobile-box-show flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0  z-50 pt-8 max-w-screen-2xl transition duration-200 ease-out'}>
+            <div className={menuclick ? 'mobile-box-show flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0 z-50 pt-8 max-w-screen-2xl transition ease-in duration-200 overflow-y-visible'
+            : 'mobile-box flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0  z-50 pt-8 max-w-screen-2xl transition duration-200 ease-out'}>
                 <div className=''>
-                    <div className='md:hidden flex flex-row justify-start pl-4 mb-6'>
-                        <button onClick={handleClickMobile} className='block focus:outline-none outline-none' type='button'><svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
+                    <div className='md:hidden flex flex-row justify-between px-4 mb-6'>
+                        <button onClick={handleClickMobile} className='block focus:outline-none outline-none' type='button'><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
+                        <div className='flex flex-row'>
+                            {footerObjThree.map(item =>{
+                                return <div key={item.id} className='pt-2 pl-2'>
+                                    <Link href={item.url}>
+                                        <a ><img src={`/images/${item.value}.svg`} alt='brand-logos' className='h-6 w-6'/></a>
+                                    </Link>
+                                </div>
+                            })}
+
+                        </div>
                     </div>
                     <Link href="/" className="cursor-pointer ">
                         <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">

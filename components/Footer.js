@@ -40,7 +40,7 @@ const Footer = () => {
                         <div className='flex flex-row'>
                             {footerObjThree.map(item =>{
                                 return <div key={item.id} className='pr-3'>
-                                    <Link href="/">
+                                    <Link href={item.url}>
                                         <a ><img src={`/images/${item.value}.svg`} alt='brand-logos'/></a>
                                     </Link>
                                 </div>
