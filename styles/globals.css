@@ -100,7 +100,17 @@ body{
 }
 
 .mobile-box{
-    transition: 0.5s;
+    transition: ease-in 0.5s!important;
+    left:-100%;
+    display: hidden;
+    transition-property: display;
+}
+
+.mobile-box-show{
+    display: block;
+    transition: ease-in 0.5s !important;
+    left: 0;
+    transition-property: display;
 }
 
 

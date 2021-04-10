@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useState } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
-import {footerObjOne, footerObjTwo, footerObjThree} from './FooterData'
+import {footerObjThree} from './FooterData'
 
 const Navbar = () => {
 
@@ -21,8 +21,8 @@ const Navbar = () => {
     return ( 
         <>
             {/* mobile screens vertical nav */}
-            <div className={menuclick ? 'mobile-box flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0 right-24 z-50 pt-8 max-w-screen-2xl transition ease-in duration-200 '
-            : 'mobile-box flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0 right-full z-50 pt-8 max-w-screen-2xl transition duration-200 ease-out'}>
+            <div className={menuclick ? 'mobile-box flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0 z-50 pt-8 max-w-screen-2xl transition ease-in duration-200 '
+            : 'mobile-box-show flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0  z-50 pt-8 max-w-screen-2xl transition duration-200 ease-out'}>
                 <div className=''>
                     <div className='md:hidden flex flex-row justify-start pl-4 mb-6'>
                         <button onClick={handleClickMobile} className='block focus:outline-none outline-none' type='button'><svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
