@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useState } from 'react';
-import { BiChevronDown } from 'react-icons/Bi';
+import { BiChevronDown } from 'react-icons/bi';
+import {footerObjOne, footerObjTwo, footerObjThree} from './FooterData'
 
 const Navbar = () => {
 
