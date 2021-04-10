@@ -58,7 +58,7 @@ body{
 .swiper-container{
     width:100%;
     height:auto !important;
-    padding-bottom: 100px !important;
+    padding: 0rem 3rem 5rem 3rem !important;
     position: relative;
 }
 
@@ -70,19 +70,32 @@ body{
     background-color: white !important;
     color:black !important;
     position: absolute !important;
-    top: 80% !important;
-    left:83% !important;
+    background-image: url('../public/images/ArrowCircleLeft.svg');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
 }
+
+.swiper-button-prev::after {
+    display: none;
+}
+
 .swiper-button-next{
     background-color: white !important;
     color:black !important;
     position: absolute !important;
-    top: 80% !important;
-    right:10% !important;
+    background-image: url('../public/images/ArrowCircleRight.svg');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
 }
 
-.download-holder{
-    background-image: url('../public/images/pattern.svg');
+.swiper-button-next::after {
+    display: none;
+}
+
+.cta-holder{
+    background-image: url('../public/images/Pattern.svg');
     background-repeat: no-repeat;
     background-position: top 2% right 0;
     background-size: contain;
@@ -119,30 +132,14 @@ body{
         margin:0 auto;
     }
 }
-@media screen and (max-width:945px){
-    .swiper-button-prev{
-        top: 80% !important;
-        left:77% !important;
-    }
-    .swiper-button-next{
-        top: 80% !important;
-        right:4% !important;
-    }
-}
-@media screen and (max-width:600px){
-    .swiper-button-prev{
-        top: 93% !important;
-        left:73% !important;
-    }
-    .swiper-button-next{
-        top: 93% !important;
-        right:1% !important;
-    }
-}
 
 @media screen and (max-width:768px){
-    .download-holder{
-        background-image: none;
+    .cta-holder{
+        background-image: url('../public/images/PatternMobile.svg');
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
     }
+    
 }
 

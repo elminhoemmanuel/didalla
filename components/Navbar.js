@@ -44,7 +44,7 @@ const Navbar = () => {
                     </Link>
 
                     <Link href="/" className="cursor-pointer ">
-                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla border-b border-gray-300">
+                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla border-b border-gray-800">
                             <div className='text-2xl'>Get the App</div>
                         </a>
                     </Link>
@@ -110,7 +110,7 @@ const Navbar = () => {
                         <Link href="/">
                             <button className='whitespace-nowrap px-4 py-2 bg-didalla
                             border border-didalla rounded text-white hover:bg-green-600 hover:border-green-600
-                            focus:outline-none'>Get&nbsp;Started</button>
+                            focus:outline-none'>Sign&nbsp;Up</button>
                         </Link>
                     </div>
 

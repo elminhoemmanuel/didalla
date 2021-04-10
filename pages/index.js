@@ -6,7 +6,6 @@ import ForBoosters from '../components/ForBoosters'
 import Hero from '../components/Hero'
 import styles from '../styles/Home.module.css'
 import Testimonials from '../components/Testimonials'
-import DownloadApp from '../components/DownloadApp'
 import CTA from '../components/CTA'
 
 
@@ -24,7 +23,6 @@ export default function Home() {
           <ForVendors />
           <ForBoosters />
           <Testimonials />
-          <DownloadApp />
           <CTA />
         </div>
       <Footer />
