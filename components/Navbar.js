@@ -3,9 +3,12 @@ import { useState } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
 import {footerObjThree} from './FooterData'
 
-const Navbar = () => {
+const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , handleExploreLarge, removeDropdown}) => {
 
     const [menuclick, setMenuClick] = useState(false);
+    const [exploreclick, setExploreClick] = useState(false);
+    const [creatorclick, setCreatorClick] = useState(false);
+    
 
     const handleClick = () => {
         setMenuClick(!menuclick);
@@ -15,8 +18,7 @@ const Navbar = () => {
     const handleClickMobile = () => {
         setMenuClick(!menuclick);
         document.body.style.overflowY= 'visible';
-    }
-    
+    } 
 
     return ( 
         <>
@@ -37,7 +39,7 @@ const Navbar = () => {
 
                         </div>
                     </div>
-                    <Link href="/" className="cursor-pointer ">
+                    <Link href="/login" className="cursor-pointer ">
                         <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
                             <div className='text-2xl'>Login</div>
                         </a>
@@ -49,18 +51,52 @@ const Navbar = () => {
                         </a>
                     </Link>
 
-                    <Link href="/" className="cursor-pointer ">
-                        <a  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
+                    <Link href="" className="cursor-pointer ">
+                        <a  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla"  onClick={() =>{setExploreClick(!exploreclick)}}>
                             <div>Explore</div>
                             <div><BiChevronDown className="dropdown" /></div>
                         </a>
                     </Link>
-                    <Link href="/" className="cursor-pointer ">
-                        <a  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
+
+                        {
+                            exploreclick ? (<div className=''>
+                            <Link href="/" className="cursor-pointer ">
+                                <a  className="px-8 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
+                                    <div>Something</div>
+                                </a>
+                            </Link>
+                            <Link href="/" className="cursor-pointer ">
+                                <a  className="px-8 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
+                                    <div>Something</div>
+                                </a>
+                            </Link>
+
+                        </div>) :null
+                        }
+
+                    <Link href="" className="cursor-pointer ">
+                        <a  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla" onClick={() =>{setCreatorClick(!creatorclick)}}>
                             <div>For&nbsp;Creators</div>
                             <div><BiChevronDown className="dropdown" /></div>
                         </a>
                     </Link>
+
+                        {
+                            creatorclick ? (<div className=''>
+                            <Link href="/" className="cursor-pointer ">
+                                <a  className="px-8 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
+                                    <div>Something</div>
+                                </a>
+                            </Link>
+                            <Link href="/" className="cursor-pointer ">
+                                <a  className="px-8 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
+                                    <div>Something</div>
+                                </a>
+                            </Link>
+
+                        </div>) :null
+                        }
+
                     <Link href="/" className="cursor-pointer ">
                         <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
                             <div>Contact</div>
@@ -88,26 +124,66 @@ const Navbar = () => {
                     </div>
                     
                     <div className='pl-6 hidden md:block'>
-                        <Link href="/">
-                            <a className="whitespace-nowrap block">Explore&nbsp;<BiChevronDown className='inline'/></a>
-                        </Link>
+                        
+                            <button className="whitespace-nowrap block relative border-none focus:outline-none" onClick={handleExploreLarge}>
+                                Explore&nbsp;<BiChevronDown className='inline'/>
+                                {
+                                    exploreclicklarge ? (<div className='bg-white border border-gray-50 absolute rounded top-8 left-0 w-48 py-2 shadow-2xl'>
+                                    <Link href="/" className="cursor-pointer ">
+                                        <a  className=" p-3 hover:bg-gray-100 block">
+                                            <div>Something</div>
+                                        </a>
+                                    </Link>
+                                    <Link href="/" className="cursor-pointer ">
+                                        <a  className=" p-3 hover:bg-gray-100 block">
+                                            <div>Something</div>
+                                        </a>
+                                    </Link>
+                                    <Link href="/" className="cursor-pointer ">
+                                        <a  className=" p-3 hover:bg-gray-100 block">
+                                            <div>Something</div>
+                                        </a>
+                                    </Link>
+                                </div>) :null
+                                }
+                                
+                            </button>
                     </div>
                     <div className='pl-6 hidden md:block'>
-                        <Link href="/">
-                            <a className='whitespace-nowrap block'>For Creators&nbsp;<BiChevronDown className='inline' /></a>
-                        </Link>
+                            <button className='whitespace-nowrap block relative border-none focus:outline-none' onClick={handleCreatorLarge}>
+                                For Creators&nbsp;<BiChevronDown className='inline' />
+                                {
+                                    creatorclicklarge ? <div className='bg-white border border-gray-50 absolute rounded top-8 left-0 w-48 py-2 shadow-2xl'>
+                                    <Link href="/" className="cursor-pointer ">
+                                        <a  className=" p-3 hover:bg-gray-100 block">
+                                            <div>Something</div>
+                                        </a>
+                                    </Link>
+                                    <Link href="/" className="cursor-pointer ">
+                                        <a  className=" p-3 hover:bg-gray-100 block">
+                                            <div>Something</div>
+                                        </a>
+                                    </Link>
+                                    <Link href="/" className="cursor-pointer ">
+                                        <a  className=" p-3 hover:bg-gray-100 block">
+                                            <div>Something</div>
+                                        </a>
+                                    </Link>
+                                </div> : null
+                                }
+                            </button>
                     </div>
 
                 </div>
                 <div className='flex-row items-center flex'>
                     <div className='md:pr-4'>
-                        <Link href="/">
+                        <Link href="/login">
                             <button className='whitespace-nowrap px-3 py-1 md:px-4 md:py-2 bg-white text-didalla border 
                             border-didalla rounded hover:text-white hover:bg-didalla focus:outline-none'>Log&nbsp;In</button>
                         </Link>
                     </div>
                     <div className='hidden md:block'>
-                        <Link href="/">
+                        <Link href="/register">
                             <button className='whitespace-nowrap px-4 py-2 bg-didalla
                             border border-didalla rounded text-white hover:bg-green-600 hover:border-green-600
                             focus:outline-none'>Sign&nbsp;Up</button>

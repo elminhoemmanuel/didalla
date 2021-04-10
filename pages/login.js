@@ -56,7 +56,7 @@ const Login = () => {
 
                 {/* collect email */}
                 <div className='w-3/4 md:w-1/2 lg:w-2/6 my-0 mx-auto block'>
-                    <div className='mb-5'>
+                    <div className='mb-5 text-center'>
                         <h1 className='text-2xl font-bold text-didallatitle mb-3 tracking-wider'>Welcome Back</h1>
                         <p className='text-xs text-didallabody mb-3'>Login to your account to continue using our services</p>
                     </div>
