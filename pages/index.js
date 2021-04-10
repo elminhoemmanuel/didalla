@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Head>
         <title>Didalla</title>
-        <meta name="keywords" content="didalla content-creators marketplace content"/>
+        <meta name="keywords" content="didalla, a content-creators marketplace content"/>
       </Head>
 
       <Navbar />
