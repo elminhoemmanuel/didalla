@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const CTA = () => {
     return ( 
-        <div className='px-6 md:px-10 lg:px-16 pb-72 md:pb-20 pt-20 bg-footergray cta-holder '>
+        <div className='px-6 md:px-10 lg:px-16 pb-72 md:pb-20 pt-20 bg-downloadgray cta-holder '>
             <div className='text-center md:text-left'>
                 <h1 className='font-bold text-didallatitle text-2xl'>Get started with</h1>
                 <h1 className='font-bold text-didalla text-2xl'>Didalla</h1>

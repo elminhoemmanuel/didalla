@@ -12,6 +12,7 @@ import React, { useState } from 'react'
 
 export default function Home() {
 
+  //dropdown code
   const [exploreclicklarge, setExploreClickLarge] = useState(false);
   const [creatorclicklarge, setCreatorClickLarge] = useState(false);
 
@@ -30,8 +31,6 @@ export default function Home() {
       handleExploreLarge();
     }
   }
-  console.log(creatorclicklarge)
-  console.log(exploreclicklarge);
 
   return (
     <>

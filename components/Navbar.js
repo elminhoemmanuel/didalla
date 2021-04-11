@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { useState } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
-import {footerObjThree} from './FooterData'
+import {footerObjThree} from './FooterData';
+import {exploreDrop , creatorDrop} from './DropDownData'
 
 const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , handleExploreLarge, removeDropdown}) => {
 
@@ -23,15 +24,15 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
     return ( 
         <>
             {/* mobile screens vertical nav */}
-            <div className={menuclick ? 'mobile-box-show flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0 z-50 pt-8 max-w-screen-2xl transition ease-in duration-200 overflow-y-visible'
-            : 'mobile-box flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0  z-50 pt-8 max-w-screen-2xl transition duration-200 ease-out'}>
+            <div className={menuclick ? 'mobile-box-show flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0 z-50 pt-8 max-w-screen-2xl transition  overflow-y-scroll'
+            : 'mobile-box flex shadow-xl flex-col md:hidden bg-didallablack text-white w-3/4 h-full fixed top-0  z-50 pt-8 max-w-screen-2xl '}>
                 <div className=''>
                     <div className='md:hidden flex flex-row justify-between px-4 mb-6'>
                         <button onClick={handleClickMobile} className='block focus:outline-none outline-none' type='button'><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
                         <div className='flex flex-row'>
                             {footerObjThree.map(item =>{
-                                return <div key={item.id} className='pt-2 pl-2'>
-                                    <Link href={item.url}>
+                                return <div key={item.id} className='pt-2 pl-2' onClick={handleClickMobile}>
+                                    <Link href={item.url} >
                                         <a ><img src={`/images/${item.value}.svg`} alt='brand-logos' className='h-6 w-6'/></a>
                                     </Link>
                                 </div>
@@ -39,14 +40,14 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
 
                         </div>
                     </div>
-                    <Link href="/login" className="cursor-pointer ">
-                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
+                    <Link href="/login" className="cursor-pointer " >
+                        <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
                             <div className='text-2xl'>Login</div>
                         </a>
                     </Link>
 
-                    <Link href="/" className="cursor-pointer ">
-                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla border-b border-gray-800">
+                    <Link href="" className="cursor-pointer ">
+                        <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla border-b border-gray-800">
                             <div className='text-2xl'>Get the App</div>
                         </a>
                     </Link>
@@ -60,16 +61,14 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
 
                         {
                             exploreclick ? (<div className=''>
-                            <Link href="/" className="cursor-pointer ">
-                                <a  className="px-8 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
-                                    <div>Something</div>
-                                </a>
-                            </Link>
-                            <Link href="/" className="cursor-pointer ">
-                                <a  className="px-8 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
-                                    <div>Something</div>
-                                </a>
-                            </Link>
+                                {exploreDrop.map(item =>{
+                                    return <Link href="" className="cursor-pointer " key={item.id} >
+                                                <a  className="px-8 py-4 flex flex-row justify-start w-full cursor-pointer hover:bg-didalla" onClick={handleClickMobile}>
+                                                    <div className='pr-2'>{item.icon} </div>
+                                                    <div>{item.text}</div>
+                                                </a>
+                                            </Link>
+                                })}
 
                         </div>) :null
                         }
@@ -83,27 +82,25 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
 
                         {
                             creatorclick ? (<div className=''>
-                            <Link href="/" className="cursor-pointer ">
-                                <a  className="px-8 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
-                                    <div>Something</div>
-                                </a>
-                            </Link>
-                            <Link href="/" className="cursor-pointer ">
-                                <a  className="px-8 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla">
-                                    <div>Something</div>
-                                </a>
-                            </Link>
+                            {creatorDrop.map(item =>{
+                                    return <Link href="" className="cursor-pointer " key={item.id} >
+                                                <a onClick={handleClickMobile} className="px-8 py-4 flex flex-row justify-start w-full cursor-pointer hover:bg-didalla">
+                                                    <div className='pr-2'>{item.icon} </div>
+                                                    <div>{item.text}</div>
+                                                </a>
+                                            </Link>
+                            })}
 
                         </div>) :null
                         }
 
-                    <Link href="/" className="cursor-pointer ">
-                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
+                    <Link href="/" className="cursor-pointer " >
+                        <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
                             <div>Contact</div>
                         </a>
                     </Link>
-                    <Link href="/" className="cursor-pointer ">
-                        <a  className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
+                    <Link href="/" className="cursor-pointer " >
+                        <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
                             <div>FAQS</div>
                         </a>
                     </Link>
@@ -129,21 +126,15 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                                 Explore&nbsp;<BiChevronDown className='inline'/>
                                 {
                                     exploreclicklarge ? (<div className='bg-white border border-gray-50 absolute rounded top-8 left-0 w-48 py-2 shadow-2xl'>
-                                    <Link href="/" className="cursor-pointer ">
-                                        <a  className=" p-3 hover:bg-gray-100 block">
-                                            <div>Something</div>
-                                        </a>
-                                    </Link>
-                                    <Link href="/" className="cursor-pointer ">
-                                        <a  className=" p-3 hover:bg-gray-100 block">
-                                            <div>Something</div>
-                                        </a>
-                                    </Link>
-                                    <Link href="/" className="cursor-pointer ">
-                                        <a  className=" p-3 hover:bg-gray-100 block">
-                                            <div>Something</div>
-                                        </a>
-                                    </Link>
+                                    
+                                    {exploreDrop.map(item =>{
+                                    return <Link href="" className="cursor-pointer " key={item.id} >
+                                                <a  className="py-3 px-3 flex flex-row justify-start w-full cursor-pointer hover:bg-gray-100" onClick={handleClickMobile}>
+                                                    <div className='pr-2'>{item.icon} </div>
+                                                    <div>{item.text}</div>
+                                                </a>
+                                            </Link>
+                                    })}
                                 </div>) :null
                                 }
                                 
@@ -154,21 +145,14 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                                 For Creators&nbsp;<BiChevronDown className='inline' />
                                 {
                                     creatorclicklarge ? <div className='bg-white border border-gray-50 absolute rounded top-8 left-0 w-48 py-2 shadow-2xl'>
-                                    <Link href="/" className="cursor-pointer ">
-                                        <a  className=" p-3 hover:bg-gray-100 block">
-                                            <div>Something</div>
-                                        </a>
-                                    </Link>
-                                    <Link href="/" className="cursor-pointer ">
-                                        <a  className=" p-3 hover:bg-gray-100 block">
-                                            <div>Something</div>
-                                        </a>
-                                    </Link>
-                                    <Link href="/" className="cursor-pointer ">
-                                        <a  className=" p-3 hover:bg-gray-100 block">
-                                            <div>Something</div>
-                                        </a>
-                                    </Link>
+                                    {creatorDrop.map(item =>{
+                                    return <Link href="" className="cursor-pointer " key={item.id} >
+                                                <a  className="py-3 px-3 flex flex-row justify-start w-full cursor-pointer hover:bg-gray-100" onClick={handleClickMobile}>
+                                                    <div className='pr-2'>{item.icon} </div>
+                                                    <div>{item.text}</div>
+                                                </a>
+                                            </Link>
+                                    })}
                                 </div> : null
                                 }
                             </button>
