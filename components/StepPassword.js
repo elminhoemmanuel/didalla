@@ -13,7 +13,8 @@ const StepPassword = ({
     lastname,
     email,
     password,
-    response,
+    handleSetResponse,
+    handleSetLoading,
     values
 }) => {
 
@@ -25,6 +26,10 @@ const StepPassword = ({
     const handleFormSubmit = event => {
         event.preventDefault()
 
+        handleNext();
+
+        handleSetLoading(true)
+
         axios.post('https://api.didalla.com/api/register', {
             first_name: firstname,
             last_name: lastname,
@@ -33,12 +38,16 @@ const StepPassword = ({
             role:userType
           })
           .then((response) => {
+            handleSetLoading(false)
             console.log(response.data);
+            handleSetResponse(response.data.message)
           }, (error) => {
+            handleSetLoading(false)
             console.log(error);
+            handleSetResponse("Something went wrong, looks like the email you used is already taken")
           });
 
-        handleNext();
+        
     
     }
 
@@ -51,8 +60,6 @@ const StepPassword = ({
         e.preventDefault()
         setUserType("booster")
     }
-
-    console.log(userType);
 
     return (
         <div className='w-3/4 md:w-1/2 lg:w-2/6 my-0 mx-auto block pb-6'>

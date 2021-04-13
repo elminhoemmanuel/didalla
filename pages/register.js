@@ -14,6 +14,16 @@ const Register = () => {
     //React hooks used 
     const [activeStep, setActiveStep] = useState(0);
 
+    const [responsegotten, setresponsegotten] = useState("");
+    const [isloading, setIsLoading] = useState(false);
+
+    const handleSetResponse = (value) =>{
+        setresponsegotten (value);
+    }
+    const handleSetLoading = (value) =>{
+        setIsLoading (value);
+    }
+
     const handleNext = () =>{
         setActiveStep (prevActiveStep => prevActiveStep +1);
     } 
@@ -23,8 +33,6 @@ const Register = () => {
             case 0:
                 return <StepEmail 
                 handleNext={handleNext} 
-                stateSchema={stateSchema}
-                stateValidatorSchema={stateValidatorSchema}
                 values={values}
                 errors={errors}
                 dirty={dirty}
@@ -45,23 +53,13 @@ const Register = () => {
                 firstname={firstname}
                 lastname={lastname}
                 password={password}
+                handleSetResponse={handleSetResponse}
+                handleSetLoading={handleSetLoading}
                 />
             case 2:
-                return <StepComplete />
+                return <StepComplete responsegotten={responsegotten} isloading={isloading}/>
             default:
-                return <StepEmail 
-                handleNext={handleNext} 
-                stateSchema={stateSchema}
-                stateValidatorSchema={stateValidatorSchema}
-                values={values}
-                errors={errors}
-                dirty={dirty}
-                handleOnChange={handleOnChange}
-                email={email}
-                firstname={firstname}
-                lastname={firstname}
-                password={password}
-                 />
+                return <StepComplete responsegotten={responsegotten} isloading={isloading}/>
         }
     }
 
