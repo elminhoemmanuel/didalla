@@ -4,7 +4,8 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import AuthButton from '../components/AuthButton';
 import AuthButtonDisabled from '../components/AuthButtonDisabled';
-import useForm from '../components/useForm'
+import useForm from '../components/useForm';
+import axios from 'axios'
 
 
 
@@ -38,8 +39,18 @@ const Login = () => {
 
     const handleFormSubmit = (e)=>{
         e.preventDefault();
-        console.log(values);
+        axios.post('https://api.didalla.com/api/login', {
+            email: email,
+            password: password,
+          })
+          .then((response) => {
+            console.log(response.data.message);
+          }, (error) => {
+            console.log(error);
+          });
     }
+
+    
 
     return ( 
 
@@ -121,8 +132,9 @@ const Login = () => {
                         </div>
                     </form>
 
-                    <div>
-                        <Link href="/register"><a className='text-didallabody text-sm'>Not yet a member? <span className='text-didalla'>Create your account now!</span></a></Link>
+                    <div className='text-center'>
+                        <Link href="/forgotpassword"><a className='mb-1 block text-didalla text-sm'>Forgot Password</a></Link>
+                        <Link href="/register"><a className='block text-didallabody text-sm'>Not yet a member? <span className='text-didalla'>Create your account now!</span></a></Link>
                     </div>
                     
                 </div>

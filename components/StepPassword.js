@@ -30,24 +30,26 @@ const StepPassword = ({
             last_name: lastname,
             email: email,
             password: password,
-            user_type:userType
+            role:userType
           })
           .then((response) => {
             console.log(response.data);
           }, (error) => {
             console.log(error);
           });
+
+        handleNext();
     
     }
 
     const handleTypeVendor = e =>{
         e.preventDefault()
-        setUserType('vendor')
+        setUserType("vendor")
     }
 
     const handleTypeCreator = e =>{
         e.preventDefault()
-        setUserType('creator')
+        setUserType("booster")
     }
 
     console.log(userType);
@@ -116,13 +118,13 @@ const StepPassword = ({
                         <p className='text-center text-black text-sm my-1'>I want to :</p>
 
                         <div className='mt-2 mb-4 flex justify-center items-center flex-nowrap'>
-                            {userType === 'vendor' ?(<button className='w-full block p-2 rounded-l bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeVendor}>
+                            {userType === "vendor" ?(<button className='w-full block p-2 rounded-l bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeVendor}>
                                 Hire <span className='hidden md:inline'>a Creator</span>
                             </button>) : (<button className='w-full block p-2 rounded-l bg-transparent border border-grayborder hover:text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeVendor}>
                                 Hire <span className='hidden md:inline'>a Creator</span>
                             </button>)}
 
-                            {userType === 'creator' ?(<button className='w-full block p-2 rounded-r bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeCreator}>
+                            {userType === "booster" ?(<button className='w-full block p-2 rounded-r bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeCreator}>
                                 Work <span className='hidden md:inline'>as a Creator</span>
                             </button>) : (<button className='w-full block p-2 rounded-r bg-transparent border border-grayborder hover:text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeCreator}>
                                 Work <span className='hidden md:inline'>as a Creator</span>

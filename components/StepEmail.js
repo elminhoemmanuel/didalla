@@ -70,7 +70,7 @@ const StepEmail = ({
                         </div>
                     </form>
 
-                    <div>
+                    <div className='text-center'>
                         <Link href="/login"><a className='text-didallabody text-sm'>Already have an account? <span className='text-didalla'>Log In</span></a></Link>
                     </div>
                     
