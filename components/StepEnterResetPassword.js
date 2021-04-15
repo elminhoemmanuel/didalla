@@ -8,7 +8,8 @@ const StepEnterResetPassword = ({
     dirty,
     handleOnChange,
     email,    
-    handleFormSubmit
+    handleFormSubmit,
+    showSpinner={showSpinner}
 }) => {
     return (
         <div>
@@ -44,7 +45,7 @@ const StepEnterResetPassword = ({
                             
                             {email.length === 0 || errors.email 
                                 ? (<AuthButtonDisabled buttonText='Reset Password'/>) : 
-                                (<AuthButton buttonText='Reset Password' />)}
+                                (<AuthButton buttonText='Reset Password' showSpinner={showSpinner}/>)}
 
                         </div>
                     </form>

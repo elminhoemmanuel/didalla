@@ -11,6 +11,7 @@ const StepLoginDetails = ({
                 email,
                 password,
                 handleFormSubmit,
+                showSpinner
 }) =>{
 
     return (
@@ -77,7 +78,7 @@ const StepLoginDetails = ({
 
                             {email.length === 0 ||password.length===0 || errors.email ||errors.password 
                                 ? (<AuthButtonDisabled buttonText='Login'/>) : 
-                                (<AuthButton buttonText='Login' />)}
+                                (<AuthButton buttonText='Login' showSpinner={showSpinner}/>)}
 
                         </div>
                     </form>

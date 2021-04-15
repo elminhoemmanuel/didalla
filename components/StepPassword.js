@@ -15,7 +15,8 @@ const StepPassword = ({
     password,
     handleSetResponse,
     handleSetLoading,
-    values
+    values,
+    showSpinner={showSpinner}
 }) => {
 
     const [userType, setUserType] = useState('')
@@ -145,7 +146,7 @@ const StepPassword = ({
 
                         {firstname.length === 0 || lastname.length === 0 || password.length===0 || errors.firstname ||errors.lastname || errors.password|| userType==='' || checkboxValue === false
                         ? (<AuthButtonDisabled buttonText='Create my Account'/>) : 
-                        (<AuthButton buttonText='Create my Account' />)}
+                        (<AuthButton buttonText='Create my Account' showSpinner={showSpinner}/>)}
 
                     </form>
                     

@@ -9,6 +9,7 @@ import StepLoginComplete from '../components/StepLoginComplete';
 
 
 
+
 const Login = () => {
 
 
@@ -18,12 +19,7 @@ const Login = () => {
     const [responsegotten, setresponsegotten] = useState("");
     const [isloading, setIsLoading] = useState(false);
 
-    // const handleSetResponse = (value) =>{
-    //     setresponsegotten (value);
-    // }
-    // const handleSetLoading = (value) =>{
-    //     setIsLoading (value);
-    // }
+    const [showSpinner , setShowSpinner] = useState(false)
 
     const handleNext = () =>{
         setActiveStep (prevActiveStep => prevActiveStep +1);
@@ -41,6 +37,7 @@ const Login = () => {
                 email={email}
                 password={password}
                 handleFormSubmit={handleFormSubmit}
+                showSpinner={showSpinner}
                  />
             
             case 1:
@@ -78,20 +75,23 @@ const Login = () => {
 
     const handleFormSubmit = (e)=>{
         e.preventDefault();
-        handleNext();
-        axios.post('https://api.didalla.com/api/login', {
-            email: email,
-            password: password,
-          })
-          .then((response) => {
-            setIsLoading(false)
-            console.log(response.data.message);
-            setresponsegotten(response.data.message)
-          }, (error) => {
-            setIsLoading(false)
-            console.log(error);
-            setresponsegotten("Invalid email or password")
-          });
+        setShowSpinner(!showSpinner);
+        setTimeout(() => {
+            handleNext();
+            axios.post('https://api.didalla.com/api/login', {
+                email: email,
+                password: password,
+            })
+            .then((response) => {
+                setIsLoading(false)
+                console.log(response.data.message);
+                setresponsegotten(response.data.message)
+            }, (error) => {
+                setIsLoading(false)
+                console.log(error);
+                setresponsegotten("Invalid email or password")
+            });
+        }, 1000);
     }
 
     

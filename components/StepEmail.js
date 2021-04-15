@@ -9,7 +9,8 @@ const StepEmail = ({
     errors,
     dirty,
     handleOnChange,
-    email        
+    email,
+    showSpinner       
 }) => {
 
     const handleEmailSubmit = (e) =>{
@@ -66,7 +67,7 @@ const StepEmail = ({
                                     <p className='text-red-500 text-xs'>{errors.email}</p>
                                 )}
                             </div>
-                            {email.length === 0 || errors.email ? (<AuthButtonDisabled buttonText='Continue'/>) : (<AuthButton buttonText='Continue' />)}
+                            {email.length === 0 || errors.email ? (<AuthButtonDisabled buttonText='Continue'/>) : (<AuthButton buttonText='Continue' showSpinner={showSpinner} />)}
                         </div>
                     </form>
 

@@ -17,6 +17,8 @@ const Register = () => {
     const [responsegotten, setresponsegotten] = useState("");
     const [isloading, setIsLoading] = useState(false);
 
+    const [showSpinner , setShowSpinner] = useState(false)
+
     const handleSetResponse = (value) =>{
         setresponsegotten (value);
     }
@@ -41,6 +43,7 @@ const Register = () => {
                 firstname={firstname}
                 lastname={firstname}
                 password={password}
+                showSpinner={showSpinner}
                  />
             case 1:
                 return <StepPassword
@@ -55,9 +58,10 @@ const Register = () => {
                 password={password}
                 handleSetResponse={handleSetResponse}
                 handleSetLoading={handleSetLoading}
+                showSpinner={showSpinner}
                 />
             case 2:
-                return <StepComplete responsegotten={responsegotten} isloading={isloading}/>
+                return <StepComplete responsegotten={responsegotten} isloading={isloading} showSpinner={showSpinner}/>
             default:
                 return <StepComplete responsegotten={responsegotten} isloading={isloading}/>
         }

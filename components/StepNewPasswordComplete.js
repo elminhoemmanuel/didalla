@@ -17,7 +17,7 @@ const StepResetPasswordComplete = ({
                         }
                     </div>
 
-                    {isloading ? "Resetting Your Password..." : <p>{resetMessage}</p>}
+                    {isloading ? <div className='text-center flex flex-row justify-center items-center'><img className="w-16 h-16" src="/images/loading.gif" alt="loading gif"/></div> : <p>{resetMessage}</p>}
 
                     <div>
                         {resetMessage !== "Something went wrong , plase try again" ? <p>You can <Link href="/login"><a >login here</a></Link></p>:null}

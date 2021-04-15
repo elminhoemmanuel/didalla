@@ -16,6 +16,8 @@ const Login = () => {
 
     const [isloading, setIsloading] = useState(false);
 
+    const [showSpinner , setShowSpinner] = useState(false)
+
     const handleNext = () =>{
         setIsloading(true);
         setActiveStep (prevActiveStep => prevActiveStep +1);
@@ -34,6 +36,7 @@ const Login = () => {
                 email={email}
                 handleFormSubmit={handleFormSubmit}
                 isloading={isloading}
+                showSpinner={showSpinner}
                 />
             case 1:
                 return <StepResetPasswordComplete 
