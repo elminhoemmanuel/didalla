@@ -75,7 +75,7 @@ const Login = () => {
 
     const handleFormSubmit = (e)=>{
         e.preventDefault();
-        setShowSpinner(!showSpinner);
+        // setShowSpinner(!showSpinner);
         setTimeout(() => {
             handleNext();
             axios.post('https://api.didalla.com/api/login', {

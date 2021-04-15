@@ -45,7 +45,7 @@ const StepPassword = ({
           }, (error) => {
             handleSetLoading(false)
             console.log(error);
-            handleSetResponse("Something went wrong, looks like the email you used is already taken")
+            handleSetResponse(`Something went wrong, looks like the email you used is already taken`)
           });
 
         

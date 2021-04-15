@@ -17,7 +17,7 @@ const StepLoginComplete = ({
                         }
                     </div>
 
-                    {isloading ? <div className='text-center flex flex-row justify-center items-center'><img className="w-16 h-16" src="/images/loading.gif" alt="loading gif"/></div> : <p>{responsegotten}</p>}
+                    {isloading ? "Loading..." : <p>{responsegotten}</p>}
 
                     
                     
