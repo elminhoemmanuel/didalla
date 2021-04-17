@@ -130,6 +130,10 @@ html, body{
     transition-property: display;
 }
 
+.onboarding-container{
+    flex-wrap:wrap !important;
+}
+
 
 @media screen and (min-width:1536px){
     body{

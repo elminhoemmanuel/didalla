@@ -119,15 +119,9 @@ const Login = () => {
     return ( 
 
         <>
-            <Head>
-                <title>Didalla | Login</title>
-                <meta name="keywords" content="didalla content-creators marketplace content"/>
-                <meta name="description" content="Marketplace to book advertsing gigs with content creators"/>
-            </Head>
+            
 
-            <LogoNavbar />
-
-            <div className='pt-24 h-screen '>
+            <div className='pt-24 '>
                 {getStepsContent(activeStep)}
                 
             </div>

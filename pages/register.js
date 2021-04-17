@@ -125,7 +125,7 @@ const Register = () => {
 
             <LogoNavbar />
 
-            <div className='pt-24 h-screen '>
+            <div className='pt-24 '>
                 {getStepsContent(activeStep)}
             
             </div>
