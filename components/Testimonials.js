@@ -40,9 +40,9 @@ const Testimonials = () => {
                 },
             }} id='main' tag="section" wrapperTag="ul"
             navigation keyboard spaceBetween={0} slidesPerView={1}  spaceBetween={30}
-            onInit={(swiper) =>console.log('Swiper initialized', swiper)}
-            onSlideChange={(swiper) =>console.log('Slide changed to:', swiper.activeIndex)}
-            onReachEnd={() =>console.log('Swiper end reached')}
+            // onInit={(swiper) =>console.log('Swiper initialized', swiper)}
+            // onSlideChange={(swiper) =>console.log('Slide changed to:', swiper.activeIndex)}
+            // onReachEnd={() =>console.log('Swiper end reached')}
             >
                 {slides}                
             </Swiper>

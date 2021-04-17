@@ -14,11 +14,13 @@ html, body{
     margin:0;
     padding:0;
     position: relative;
+
+    body{
+        max-width: 1536px !important;
+    }
 }
 
-body{
-    max-width: 1536px !important;
-}
+
 
 /* footer */
 .footer-box{
@@ -50,8 +52,10 @@ body{
     left: 0%;
 }
 
-.booster-holder h1, .booster-holder p{
-    color:white !important;
+.booster-holder{
+    h1, p{
+        color:white !important;
+    }
 }
 
 /* styles for carousel */

@@ -13,11 +13,11 @@ const StepPassword = ({
     lastname,
     email,
     password,
-    handleSetResponse,
     handleSetLoading,
-    values,
-    showSpinner={showSpinner}
-}) => {
+    handleSetResponse,
+    responsegotten,
+    handleShowSpinner
+    }) => {
 
     const [userType, setUserType] = useState('')
     const [checkboxValue, setCheckboxValue] = useState(false)
@@ -29,6 +29,8 @@ const StepPassword = ({
 
         handleNext();
 
+        handleShowSpinner();
+
         handleSetLoading(true)
 
         axios.post('https://api.didalla.com/api/register', {
@@ -39,13 +41,15 @@ const StepPassword = ({
             role:userType
           })
           .then((response) => {
+            handleShowSpinner();
             handleSetLoading(false)
             console.log(response.data);
             handleSetResponse(response.data.message)
           }, (error) => {
+            handleShowSpinner();
             handleSetLoading(false)
-            console.log(error);
-            handleSetResponse(`Something went wrong, looks like the email you used is already taken`)
+            console.log(error.data);
+            handleSetResponse('Something went wrong, ensure that your email is not already taken')
           });
 
         
@@ -127,15 +131,15 @@ const StepPassword = ({
 
                         <div className='mt-2 mb-4 flex justify-center items-center flex-nowrap'>
                             {userType === "vendor" ?(<button className='w-full block p-2 rounded-l bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeVendor}>
-                                Hire <span className='hidden md:inline'>a Creator</span>
+                                Find <span className='hidden md:inline'>a Creator</span>
                             </button>) : (<button className='w-full block p-2 rounded-l bg-transparent border border-grayborder hover:text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeVendor}>
-                                Hire <span className='hidden md:inline'>a Creator</span>
+                                Find <span className='hidden md:inline'>a Creator</span>
                             </button>)}
 
                             {userType === "booster" ?(<button className='w-full block p-2 rounded-r bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeCreator}>
-                                Work <span className='hidden md:inline'>as a Creator</span>
+                                Earn <span className='hidden md:inline'>as a Creator</span>
                             </button>) : (<button className='w-full block p-2 rounded-r bg-transparent border border-grayborder hover:text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeCreator}>
-                                Work <span className='hidden md:inline'>as a Creator</span>
+                                Earn <span className='hidden md:inline'>as a Creator</span>
                             </button>)}
                         </div>
 
@@ -144,9 +148,11 @@ const StepPassword = ({
                             <label htmlFor="terms" className='text-xs'>Yes, I understand and agree to the <a className='text-didalla' href="">Didalla Terms of service</a>, Including the <a className='text-didalla' href="">User Agreement</a> and <a className='text-didalla' href="">Privacy Policy</a> </label>
                         </div>
 
+                        {responsegotten !== "" ? <p className='text-red-400 mb-2 text-center text-sm'>{responsegotten}</p> : null}
+
                         {firstname.length === 0 || lastname.length === 0 || password.length===0 || errors.firstname ||errors.lastname || errors.password|| userType==='' || checkboxValue === false
                         ? (<AuthButtonDisabled buttonText='Create my Account'/>) : 
-                        (<AuthButton buttonText='Create my Account' showSpinner={showSpinner}/>)}
+                        (<AuthButton buttonText='Create my Account' />)}
 
                     </form>
                     

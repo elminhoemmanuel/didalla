@@ -13,17 +13,24 @@ const Register = () => {
 
     //React hooks used 
     const [activeStep, setActiveStep] = useState(0);
-
-    const [responsegotten, setresponsegotten] = useState("");
     const [isloading, setIsLoading] = useState(false);
+    const [responsegotten, setresponsegotten] = useState("");
 
-    const [showSpinner , setShowSpinner] = useState(false)
+    const [showSpinner , setShowSpinner] = useState(false);
+
+    const handleSetActiveStep = () =>{
+        setActiveStep(0);
+    }
+
+    const handleShowSpinner = () =>{
+        setShowSpinner(!showSpinner);
+    }
 
     const handleSetResponse = (value) =>{
-        setresponsegotten (value);
+        setresponsegotten(value);
     }
     const handleSetLoading = (value) =>{
-        setIsLoading (value);
+        setIsLoading(value);
     }
 
     const handleNext = () =>{
@@ -43,7 +50,6 @@ const Register = () => {
                 firstname={firstname}
                 lastname={firstname}
                 password={password}
-                showSpinner={showSpinner}
                  />
             case 1:
                 return <StepPassword
@@ -56,14 +62,14 @@ const Register = () => {
                 firstname={firstname}
                 lastname={lastname}
                 password={password}
-                handleSetResponse={handleSetResponse}
                 handleSetLoading={handleSetLoading}
-                showSpinner={showSpinner}
+                handleSetResponse={handleSetResponse}
+                responsegotten={responsegotten}
+                handleShowSpinner={handleShowSpinner}
+
                 />
             case 2:
-                return <StepComplete responsegotten={responsegotten} isloading={isloading} showSpinner={showSpinner}/>
-            default:
-                return <StepComplete responsegotten={responsegotten} isloading={isloading}/>
+                return <StepComplete handleSetActiveStep={handleSetActiveStep} responsegotten={responsegotten} isloading={isloading} showSpinner={showSpinner}/>
         }
     }
 

@@ -1,17 +1,18 @@
 import Head from 'next/head'
 import LogoNavbar from '../components/LogoNavbar'
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useForm from '../components/useForm';
 import axios from 'axios'
 import StepLoginDetails from '../components/StepLoginDetails';
 import StepLoginComplete from '../components/StepLoginComplete';
-
+import { useRouter } from 'next/router'
 
 
 
 const Login = () => {
 
+    const router = useRouter()
 
     //React hooks used 
     const [activeStep, setActiveStep] = useState(0);
@@ -20,6 +21,9 @@ const Login = () => {
     const [isloading, setIsLoading] = useState(false);
 
     const [showSpinner , setShowSpinner] = useState(false)
+
+    const [userRole, setUserRole] = useState('')
+    const [isOnboarded, setIsOnboarded] = useState(0)
 
     const handleNext = () =>{
         setActiveStep (prevActiveStep => prevActiveStep +1);
@@ -38,11 +42,10 @@ const Login = () => {
                 password={password}
                 handleFormSubmit={handleFormSubmit}
                 showSpinner={showSpinner}
+                responsegotten={responsegotten}
                  />
             
             case 1:
-                return <StepLoginComplete responsegotten={responsegotten} isloading={isloading}/>
-            default:
                 return <StepLoginComplete responsegotten={responsegotten} isloading={isloading}/>
         }
     }
@@ -75,24 +78,41 @@ const Login = () => {
 
     const handleFormSubmit = (e)=>{
         e.preventDefault();
-        // setShowSpinner(!showSpinner);
-        setTimeout(() => {
-            handleNext();
+        setShowSpinner(!showSpinner);
             axios.post('https://api.didalla.com/api/login', {
                 email: email,
                 password: password,
             })
             .then((response) => {
                 setIsLoading(false)
-                console.log(response.data.message);
-                setresponsegotten(response.data.message)
+                console.log(response.data);
+                // setresponsegotten(response.data.message)
+                setUserRole(response.data.user.role)
+                setIsOnboarded(response.data.user.reg_completed)
+                console.log(userRole);
+                console.log(isOnboarded);
+                
             }, (error) => {
                 setIsLoading(false)
+                setShowSpinner(false);
                 console.log(error);
-                setresponsegotten("Invalid email or password")
+                setresponsegotten("Something went wrong check your email and password or your connection")
             });
-        }, 1000);
     }
+
+    useEffect(() => {
+        if (userRole==="vendor" && isOnboarded===1){
+            router.push('/dashboard/vendor')
+        }else if (userRole==="vendor" && isOnboarded===0){
+            router.push('/onboarding/vendor')
+        }else if (userRole==="booster" && isOnboarded===1){
+            router.push('/dashboard/booster')
+        }else if (userRole==="booster" && isOnboarded===0){
+            router.push('/onboarding/booster')
+        }
+
+        
+    }, [userRole, isOnboarded])
 
     
 
