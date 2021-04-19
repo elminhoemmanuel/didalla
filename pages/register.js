@@ -66,7 +66,7 @@ const Register = () => {
                 handleSetResponse={handleSetResponse}
                 responsegotten={responsegotten}
                 handleShowSpinner={handleShowSpinner}
-
+                showSpinner
                 />
             case 2:
                 return <StepComplete handleSetActiveStep={handleSetActiveStep} responsegotten={responsegotten} isloading={isloading} showSpinner={showSpinner}/>

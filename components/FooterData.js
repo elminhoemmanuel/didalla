@@ -1,7 +1,7 @@
 export const footerObjOne = [
     {
         id:1,
-        value:'Find content creators'
+        value:'For creators'
     },
     {
         id:2,

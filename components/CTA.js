@@ -11,7 +11,7 @@ const CTA = () => {
                 <Link href="" className=''>
                     <a className='block shadow-2xl px-6 py-10 md:py-6 mt-4 md:mt-0 rounded border border-gray-300 hover:bg-gray-50 hover:border-didalla'>
                         <div className='flex justify-center items-center  mb-2'><img src="images/microphone.svg" alt="microphone image"/></div>
-                        <div className='text-center  font-bold text-base text-didallatitle mb-1'>Hire a content <br />creator</div>
+                        <div className='text-center  font-bold text-base text-didallatitle mb-1'>Find a content <br />creator</div>
                         <div className='text-center  text-sm text-didallabody mb-2'>Get reach for your brand</div>
                     </a>
                 </Link>
@@ -19,7 +19,7 @@ const CTA = () => {
                 <Link href="" className=''>
                     <a className='block shadow-2xl px-6 py-10 md:py-6 mt-4 md:mt-0 rounded border border-gray-300 hover:bg-gray-50 hover:border-didalla'>
                         <div className='flex justify-center items-center  mb-2'><img src="images/media.svg" alt="microphone image"/></div>
-                        <div className='text-center  font-bold text-base text-didallatitle mb-1'>Become a content <br />creator</div>
+                        <div className='text-center  font-bold text-base text-didallatitle mb-1'>Earn as a content <br />creator</div>
                         <div className='text-center  text-sm text-didallabody mb-2'>Earn money creating content</div>
                     </a>
                 </Link>
