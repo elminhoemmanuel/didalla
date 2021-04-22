@@ -12,8 +12,10 @@ const StepResetPasswordComplete = ({
                         <img src="/images/email_check.svg" alt="email check"/>
                     </div>
 
-                    {isloading ? "Resetting Your Password..." : <p>{resetMessage} .Check your Email to reset password !</p>}
-
+                    {isloading ? "Resetting Your Password..." : <p>{resetMessage}</p>}
+                    {resetMessage === 'Something went wrong , plase try again' ?<p><Link href="/forgotpassword">
+                    <a >here</a>
+                    </Link></p>:null}
                     
                     
             </div>

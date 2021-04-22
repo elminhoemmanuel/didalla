@@ -48,7 +48,9 @@ const booster = () => {
     }, [])
 
     const [booster, setBooster] = useState({
-        skills:[],
+        country:'',
+        city:'',
+        phone:0,
     });
 
     const handleSetBoosterSkills = (value) => {
@@ -78,6 +80,7 @@ const booster = () => {
                 return <BoosterBodyDetails
                 activeStep={activeStep}
                 countries={countries}
+                handleBack={handleBack}
                  />
         }
     }

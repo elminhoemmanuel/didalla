@@ -35,7 +35,7 @@ const OnboardingBoosterBody = ({
 
                 <div className='py-4 border-b border-gray-200'>
                     <h1 className='text-didallabody text-xl mb-2'>Hello,</h1>
-                    <div className='text-black font-bold text-2xl'><span>{userValues.first_name} &nbsp; {userValues.last_name}</span></div>
+                    <div className='text-black font-bold text-2xl'><span>{userValues.first_name} {userValues.last_name}</span></div>
                 </div>
 
                 <div className='pt-4 pb-10 border-b border-gray-200'>
