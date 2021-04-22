@@ -17,6 +17,7 @@
     "react-icons": "^4.2.0",
     "react-intl-tel-input": "^8.0.4",
     "react-navbar-dropdown": "^1.4.3",
+    "react-select": "^4.3.0",
     "react-spinners": "^0.10.6",
     "sass": "^1.32.8",
     "swiper": "^6.5.0"

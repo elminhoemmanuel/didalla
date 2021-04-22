@@ -41,7 +41,7 @@ const StepComplete = ({
                         </div>
                     }
 
-                    {responsegotten === "User successfully created" ? <div>Please check your email to verify its you and then <Link href="/login"><a className='text-didalla'>login here</a></Link></div> : null}      
+                    {responsegotten === "Your account has been successfully created, please check your email to verify your email and then login" ? <div><Link href="/login"><a className='text-didalla'>login here</a></Link></div> : null}      
                     {responsegotten === "Something went wrong, ensure that your email is not already taken" ? <div>Please try again <Link href="/register"><a onClick={handleSetActiveStep} className='text-didalla'>here</a></Link></div> : null}      
                     
             </div>

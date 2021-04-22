@@ -10,6 +10,7 @@ module.exports = {
         didallatitle:'#04023B',
         didallabody:'#4E4B66',
         footergray:'#FCFCFC',
+        onboardinggray:'#E5E5E5',
         didallateal:'#CDEFD1',
         downloadgray:'#F7F7FC',
         grayborder:'#D6D8E7'

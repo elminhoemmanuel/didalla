@@ -85,12 +85,14 @@ const Login = () => {
             })
             .then((response) => {
                 setIsLoading(false)
-                console.log(response.data);
+                console.log(response);
+                localStorage.setItem('userToken',response.data.access_token)
                 // setresponsegotten(response.data.message)
                 setUserRole(response.data.user.role)
                 setIsOnboarded(response.data.user.reg_completed)
                 console.log(userRole);
                 console.log(isOnboarded);
+                setShowSpinner(false);
                 
             }, (error) => {
                 setIsLoading(false)
@@ -119,7 +121,14 @@ const Login = () => {
     return ( 
 
         <>
-            
+
+            <Head>
+                <title>Didalla | Login</title>
+                <meta name="keywords" content="didalla content-creators marketplace content"/>
+                <meta name="description" content="Marketplace to book advertsing gigs with content creators"/>
+            </Head>
+
+            <LogoNavbar />
 
             <div className='pt-24 '>
                 {getStepsContent(activeStep)}
