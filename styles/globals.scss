@@ -134,6 +134,27 @@ html, body{
     flex-wrap:wrap !important;
 }
 
+.intl-tel-input.allow-dropdown input, .intl-tel-input.allow-dropdown input[type=text], .intl-tel-input.allow-dropdown input[type=tel] {
+    padding: 0.5rem;
+    width: 100% !important;
+    border-radius: 0.25rem;
+    border:1px solid #D6D8E7;
+    margin-bottom: 0.5rem;
+
+}
+
+.intl-tel-input{
+    width: 100% !important;
+
+    .selected-flag{
+        border-right: 1px solid #D6D8E7 !important;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+    }
+}
+
+
+
 
 @media screen and (min-width:1536px){
     body{

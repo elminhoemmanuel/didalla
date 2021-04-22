@@ -1,30 +1,17 @@
 import React, { useState } from 'react'
+import IntlTelInput from 'react-intl-tel-input'
+import'react-intl-tel-input/dist/main.css'
 
 const BoosterBodyDetails = ({
     activeStep,
     countries
 }) => {
 
-  
     // console.log(countries[0].cities);
     const [selectedCountry, setSelectedCountry] = useState("")
-    const [cities, setCities] = useState(countries[0].cities)
     // console.log('okay');
     // console.log(selectedCountry);
-
-    const processCountry = ((country) => {
-        setSelectedCountry(country)
-        {countries.map((item) =>{
-            if(country === item.country){
-               setCities(item.cities)
-            }
-              
-        })}
-    })
     
-    const newList = countries.filter(item =>{
-        item.country === selectedCountry
-    })
     console.log(newList)
     return (
         <div className=' col-span-5 px-6 pt-6 md:pt-20 pb-4'>
@@ -42,13 +29,25 @@ const BoosterBodyDetails = ({
                     <p className='text-2xl text-black font-bold'>Location</p>
                     <p className='mb-2 text-sm text-didallabody'>Where are you based?</p>
 
-                    <div className='mb-2 grid grid-cols-1 md:grid-cols-2 gap-2'>
+                    <div className='mb-8 grid grid-cols-1 md:grid-cols-2 gap-2'>
                         
                         <div>
                             <div className='mb-1'><label htmlFor="country" className='text-didallabody text-sm'>Country</label></div>
                             <div className=''>
                                 <select name="country" value={selectedCountry} 
-                                onChange={e =>{processCountry(e.target.value);}}  id="country" className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
+                                onChange={e =>{setSelectedCountry(e.target.value);}}  id="country" className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
+                                    {countries.map((item , x=1) =>{
+                                        return <option key={x++} className='p-1 hover:bg-didalla' value={item.country} >{item.country}</option>
+                                    })}
+                                </select>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div className='mb-1'><label htmlFor="country" className='text-didallabody text-sm'>Country</label></div>
+                            <div className=''>
+                                <select name="country" value={selectedCountry} 
+                                onChange={e =>{setSelectedCountry(e.target.value);}}  id="country" className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
                                     {countries.map((item , x=1) =>{
                                         return <option key={x++} className='p-1 hover:bg-didalla' value={item.country} >{item.country}</option>
                                     })}
@@ -57,21 +56,36 @@ const BoosterBodyDetails = ({
                             </div>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <div className='mb-1'><label htmlFor="city" className='text-didallabody text-sm'>city</label></div>
                             <div className=''>
                                 <select name="city" id="city" className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
-                                    {cities.map((item , x=1) =>{
-                                        return <option key={x++} className='p-1 hover:bg-didalla' value={item} >{item}</option>
+                                    {countries.map((item) =>{
+                                        if(selectedCountry === item.country){
+                                            console.log(selectedCountry)
+                                            console.log(item.country)
+                                            console.log(item.cities)
+                                            item.cities.map((item ) =>{
+                                                return <option className='p-1 hover:bg-didalla' value={item} >{item}</option>
+                                            })
+                                        }
+                                          
                                     })}
                                 </select>
 
                             </div>
-                        </div>
+                        </div> */}
 
                         
 
                     </div>
+
+                    <p className='text-2xl text-black font-bold'>Phone Number</p>
+                    <p className='mb-2 text-sm text-didallabody'>This would not be shared with clients</p>
+                    <div className='w-full mb-3'>
+                        <IntlTelInput containerClassName="intl-tel-input" preferredCountries={["us"]} />
+                    </div>
+
                 </form>
 
             </div>
