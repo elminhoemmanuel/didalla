@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
-import {countryCodes} from './CountryCodes'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+
 
 const BoosterBodyDetails = ({
     activeStep,
     countries,
     handleBack,
+    handleNext
 }) => {
 
-    const [selectedCountry, setSelectedCountry] = useState("")
-    const [selectedCity, setSelectedCity] = useState("")
-    const [phone, setPhone] = useState(0);
-    const [selectedCode, setSelectedCode] = useState('');
+    
+
+    const [selectedCountry, setSelectedCountry] = useState()
+    const [selectedCity, setSelectedCity] = useState()
+    const [phone, setPhone] = useState();
+    // const [selectedCode, setSelectedCode] = useState('');
     const [cities, setCities] = useState(countries[0].cities)
 
     const processCountry = ((country) => {
@@ -24,13 +29,13 @@ const BoosterBodyDetails = ({
         })}
     });
 
-    // const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(selectedCountry)
-        console.log(selectedCity)
-        console.log(phone)
-        console.log(selectedCode)
+        console.log(selectedCountry);
+        console.log(selectedCity);
+        console.log(phone);
+        handleNext();
+        
     }
     
     return (
@@ -67,7 +72,7 @@ const BoosterBodyDetails = ({
                         <div>
                             <div className='mb-1'><label htmlFor="city" className='text-didallabody text-sm'>city</label></div>
                             <div className=''>
-                                <select name="city" id="city" value={selectedCity} onChange={e =>{setSelectedCity(e.target.value)}} className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
+                                <select name="city" id="city" value={selectedCity} onChange={(e) =>{setSelectedCity(e.target.value)}} className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
                                     {cities.map((item , x=1) =>{
                                         return <option key={x++} className='p-1 hover:bg-didalla' value={item} >{item}</option>
                                     })}
@@ -80,22 +85,20 @@ const BoosterBodyDetails = ({
 
                     <p className='text-xl text-black font-bold'>Phone Number</p>
                     <p className='mb-2 text-sm text-didallabody'>This would not be shared with clients</p>
-                    <div className='w-full pb-4 grid grid-cols-4 gap-2'>
-                        <div className='col-span-4 md:col-span-1'>
-                            <select name="countryCode" id="countryCode" value={selectedCode} onChange={e =>{setSelectedCode(e.target.value)}} className='pt-4 pb-3 px-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
-                                    {countryCodes.map((item , x=1) =>{
-                                        return <option key={x++} className='p-1 hover:bg-didalla' value={item.dial_code} >{item.dial_code}</option>
-                                    })}
-                            </select>
-                        </div>
-                        <div className='col-span-4 md:col-span-3'>
-                            <input type="number" name="phone" id="phone" value={phone} onChange={e =>{setPhone(e.target.value)}} className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'/>
+                    <div className='w-full pb-8 grid grid-cols-1 border-b border-gray-200'>
+                        <div className=''>
+                        <PhoneInput
+                            placeholder="Enter phone number"
+                            value={phone}
+                            onChange={(setPhone)}
+                            defaultCountry='US'
+                            />
                         </div>
                         
                         
                     </div>
 
-                    <div className='pt-4 flex flex-row flex-nowrap justify-end'>
+                    <div className='pt-6 flex flex-row flex-nowrap justify-end'>
                         <div>
                             <button type='text' className="block py-3 px-12 text-center bg-transparent text-didalla rounded border border-didalla
                                     font-bold hover:text-white hover:bg-didalla focus:outline-none mr-2"  

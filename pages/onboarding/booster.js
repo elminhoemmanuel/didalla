@@ -1,11 +1,13 @@
-import React,{ useState, useEffect} from 'react'
-import Head from 'next/head'
-import LogoNavbar from '../../components/LogoNavbar'
+import React,{ useState, useEffect} from 'react';
+import Head from 'next/head';
+import LogoNavbar from '../../components/LogoNavbar';
 import axios from 'axios';
+import OnboardBoosterSide from '../../components/OnboardBoosterSide';
 import BoosterBodyStart from '../../components/BoosterBodystart';
-import OnboardBoosterSide from '../../components/OnboardBoosterSide'
-import BoosterBodySkills from '../../components/BoosterBodySkills';
 import BoosterBodyDetails from '../../components/BoosterBodyDetails';
+import BoosterBodyPicture from '../../components/BoosterBodyPicture';
+import BoosterBodyInterests from '../../components/BoosterBodyInterests';
+import BoosterBodySocial from '../../components/BoosterBodySocial';
 
 
 const booster = () => {
@@ -47,16 +49,6 @@ const booster = () => {
         });
     }, [])
 
-    const [booster, setBooster] = useState({
-        country:'',
-        city:'',
-        phone:0,
-    });
-
-    const handleSetBoosterSkills = (value) => {
-        setBooster({ ...booster, skills :value});
-    };
-
     const [activeStep, setActiveStep] = useState(1);
     const handleNext = () =>{
         
@@ -81,6 +73,25 @@ const booster = () => {
                 activeStep={activeStep}
                 countries={countries}
                 handleBack={handleBack}
+                handleNext={handleNext}
+                 />
+            case 3:
+                return <BoosterBodyPicture
+                activeStep={activeStep}
+                handleBack={handleBack}
+                handleNext={handleNext}
+                 />
+            case 4:
+                return <BoosterBodyInterests
+                activeStep={activeStep}
+                handleBack={handleBack}
+                handleNext={handleNext}
+                 />
+            case 5:
+                return <BoosterBodySocial
+                activeStep={activeStep}
+                handleBack={handleBack}
+                handleNext={handleNext}
                  />
         }
     }
@@ -96,7 +107,7 @@ const booster = () => {
                 <meta name="description" content="Marketplace to book advertsing gigs with content creators"/>
             </Head>
 
-            <div className='bg-onboardinggray grid grid-cols-1 md:grid-cols-8 h-screen  '>
+            <div className='bg-onboardinggray grid grid-cols-1 md:grid-cols-8 h-screen '>
                 <OnboardBoosterSide activeStep={activeStep} />
                 {getStepsContent(activeStep)}
             </div>

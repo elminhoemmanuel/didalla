@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       colors: {
         didalla: '#39B54A',
+        darkdidalla: '#15421B',
         didallablack:'#0B0C14',
         didallatitle:'#04023B',
         didallabody:'#4E4B66',

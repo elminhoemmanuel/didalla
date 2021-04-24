@@ -14,7 +14,7 @@ const StepResetPasswordComplete = ({
 
                     {isloading ? "Resetting Your Password..." : <p>{resetMessage}</p>}
                     {resetMessage === 'Something went wrong , plase try again' ?<p><Link href="/forgotpassword">
-                    <a >here</a>
+                    <a className='text-didalla'>here</a>
                     </Link></p>:null}
                     
                     

@@ -22,7 +22,9 @@ const OnboardingBoosterBody = ({
         <div className=' col-span-5 px-6 pt-6 md:pt-20 pb-4'>
             {
                 isLoading?
-                <BeatLoader color={color}  loading={isLoading} css={override} size={40} />
+                <div className='flex justify-center items-center px-20 py-32'>
+                    <BeatLoader color={color}  loading={isLoading} css={override} size={40} />
+                </div>
                 :
                 <div className='py-8 px-10 bg-white rounded'>
                 <div className=' mb-6 border-b border-gray-200 py-4'>
