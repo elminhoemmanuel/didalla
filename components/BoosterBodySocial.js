@@ -17,10 +17,10 @@ const BoosterBodySocial = ({
     }
 
     return (
-        <div className=' col-span-5 px-6 pt-6 md:pt-10 pb-4'>
+        <div className='col-span-5 px-2 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
             <div className='py-8 px-10 bg-white rounded'>
                 <div className=' mb-3 border-b border-gray-200 py-4'>
-                    <p className='text-black text-sm '>Step {activeStep} of 8</p>
+                    <p className='text-black text-xs md:text-sm '>Step {activeStep} of 8</p>
                     <h1 className='text-2xl text-black'>Social Media</h1>
                 </div>
 
@@ -32,65 +32,65 @@ const BoosterBodySocial = ({
                     
                     <div className='grid grid-cols-1 w-full border-gray-200 border-b pb-6'>
                         <div className='flex w-full mb-2'>
-                            <div className='bg-downloadgray p-2 flex items-center w-1/5'>
-                                <div><img src="/images/InstagramLogoGreen.svg" alt="instagram logo"/></div>
+                            <div className='bg-downloadgray p-2 flex items-center w-2/5 md:w-1/5'>
+                                <div><img className='' src="/images/InstagramLogoGreen.svg" alt="instagram logo"/></div>
                                 <div>
-                                    <label className='text-darkdidalla text-sm' htmlFor="instagram"> Instagram</label>
+                                    <label className='text-darkdidalla text-xs md:text-sm' htmlFor="instagram"> Instagram</label>
                                 </div>
                             </div>
-                            <div className='w-4/5'>
+                            <div className='w-3/5 md:w-4/5'>
                                 <input className='block p-4 border border-grayborder w-full focus:outline-none focus:border-darkdidalla'
                                 type="text" name="instagram" id="instagram" placeholder='@johndoe'/>
                             </div>
                         </div>
 
                         <div className='flex w-full mb-2'>
-                            <div className='bg-downloadgray p-2 flex items-center w-1/5'>
+                            <div className='bg-downloadgray p-2 flex items-center w-2/5 md:w-1/5'>
                                 <div><img src="/images/TwitterLogoGreen.svg" alt="Twitter logo"/></div>
                                 <div>
-                                    <label className='text-darkdidalla text-sm' htmlFor="twitter"> Twitter</label>
+                                    <label className='text-darkdidalla text-xs md:text-sm' htmlFor="twitter"> Twitter</label>
                                 </div>
                             </div>
-                            <div className='w-4/5'>
+                            <div className='w-3/5 md:w-4/5'>
                                 <input className='block p-4 border border-grayborder w-full focus:outline-none focus:border-darkdidalla'
                                 type="text" name="twitter" id="twitter" placeholder='@johndoe'/>
                             </div>
                         </div>
 
                         <div className='flex w-full mb-2'>
-                            <div className='bg-downloadgray p-2 flex items-center w-1/5'>
+                            <div className='bg-downloadgray p-2 flex items-center w-2/5 md:w-1/5'>
                                 <div><img src="/images/YoutubeLogo.svg" alt="Youtube logo"/></div>
                                 <div>
-                                    <label className='text-darkdidalla text-sm' htmlFor="youtube"> Youtube</label>
+                                    <label className='text-darkdidalla text-xs md:text-sm' htmlFor="youtube"> Youtube</label>
                                 </div>
                             </div>
-                            <div className='w-4/5'>
+                            <div className='w-3/5 md:w-4/5'>
                                 <input className='block p-4 border border-grayborder w-full focus:outline-none focus:border-darkdidalla'
                                 type="text" name="youtube" id="youtube" placeholder='@johndoe'/>
                             </div>
                         </div>
 
                         <div className='flex w-full mb-2'>
-                            <div className='bg-downloadgray p-2 flex items-center w-1/5'>
+                            <div className='bg-downloadgray p-2 flex items-center w-2/5 md:w-1/5'>
                                 <div><img src="/images/LinkedInLogo.svg" alt="Linkedin logo"/></div>
                                 <div>
-                                    <label className='text-darkdidalla text-sm' htmlFor="linkedin"> LinkedIn</label>
+                                    <label className='text-darkdidalla text-xs md:text-sm' htmlFor="linkedin"> LinkedIn</label>
                                 </div>
                             </div>
-                            <div className='w-4/5'>
+                            <div className='w-3/5 md:w-4/5'>
                                 <input className='block p-4 border border-grayborder w-full focus:outline-none focus:border-darkdidalla'
                                 type="text" name="linkedin" id="linkedin" placeholder='@johndoe'/>
                             </div>
                         </div>
 
                         <div className='flex w-full mb-2'>
-                            <div className='bg-downloadgray p-2 flex items-center w-1/5'>
+                            <div className='bg-downloadgray p-2 flex items-center w-2/5 md:w-1/5'>
                                 <div><img src="/images/Link.svg" alt="Substack logo"/></div>
                                 <div>
-                                    <label className='text-darkdidalla text-sm' htmlFor="substack"> Substack</label>
+                                    <label className='text-darkdidalla text-xs md:text-sm' htmlFor="substack"> Substack</label>
                                 </div>
                             </div>
-                            <div className='w-4/5'>
+                            <div className='w-3/5 md:w-4/5'>
                                 <input className='block p-4 border border-grayborder w-full focus:outline-none focus:border-darkdidalla'
                                 type="text" name="substack" id="substack" placeholder='@johndoe'/>
                             </div>
@@ -98,18 +98,18 @@ const BoosterBodySocial = ({
                         
                     </div>
 
-                    <div className='pt-6 flex flex-row flex-nowrap justify-end'>
+                    <div className='pt-6 flex flex-col-reverse md:flex-row flex-nowrap justify-start md:justify-end'>
                         <div>
-                            <button type='text' className="block py-3 px-12 text-center bg-transparent text-didalla rounded border border-didalla
-                                    font-bold hover:text-white hover:bg-didalla focus:outline-none mr-2"  
+                            <button type='text' className="block w-full md:w-auto py-3 px-12 text-center bg-transparent text-didalla rounded border border-didalla
+                                    font-bold hover:text-white hover:bg-didalla focus:outline-none mr-2 "  
                                     onClick={handleBack}
                                     >
                                         Back
                             </button>
                         </div>
                         <div>
-                            <button type='submit' className="block py-3 px-12 text-center bg-didalla rounded border border-didalla
-                                    font-bold text-white hover:bg-green-600 focus:outline-none"  
+                            <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
+                                    font-bold text-white hover:bg-green-600 focus:outline-none mb-2"  
                                     
                                     >
                                         Next

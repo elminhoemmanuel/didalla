@@ -19,7 +19,7 @@ const OnboardingBoosterBody = ({
     let [color, setColor] = useState("#39B54A");
 
     return (
-        <div className=' col-span-5 px-6 pt-6 md:pt-20 pb-4'>
+        <div className=' col-span-5 px-2 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
             {
                 isLoading?
                 <div className='flex justify-center items-center px-20 py-32'>

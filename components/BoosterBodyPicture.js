@@ -17,7 +17,7 @@ const BoosterBodyPicture = ({
     }
     
     return (
-        <div className=' col-span-5 px-6 pt-6 md:pt-20 pb-4'>
+        <div className=' col-span-5 px-2 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
             <div className='py-8 px-10 bg-white rounded'>
                 <div className=' mb-6 border-b border-gray-200 py-4'>
                     <p className='text-black text-sm '>Step {activeStep} of 8</p>
@@ -38,23 +38,23 @@ const BoosterBodyPicture = ({
                                  value={fileUrl} onChange={e =>{setFileUrl(e.target.value)}} />
                             </div>
 
-                            <div className='border-t border-gray-200 pt-6 flex flex-row flex-nowrap justify-end'>
-                                    <div>
-                                        <button type='text' className="block py-3 px-12 text-center bg-transparent text-didalla rounded border border-didalla
-                                                font-bold hover:text-white hover:bg-didalla focus:outline-none mr-2"  
-                                                onClick={handleBack}
-                                                >
-                                                    Back
-                                        </button>
-                                    </div>
-                                    <div>
-                                        <button type='submit' className="block py-3 px-12 text-center bg-didalla rounded border border-didalla
-                                                font-bold text-white hover:bg-green-600 focus:outline-none"  
-                                                
-                                                >
-                                                    Next
-                                        </button>
-                                    </div>
+                            <div className='pt-6 flex flex-col-reverse md:flex-row flex-nowrap justify-start md:justify-end'>
+                                <div>
+                                    <button type='text' className="block w-full md:w-auto py-3 px-12 text-center bg-transparent text-didalla rounded border border-didalla
+                                            font-bold hover:text-white hover:bg-didalla focus:outline-none mr-2 "  
+                                            onClick={handleBack}
+                                            >
+                                                Back
+                                    </button>
+                                </div>
+                                <div>
+                                    <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
+                                            font-bold text-white hover:bg-green-600 focus:outline-none mb-2"  
+                                            
+                                            >
+                                                Next
+                                    </button>
+                                </div>
                             </div>
                         
                 </form>

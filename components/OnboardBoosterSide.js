@@ -5,7 +5,7 @@ import Link from 'next/link';
 const OboardBoosterSide = ({activeStep}) => {
     
     return (
-        <div className='hidden md:block col-span-3 bg-white pt-6 pl-6 md:pl-10 lg:pl-16'>
+        <div className='hidden md:block col-span-3 bg-white pt-6 pl-6 md:pl-10 lg:pl-16 h-screen '>
             <div className='pl-0 pb-8'>
                 <Link href="/"><a><img alt="didalla-logo" src='/images/logo.svg' className='pl-0 h-10 w-28 md:h-12 md:w-40 
                 ' /></a>
