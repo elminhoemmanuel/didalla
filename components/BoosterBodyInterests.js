@@ -17,7 +17,7 @@ const BoosterBodyInterests = ({
     }
 
     return (
-        <div className='col-span-5 px-2 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
+        <div className='col-span-5 px-3 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
             <div className='py-8 px-10 bg-white rounded'>
                 <div className=' mb-6 border-b border-gray-200 py-4'>
                     <p className='text-black text-sm '>Step {activeStep} of 8</p>

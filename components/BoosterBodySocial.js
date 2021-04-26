@@ -17,7 +17,7 @@ const BoosterBodySocial = ({
     }
 
     return (
-        <div className='col-span-5 px-2 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
+        <div className='col-span-5 px-3 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
             <div className='py-8 px-10 bg-white rounded'>
                 <div className=' mb-3 border-b border-gray-200 py-4'>
                     <p className='text-black text-xs md:text-sm '>Step {activeStep} of 8</p>
@@ -72,7 +72,7 @@ const BoosterBodySocial = ({
 
                         <div className='flex w-full mb-2'>
                             <div className='bg-downloadgray p-2 flex items-center w-2/5 md:w-1/5'>
-                                <div><img src="/images/LinkedInLogo.svg" alt="Linkedin logo"/></div>
+                                <div><img src="/images/LinkedinLogo.svg" alt="Linkedin logo"/></div>
                                 <div>
                                     <label className='text-darkdidalla text-xs md:text-sm' htmlFor="linkedin"> LinkedIn</label>
                                 </div>

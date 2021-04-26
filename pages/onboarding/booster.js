@@ -107,7 +107,7 @@ const booster = () => {
                 <meta name="description" content="Marketplace to book advertsing gigs with content creators"/>
             </Head>
 
-            <div className='grid grid-cols-1 md:grid-cols-8 h-full'>
+            <div className='bg-onboardinggray md:bg-transparent grid grid-cols-1 md:grid-cols-8 h-full'>
                 <OnboardBoosterSide activeStep={activeStep} />
                 {getStepsContent(activeStep)}
             </div>
