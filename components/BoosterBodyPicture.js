@@ -31,11 +31,13 @@ const BoosterBodyPicture = ({
 
                             <div className='flex justify-center item-center'><img className='' src="/images/UserCircle.svg" alt="user circle"/></div>
 
-                            <div className=' pb-6'>
+                            <div className='flex flex-col pb-6'>
                                 <div className='flex justify-center items-center'><img className='inline' src="/images/Plus.svg" alt="plus icon"/> <label className='text-didalla' htmlFor="profilePicture">Add profile picture</label></div>
-                                <input className='opacity-0' type="file" name="profilePicture"
-                                 id="profilePicture" accept="image/png, image/jpeg" 
-                                 value={fileUrl} onChange={e =>{setFileUrl(e.target.value)}} />
+                                <div className='flex justify-center items-center'>
+                                    <input className='opacity-0' type="file" name="profilePicture"
+                                    id="profilePicture" accept="image/png, image/jpeg" 
+                                    value={fileUrl} onChange={e =>{setFileUrl(e.target.value)}} />
+                                </div>
                             </div>
 
                             <div className='pt-6 flex flex-col-reverse md:flex-row flex-nowrap justify-start md:justify-end'>
