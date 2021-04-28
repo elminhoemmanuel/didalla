@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
@@ -8,15 +8,15 @@ const BoosterBodyDetails = ({
     activeStep,
     countries,
     handleBack,
-    handleNext
+    handleNext,
+    obtainCountry,
+    userDetails
 }) => {
 
     
-
     const [selectedCountry, setSelectedCountry] = useState()
     const [selectedCity, setSelectedCity] = useState()
     const [phone, setPhone] = useState();
-    // const [selectedCode, setSelectedCode] = useState('');
     const [cities, setCities] = useState(countries[0].cities)
 
     const processCountry = ((country) => {
@@ -29,20 +29,39 @@ const BoosterBodyDetails = ({
         })}
     });
 
+    
+
+
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(selectedCountry);
-        console.log(selectedCity);
-        console.log(phone);
+        // console.log(selectedCountry);
+        // console.log(selectedCity);
+        // console.log(phone);
+        obtainCountry('country',selectedCountry);
+        obtainCountry('city',selectedCity);
+        obtainCountry('phone',phone);
+        console.log(userDetails.country);
+        console.log(userDetails.city);
+        console.log(userDetails.phone);
         handleNext();
         
     }
+
+    useEffect(() => {
+        obtainCountry('country',selectedCountry);
+    }, [selectedCountry])
+    useEffect(() => {
+        obtainCountry('city',selectedCity);
+    }, [selectedCity])
+    useEffect(() => {
+        obtainCountry('phone',phone);
+    }, [phone])
     
     return (
         <div className=' col-span-5 px-3 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
             <div className='py-8 px-10 bg-white rounded'>
                 <div className=' mb-6 border-b border-gray-200 py-4'>
-                    <p className='text-black text-sm '>Step {activeStep} of 8</p>
+                    <p className='text-black text-sm '>Step {activeStep} of 7</p>
                     <h1 className='text-2xl text-black'>Personal Details</h1>
                 </div>
 
@@ -90,7 +109,7 @@ const BoosterBodyDetails = ({
                         <PhoneInput
                             placeholder="Enter phone number"
                             value={phone}
-                            onChange={(setPhone)}
+                            onChange={setPhone}
                             defaultCountry='US'
                             />
                         </div>
@@ -100,21 +119,26 @@ const BoosterBodyDetails = ({
 
                     <div className='pt-6 flex flex-col-reverse md:flex-row flex-nowrap justify-start md:justify-end'>
                         <div>
-                            <button type='text' className="block w-full md:w-auto py-3 px-12 text-center bg-transparent text-didalla rounded border border-didalla
+                            <button type='button' className="block w-full md:w-auto py-3 px-12 text-center bg-transparent text-didalla rounded border border-didalla
                                     font-bold hover:text-white hover:bg-didalla focus:outline-none mr-2 "  
                                     onClick={handleBack}
                                     >
                                         Back
                             </button>
                         </div>
-                        <div>
-                            <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
-                                    font-bold text-white hover:bg-green-600 focus:outline-none mb-2"  
-                                    
-                                    >
-                                        Next
-                            </button>
-                        </div>
+                        {selectedCountry === undefined || selectedCity === undefined || phone===undefined
+                                    ? (<div>
+                                        <button type='submit' className="block pointer-events-none opacity-50 w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
+                                                font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
+                                                Next
+                                        </button>
+                                    </div>) : 
+                                    (<div>
+                                        <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
+                                                font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
+                                                Next
+                                        </button>
+                                    </div>)}
                     </div>
 
                 </form>

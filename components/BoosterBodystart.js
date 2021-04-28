@@ -28,7 +28,7 @@ const OnboardingBoosterBody = ({
                 :
                 <div className='py-8 px-10 bg-white rounded'>
                 <div className=' mb-6 border-b border-gray-200 py-4'>
-                    <p className='text-black text-sm '>Step {activeStep} of 8</p>
+                    <p className='text-black text-sm '>Step {activeStep} of 7</p>
                     <h1 className='text-2xl text-black'>Get Started</h1>
                 </div>
                 <div className='mb-3'>

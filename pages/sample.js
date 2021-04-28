@@ -5,7 +5,7 @@ export default function App() {
   const { register, formState: { errors }, handleSubmit } = useForm();
   const onSubmit = (data) =>{
            console.log(data);     
-        }
+  }
   
   return (
     <form className='p-20' onSubmit={handleSubmit(onSubmit)}>

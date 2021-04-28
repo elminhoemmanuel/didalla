@@ -130,16 +130,16 @@ const StepPassword = ({
                         <p className='text-center text-black text-sm my-1'>I want to :</p>
 
                         <div className='mt-2 mb-4 flex justify-center items-center flex-nowrap'>
-                            {userType === "vendor" ?(<button className='w-full block p-2 rounded-l bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeVendor}>
-                                Find <span className='hidden md:inline'>a Creator</span>
-                            </button>) : (<button className='w-full block p-2 rounded-l bg-transparent border border-grayborder hover:text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeVendor}>
-                                Find <span className='hidden md:inline'>a Creator</span>
+                            {userType === "vendor" ?(<button className='w-full text-xs md:text-sm whitespace-nowrap block p-2 rounded-l bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeVendor}>
+                                Book a creator
+                            </button>) : (<button className='w-full text-xs md:text-sm whitespace-nowrap block p-2 rounded-l bg-transparent border border-grayborder hover:text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeVendor}>
+                                Book a creator
                             </button>)}
 
-                            {userType === "booster" ?(<button className='w-full block p-2 rounded-r bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeCreator}>
-                                Earn <span className='hidden md:inline'>as a Creator</span>
-                            </button>) : (<button className='w-full block p-2 rounded-r bg-transparent border border-grayborder hover:text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeCreator}>
-                                Earn <span className='hidden md:inline'>as a Creator</span>
+                            {userType === "booster" ?(<button className='w-full text-xs md:text-sm whitespace-nowrap block p-2 rounded-r bg-green-600 border border-green-600 text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeCreator}>
+                                Earn as a Creator
+                            </button>) : (<button className='w-full text-xs md:text-sm whitespace-nowrap block p-2 rounded-r bg-transparent border border-grayborder hover:text-white hover:bg-didalla hover:border-didalla focus:outline-none focus:border-didalla' type='button' onClick={handleTypeCreator}>
+                                Earn as a Creator
                             </button>)}
                         </div>
 

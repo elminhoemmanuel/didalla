@@ -11,10 +11,6 @@ export const footerObjOne = [
         id:3,
         value:'Support'
     },
-    {
-        id:4,
-        value:'Careers'
-    }
 ]
 export const footerObjTwo = [
     {
