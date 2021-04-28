@@ -11,13 +11,18 @@ const BoosterBodySocial = ({
     errors,
     dirty,
     handleOnChange,
-    basicGross
+    basicGross,
+    standardGross,
+    premiumGross,
+
 }) => {
 
     const onSubmit = (e) =>{
         e.preventDefault();
         console.log(basicGross);
-        // handleNext();
+        console.log(standardGross);
+        console.log(premiumGross);
+        handleNext();
         
     }
 
@@ -35,7 +40,8 @@ const BoosterBodySocial = ({
 
                 <form onSubmit={onSubmit}>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
-                        <div>
+
+                        <div className='mb-8  lg:mb-0'>
                             <div className='bg-downloadgray text-center p-2 mb-4'>
                                 Basic
                             </div>
@@ -44,7 +50,7 @@ const BoosterBodySocial = ({
                                 <h1 className='text-xl text-black font-bold'>Project rate</h1>
                                 <p className='mb-4 text-sm text-didallabody'>What you charge per post</p>
                                 
-                                <div className='flex flex-row justify-start items-center '>
+                                <div className='flex flex-row justify-start items-center mb-6'>
                                     <div className='text-black bg-downloadgray p-2'>
                                         $
                                     </div>
@@ -54,11 +60,152 @@ const BoosterBodySocial = ({
                                         />
                                     </div>
                                 </div>
+
+                                <h1 className='text-xl text-black font-bold'>Didalla charge</h1>
+                                <p className='mb-4 text-sm text-didallabody'>What we charge per post</p>
+                                
+                                <div className='flex flex-row justify-start items-center mb-6'>
+                                    <div className='text-black bg-downloadgray p-2'>
+                                        $
+                                    </div>
+                                    <div className=''>
+                                        <div className='w-44 border border-downloadgray p-2 focus:outline-none focus:border-darkdidalla'>
+                                            {
+                                                Math.round(0.07*basicGross)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h1 className='text-xl text-black font-bold'>You get</h1>
+                                <p className='mb-4 text-sm text-didallabody'>This is the estimated amount you get per project based on this pricing</p>
+                                
+                                <div className='flex flex-row justify-start items-center '>
+                                    <div className='text-black bg-downloadgray p-2'>
+                                        $
+                                    </div>
+                                    <div className=''>
+                                        <div className='w-44 border border-downloadgray p-2 focus:outline-none focus:border-darkdidalla'>
+                                            {
+                                                basicGross-Math.round(0.07*basicGross)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <div className='mb-8  lg:mb-0'>
+                            <div className='bg-downloadgray text-center p-2 mb-4'>
+                                Standard
+                            </div>
+
+                            <div >
+                                <h1 className='text-xl text-black font-bold opacity-100 md:opacity-0'>Project rate</h1>
+                                <p className='mb-4 text-sm text-didallabody opacity-100 md:opacity-0'>What you charge per post</p>
+                                
+                                <div className='flex flex-row justify-start items-center mb-6'>
+                                    <div className='text-black bg-downloadgray p-2'>
+                                        $
+                                    </div>
+                                    <div className=''>
+                                        <input type="number" name='standardGross' id='standardGross' className='w-full border border-downloadgray p-2 focus:outline-none focus:border-darkdidalla'
+                                        value={standardGross} onChange={handleOnChange} placeholder='100'
+                                        />
+                                    </div>
+                                </div>
+
+                                <h1 className='text-xl text-black font-bold opacity-100 md:opacity-0'>Didalla charge</h1>
+                                <p className='mb-4 text-sm text-didallabody opacity-100 md:opacity-0'>What we charge per post</p>
+                                
+                                <div className='flex flex-row justify-start items-center mb-6'>
+                                    <div className='text-black bg-downloadgray p-2'>
+                                        $
+                                    </div>
+                                    <div className=''>
+                                        <div className='w-44 border border-downloadgray p-2 focus:outline-none focus:border-darkdidalla'>
+                                            {
+                                                Math.round(0.07*standardGross)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h1 className='text-xl text-black font-bold opacity-100 md:opacity-0'>You get</h1>
+                                <p className='mb-4 text-sm text-didallabody opacity-100 md:opacity-0'>This is the estimated amount you get per project based on this pricing</p>
+                                
+                                <div className='flex flex-row justify-start items-center '>
+                                    <div className='text-black bg-downloadgray p-2'>
+                                        $
+                                    </div>
+                                    <div className=''>
+                                        <div className='w-44 border border-downloadgray p-2 focus:outline-none focus:border-darkdidalla'>
+                                            {
+                                                standardGross-Math.round(0.07*standardGross)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='col-span-1 md:col-span-2 lg:col-span-1 mb-8  lg:mb-0'>
+                            <div className='bg-downloadgray text-center p-2 mb-4'>
+                                Premium
+                            </div>
+
+                            <div >
+                                <h1 className='text-xl text-black font-bold opacity-100 lg:opacity-0'>Project rate</h1>
+                                <p className='mb-4 text-sm text-didallabody opacity-100 lg:opacity-0'>What you charge per post</p>
+                                
+                                <div className='flex flex-row justify-start items-center mb-6'>
+                                    <div className='text-black bg-downloadgray p-2'>
+                                        $
+                                    </div>
+                                    <div className=''>
+                                        <input type="number" name='premiumGross' id='premiumGross' className='w-full border border-downloadgray p-2 focus:outline-none focus:border-darkdidalla'
+                                        value={premiumGross} onChange={handleOnChange} placeholder='100'
+                                        />
+                                    </div>
+                                </div>
+
+                                <h1 className='text-xl text-black font-bold opacity-100 lg:opacity-0'>Didalla charge</h1>
+                                <p className='mb-4 text-sm text-didallabody opacity-100 lg:opacity-0'>What we charge per post</p>
+                                
+                                <div className='flex flex-row justify-start items-center mb-6'>
+                                    <div className='text-black bg-downloadgray p-2'>
+                                        $
+                                    </div>
+                                    <div className=''>
+                                        <div className='w-44 border border-downloadgray p-2 focus:outline-none focus:border-darkdidalla'>
+                                            {
+                                                Math.round(0.07*premiumGross)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h1 className='text-xl text-black font-bold opacity-100 lg:opacity-0'>You get</h1>
+                                <p className='mb-4 text-sm text-didallabody opacity-100 lg:opacity-0'>This is the estimated amount you get per project based on this pricing</p>
+                                
+                                <div className='flex flex-row justify-start items-center '>
+                                    <div className='text-black bg-downloadgray p-2'>
+                                        $
+                                    </div>
+                                    <div className=''>
+                                        <div className='w-44 border border-downloadgray p-2 focus:outline-none focus:border-darkdidalla'>
+                                            {
+                                                premiumGross-Math.round(0.07*premiumGross)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div className='pt-6 flex flex-col-reverse md:flex-row flex-nowrap justify-start md:justify-end'>
+                    <div className='pt-12 flex flex-col-reverse md:flex-row flex-nowrap justify-start md:justify-end'>
                                 <div>
                                     <button type='button' className="block w-full md:w-auto py-3 px-12 text-center bg-transparent text-didalla rounded border border-didalla
                                             font-bold hover:text-white hover:bg-didalla focus:outline-none mr-2 "  
@@ -67,27 +214,20 @@ const BoosterBodySocial = ({
                                                 Back
                                     </button>
                                 </div>
-
-                                <div>
-                                        <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
-                                                font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
-                                                Submit
-                                        </button>
-                                </div>
                                 
-                                {/* {fileUrl===""
+                                {basicGross!==0 && standardGross!==0 && premiumGross!==0 && basicGross !==''&& standardGross !==''&& premiumGross !==''
                                     ? (<div>
-                                        <button type='submit' className="block pointer-events-none opacity-50 w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
+                                        <button type='submit' className="block  w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
                                                 font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
                                                 Next
                                         </button>
                                     </div>) : 
                                     (<div>
-                                        <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
+                                        <button type='submit' className="block pointer-events-none opacity-50 w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
                                                 font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
                                                 Next
                                         </button>
-                                    </div>)} */}
+                                    </div>)}
                     </div>
 
                 </form>

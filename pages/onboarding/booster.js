@@ -9,6 +9,7 @@ import BoosterBodyPicture from '../../components/BoosterBodyPicture';
 import BoosterBodyInterests from '../../components/BoosterBodyInterests';
 import BoosterBodySocial from '../../components/BoosterBodySocial';
 import BoosterBodyRates from '../../components/BoosterBodyRates';
+import BoosterBodyOverview from '../../components/BoosterBodyOverview';
 
 
 const booster = () => {
@@ -66,6 +67,8 @@ const booster = () => {
         linkedIn:{value:"" , error:""},
         substack:{value:"" , error:""},
         basicGross:{value:0 , error:""},
+        standardGross:{value:0 , error:""},
+        premiumGross:{value:0 , error:""},
     }
 
     const stateValidatorSchema ={
@@ -115,16 +118,37 @@ const booster = () => {
             required:true,
             validator:{
                 func: value=> /^(?=.*[a-zA-Z0-9]).{1,}$/.test(value),
-                error:"Rate must containatleast one number"
+                error:"Rate must contain atleast one number"
+            }
+        },
+        standardGross:{
+            required:true,
+            validator:{
+                func: value=> /^(?=.*[a-zA-Z0-9]).{1,}$/.test(value),
+                error:"Rate must contain atleast one number"
+            }
+        },
+        premiumGross:{
+            required:true,
+            validator:{
+                func: value=> /^(?=.*[a-zA-Z0-9]).{1,}$/.test(value),
+                error:"Rate must contain atleast one number"
+            }
+        },
+        overview:{
+            required:true,
+            validator:{
+                func: value=> /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-]+)*/.test(value),
+                error:"overview must be more than two characters without space inbetween"
             }
         },
         
     }
 
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema);
-    const {instagram, twitter, youtube, linkedIn, substack, basicGross} = values;
+    const {instagram, twitter, youtube, linkedIn, substack, basicGross, standardGross, premiumGross, overview} = values;
 
-    const [activeStep, setActiveStep] = useState(5);
+    const [activeStep, setActiveStep] = useState(1);
     const handleNext = () =>{
         
         setActiveStep (prevActiveStep => prevActiveStep +1);
@@ -208,6 +232,18 @@ const booster = () => {
                 dirty={dirty}
                 handleOnChange={handleOnChange}
                 basicGross={basicGross}
+                standardGross={standardGross}
+                premiumGross={premiumGross}
+                 />
+            case 7:
+                return <BoosterBodyOverview
+                activeStep={activeStep}
+                handleBack={handleBack}
+                handleNext={handleNext}
+                errors={errors}
+                dirty={dirty}
+                handleOnChange={handleOnChange}
+                overview={overview}
                  />
         }
     }
