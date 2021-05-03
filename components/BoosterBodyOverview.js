@@ -17,7 +17,7 @@ const BoosterBodySocial = ({
 
     const onSubmit = (e) =>{
         e.preventDefault();
-
+        console.log(overview);
         // handleNext();
         
     }
@@ -34,7 +34,7 @@ const BoosterBodySocial = ({
                     <p className='text-didallabody'>Writing a short description of yourself increases your chances of landing your next client.</p>
                 </div>
 
-                <form action="">
+                <form action="" onSubmit={onSubmit}>
                     <p className='mb-4 text-sm text-didallabody'>Professional overview</p>
                     <div>
                         <textarea rows='3' type="text" name='overview' id='overview' className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'

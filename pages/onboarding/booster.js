@@ -22,7 +22,7 @@ const booster = () => {
         const userToken = localStorage.getItem('userToken');
 
         //axios call for creator country details
-        axios.get(`https://api.didalla.com/api/misc/countries`)
+        axios.get(`https://api.didalla.com/api/misc/countries_v1`)
         .then((response) => {
             setIsLoading(false);
             console.log(response.data.data.data);
@@ -69,6 +69,7 @@ const booster = () => {
         basicGross:{value:0 , error:""},
         standardGross:{value:0 , error:""},
         premiumGross:{value:0 , error:""},
+        overview:{value:'' , error:""},
     }
 
     const stateValidatorSchema ={
@@ -148,7 +149,7 @@ const booster = () => {
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema);
     const {instagram, twitter, youtube, linkedIn, substack, basicGross, standardGross, premiumGross, overview} = values;
 
-    const [activeStep, setActiveStep] = useState(1);
+    const [activeStep, setActiveStep] = useState(5);
     const handleNext = () =>{
         
         setActiveStep (prevActiveStep => prevActiveStep +1);
