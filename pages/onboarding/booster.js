@@ -149,7 +149,7 @@ const booster = () => {
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema);
     const {instagram, twitter, youtube, linkedIn, substack, basicGross, standardGross, premiumGross, overview} = values;
 
-    const [activeStep, setActiveStep] = useState(5);
+    const [activeStep, setActiveStep] = useState(1);
     const handleNext = () =>{
         
         setActiveStep (prevActiveStep => prevActiveStep +1);

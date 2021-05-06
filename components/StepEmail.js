@@ -19,7 +19,7 @@ const StepEmail = ({
 
     return (
         <div >
-            <div className='w-3/4 md:w-1/2 lg:w-2/6 my-0 mx-auto' >
+            <div className='w-3/4 md:w-1/2 lg:w-2/6 mx-auto' >
                     <div className='mb-5 text-center'>
                         <h1 className='text-2xl font-bold text-didallatitle mb-3 tracking-wider'>Get started with <br/> <span className='text-didalla'>Didalla</span> for Free</h1>
                         <p className='text-xs text-didallabody mb-3'>Sign Up to your free account to access our services</p>
