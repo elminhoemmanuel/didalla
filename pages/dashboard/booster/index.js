@@ -1,6 +1,6 @@
 import React,{ useState, useEffect, useRef} from 'react';
 import Head from 'next/head';
-import VendorDashHome from '../../../components/VendorDashHome';
+import BoosterDashHome from '../../../components/BoosterDashHome';
 
 const vendor = () => {
     return (
@@ -12,7 +12,7 @@ const vendor = () => {
             </Head>
 
             <div className=''>
-                <VendorDashHome />
+                <BoosterDashHome />
 
             </div>
         </>
