@@ -10,11 +10,15 @@ import BoosterBodyInterests from '../../components/BoosterBodyInterests';
 import BoosterBodySocial from '../../components/BoosterBodySocial';
 import BoosterBodyRates from '../../components/BoosterBodyRates';
 import BoosterBodyOverview from '../../components/BoosterBodyOverview';
+import { useRouter } from 'next/router'
 
 
 const booster = () => {
 
+    const router = useRouter()
+
     const [isLoading, setIsLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [userValues, setUserValues] = useState({first_name:'',last_name:''})
     const [countries, setCountries] = useState([])
     
@@ -173,12 +177,9 @@ const booster = () => {
     const picInput = useRef();
     
 
-    // console.log('countries outside',countries)
-    // console.log('cities outside',cities)
-
     //function to submit booster form finally
     const submitBooster = () =>{
-
+        setIsSubmitting(!isSubmitting)
         const userToken = localStorage.getItem('userToken');
         console.log(userDetails)
 
@@ -218,11 +219,12 @@ const booster = () => {
             'Authorization': `Bearer ${userToken}`
             }})
         .then((response) => {
-
+            setIsSubmitting(false)
             console.log(response);
+            router.push('/dashboard/booster/')
 
         }, (error) => {
-            
+            setIsSubmitting(false)
             console.log(error);
             
         });
@@ -299,6 +301,7 @@ const booster = () => {
                 handleOnChange={handleOnChange}
                 overview={overview}
                 submitBooster={submitBooster}
+                isSubmitting={isSubmitting}
                  />
         }
     }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useForm } from "react-hook-form";
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+import { css } from "@emotion/core";
+import BeatLoader from "react-spinners/BeatLoader";
+
 
 
 const BoosterBodySocial = ({
@@ -12,9 +12,20 @@ const BoosterBodySocial = ({
     dirty,
     handleOnChange,
     overview,
-    submitBooster
+    submitBooster,
+    isSubmitting
 
 }) => {
+
+    // Can be a string as well. Need to ensure each key-value pair ends with ;
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: white;
+    `;
+
+    let [color, setColor] = useState("#FFFFFF");
+
 
     const onSubmit = (e) =>{
         e.preventDefault();
@@ -66,7 +77,8 @@ const BoosterBodySocial = ({
                                     (<div>
                                         <button type='submit' className="block  w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
                                                 font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
-                                                Submit
+                                                {isSubmitting ? <BeatLoader color={color}  loading={isSubmitting} css={override} size={15} />
+                                                :"Submit"}
                                         </button>
                                     </div>)}
                     </div>

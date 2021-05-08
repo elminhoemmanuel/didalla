@@ -104,9 +104,9 @@ const Login = () => {
 
     useEffect(() => {
         if (userRole==="vendor" && isOnboarded===1){
-            router.push('/dashboard/vendor')
+            router.push('/dashboard/vendor/')
         }else if (userRole==="vendor" && isOnboarded===0){
-            router.push('/onboarding/vendor')
+            router.push('/dashboard/vendor/')
         }else if (userRole==="booster" && isOnboarded===1){
             router.push('/dashboard/booster')
         }else if (userRole==="booster" && isOnboarded===0){

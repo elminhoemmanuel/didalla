@@ -14,7 +14,8 @@ module.exports = {
         onboardinggray:'#E5E5E5',
         didallateal:'#CDEFD1',
         downloadgray:'#F7F7FC',
-        grayborder:'#D6D8E7'
+        grayborder:'#D6D8E7',
+        grayscale:'#EFF0F6'
       }
     },
 

@@ -148,7 +148,7 @@ const StepPassword = ({
                             <label htmlFor="terms" className='text-xs'>Yes, I understand and agree to the <a className='text-didalla' href="">Didalla Terms of service</a>, Including the <a className='text-didalla' href="">User Agreement</a> and <a className='text-didalla' href="">Privacy Policy</a> </label>
                         </div>
 
-                        {responsegotten !== "" ? <p className='text-red-400 mb-2 text-center text-sm'>{responsegotten}</p> : null}
+                        {/* {responsegotten !== "" ? <p className='text-red-400 mb-2 text-center text-sm'>{responsegotten}</p> : null} */}
 
                         {firstname.length === 0 || lastname.length === 0 || password.length===0 || errors.firstname ||errors.lastname || errors.password|| userType==='' || checkboxValue === false
                         ? (<AuthButtonDisabled buttonText='Create my Account'/>) : 

@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React , {useState, useEffect} from 'react'
 import Head from 'next/head'
 import LogoNavbar from '../../components/LogoNavbar'
 import Link from 'next/link';
@@ -10,12 +10,14 @@ import DisplayCreators from '../../components/DisplayCreators';
 import { useRouter } from 'next/router'
 
 
+
+
 const campaign = () => {
 
     const router = useRouter()
     const enteredData = router.query;
 
-    const [countries, setCountries] = useState([])
+    
 
     //Define the state schema used for validation
     const stateSchema = {
@@ -83,7 +85,14 @@ const campaign = () => {
     }
 
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema);
-    const {brandname, brandlocation , brandbudget, startdate, enddate, campaignbrief} = values;
+    const {brandname, brandbudget, startdate, enddate, campaignbrief} = values;
+
+    //user body details
+    const [userDetails, setUserDetails] = useState({country:'',city:'',phone:'', pic:{}});
+
+    const obtainCountry = (detail,value) =>{
+        setUserDetails({...userDetails,[detail]:value});
+    }
 
     const [activeStep, setActiveStep] = useState(1);
     const handleNext = () =>{
@@ -103,7 +112,8 @@ const campaign = () => {
                 dirty={dirty}
                 handleOnChange={handleOnChange}
                 brandname={brandname}
-                brandlocation={brandlocation}
+                obtainCountry={obtainCountry}
+                userDetails={userDetails}
                  />
             
             case 2:
