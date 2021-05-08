@@ -180,38 +180,40 @@ const booster = () => {
     const submitBooster = () =>{
 
         const userToken = localStorage.getItem('userToken');
-        console.log(userToken)
+        console.log(userDetails)
 
+        const interests = [
+            {arts:userInterests.arts},
+            {auto:userInterests.auto},
+            {fintech:userInterests.fintech},
+            {crypto:userInterests.crypto},
+            {food:userInterests.food},
+            {fashion:userInterests.fashion},
+            {lifestyle:userInterests.lifestyle},
+            {politics:userInterests.politics},
+            {tech:userInterests.tech},
+            {agric:userInterests.agric},
+            {tourism:userInterests.tourism},
+            {others:userInterests.others},
+        ]
 
-        axios.post('https://api.didalla.com/api/booster/create',{
-            city:userDetails.city,
-            country:userDetails.country,
-            phone:userDetails.phone,
-            image:userDetails.pic,
-            bio:overview,
-            interests:[
-                {arts:userInterests.arts},
-                {auto:userInterests.auto},
-                {fintech:userInterests.fintech},
-                {crypto:userInterests.crypto},
-                {food:userInterests.food},
-                {fashion:userInterests.fashion},
-                {lifestyle:userInterests.lifestyle},
-                {politics:userInterests.politics},
-                {tech:userInterests.tech},
-                {agric:userInterests.agric},
-                {tourism:userInterests.tourism},
-                {others:userInterests.others},
-            ],
-            instagram:instagram,
-            twitter:twitter,
-            youtube:youtube,
-            facebook:substack,
-            linkedin:linkedIn,
-            basic_plan:basicGross,
-            standard_plan:standardGross,
-            premium_plan:premiumGross,
-        },{
+        const formdata = new FormData();
+        formdata.append("image", userDetails.pic)
+        formdata.append("city", userDetails.city)
+        formdata.append("country", userDetails.country)
+        formdata.append("phone", userDetails.phone)
+        formdata.append("bio", userDetails.overview)
+        formdata.append("interests", JSON.stringify(interests))
+        formdata.append("instagram", instagram)
+        formdata.append("twitter", twitter)
+        formdata.append("youtube", youtube)
+        formdata.append("facebook", substack)
+        formdata.append("linkedin", linkedIn)
+        formdata.append("basic_plan", basicGross)
+        formdata.append("standard_plan", standardGross)
+        formdata.append("premium_plan", premiumGross)
+
+        axios.post('https://api.didalla.com/api/booster/create',formdata,{
             headers: {
             'Authorization': `Bearer ${userToken}`
             }})
