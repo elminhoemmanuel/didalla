@@ -20,7 +20,7 @@ const Footer = () => {
                     <div><h2 className='font-black text-base mb-4'>Company</h2></div>
                     {footerObjOne.map(item =>{
                         return <div key={item.id} className='pt-6 text-sm'>
-                                <Link href="/" className='block'>
+                                <Link href={item.url} className='block'>
                                     <a className='whitespace-nowrap block'>{item.value}</a>
                                 </Link>
                             </div>
@@ -29,8 +29,8 @@ const Footer = () => {
                     <div className="lg:hidden flex flex-col mt-16 lg:mt-0 md:pl-0">
                         <div><h2 className='font-black text-base mb-4 whitespace-nowrap'>Get the App</h2></div>
                         <div className='flex flex-col items-start justify-start'>
-                        <Link href=""><a ><img className=' block mb-6 ' src="/images/Playstore.svg" alt="Playstore download"/></a></Link>
-                        <Link href=""><a ><img className=' block' src="/images/Appstore.svg" alt="Appstore download"/></a></Link>
+                        <Link href="/"><a ><img className=' block mb-6 ' src="/images/Playstore.svg" alt="Playstore download"/></a></Link>
+                        <Link href="/"><a ><img className=' block' src="/images/Appstore.svg" alt="Appstore download"/></a></Link>
 
                         </div>
                         
@@ -40,7 +40,7 @@ const Footer = () => {
                     <div><h2 className='font-black text-base mb-4'>Terms</h2></div>
                     {footerObjTwo.map(item =>{
                         return <div key={item.id} className='pt-6 text-sm'>
-                                <Link href="/" className='block'>
+                                <Link href={item.url} className='block'>
                                     <a className='whitespace-nowrap block'>{item.value}</a>
                                 </Link>
                             </div>
@@ -62,8 +62,8 @@ const Footer = () => {
                 <div className="hidden lg:flex flex-col mt-10 lg:mt-0 pl-6 md:pl-0">
                     <div><h2 className='font-black text-base mb-4 whitespace-nowrap'>Get the App</h2></div>
                     <div className='flex flex-col items-start justify-start'>
-                    <Link href=""><a ><img className=' block mb-6 ' src="/images/Playstore.svg" alt="Playstore download"/></a></Link>
-                    <Link href=""><a ><img className=' block' src="/images/Appstore.svg" alt="Appstore download"/></a></Link>
+                    <Link href="/"><a ><img className=' block mb-6 ' src="/images/Playstore.svg" alt="Playstore download"/></a></Link>
+                    <Link href="/"><a ><img className=' block' src="/images/Appstore.svg" alt="Appstore download"/></a></Link>
 
                     </div>
                     

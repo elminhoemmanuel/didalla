@@ -81,7 +81,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="arts">Arts and Culture</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="arts" id="arts"
-                                onClick={()=>{setarts(!arts);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setarts(!arts);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="auto">Automobile &amp; Industry</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="auto" id="auto"
-                                onClick={()=>{setauto(!auto);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setauto(!auto);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="fintech">Fintech</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="fintech" id="fintech"
-                                onClick={()=>{setfintech(!fintech);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setfintech(!fintech);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="crypto">Cryptocurrency</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="crypto" id="crypto"
-                                onClick={()=>{setcrypto(!crypto);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setcrypto(!crypto);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="food">Food</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="food" id="food"
-                                onClick={()=>{setfood(!food);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setfood(!food);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="fashion">Fashion</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="fashion" id="fashion"
-                                onClick={()=>{setfashion(!fashion);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setfashion(!fashion);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="lifestyle">Lifestyle</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="lifestyle" id="lifestyle"
-                                onClick={()=>{setlifestyle(!lifestyle);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setlifestyle(!lifestyle);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -145,7 +145,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="politics">Politics</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="politics" id="politics"
-                                onClick={()=>{setpolitics(!politics);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setpolitics(!politics);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -154,7 +154,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="tech">Technology</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="tech" id="tech"
-                                onClick={()=>{settech(!tech);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{settech(!tech);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -163,7 +163,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="agric">Agriculture</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="agric" id="agric"
-                                onClick={()=>{setagric(!agric);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setagric(!agric);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -172,7 +172,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="tourism">Tourism</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="tourism" id="tourism"
-                                onClick={()=>{settourism(!tourism);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{settourism(!tourism);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@ const BoosterBodyInterests = ({
                             <div className='flex item-center justify-between'>
                                 <div className=''><label htmlFor="others">Others</label></div>
                                 <div className='pt-0.5'><input type="checkbox" name="others" id="others"
-                                onClick={()=>{setothers(!others);setAnyClicked(!anyclicked)}}
+                                onClick={()=>{setothers(!others);setAnyClicked(true)}}
                                 /></div>
                             </div>
                         </div>

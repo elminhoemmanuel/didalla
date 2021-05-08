@@ -1,4 +1,4 @@
-import React,{ useState, useEffect} from 'react';
+import React,{ useState, useEffect, useRef} from 'react';
 import Head from 'next/head';
 import axios from 'axios';
 import useForm from '../../components/useForm';
@@ -17,20 +17,21 @@ const booster = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [userValues, setUserValues] = useState({first_name:'',last_name:''})
     const [countries, setCountries] = useState([])
+    
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
 
         //axios call for creator country details
-        axios.get(`https://api.didalla.com/api/misc/countries_v1`)
+        axios.get(`https://api.didalla.com/api/misc/countries`)
         .then((response) => {
             setIsLoading(false);
-            console.log(response.data.data.data);
-            // setCountries(response.data.data.data)
-            response.data.data.data.map(item =>{
+            console.log(response.data.data);
+            response.data.data.map(item =>{
                countries.push(item);
             })
-            console.log('done')
+            
+            // console.log('done')
             
         }, (error) => {
           console.log(error)
@@ -48,16 +49,11 @@ const booster = () => {
                 })
             }, (error) => {
             console.log(error)
-        });
+        });       
+                
     }, [])
 
-    // const [phoneVal, setphoneVal] = useState('');
-    // const getphone= (data) =>{
-    //     console.log('displaying');
-    //     console.log(data)
-    //     setphoneVal(data)
-    //     console.log(phoneVal);
-    // }
+    
 
     //Define the state schema used for validation
     const stateSchema = {
@@ -139,7 +135,7 @@ const booster = () => {
         overview:{
             required:true,
             validator:{
-                func: value=> /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-]+)*/.test(value),
+                func: value=> /^(?=.*[a-zA-Z0-9]).{1,}$/.test(value),
                 error:"overview must be more than two characters without space inbetween"
             }
         },
@@ -159,7 +155,7 @@ const booster = () => {
     }
 
     //user body details
-    const [userDetails, setUserDetails] = useState({country:'',city:'',phone:'', picUrl:''});
+    const [userDetails, setUserDetails] = useState({country:'',city:'',phone:'', pic:{}});
 
     const obtainCountry = (detail,value) =>{
         setUserDetails({...userDetails,[detail]:value});
@@ -174,7 +170,61 @@ const booster = () => {
         setUserInterests({...userInterests,[interest]:value});
     }
 
+    const picInput = useRef();
+    
 
+    // console.log('countries outside',countries)
+    // console.log('cities outside',cities)
+
+    //function to submit booster form finally
+    const submitBooster = () =>{
+
+        const userToken = localStorage.getItem('userToken');
+        console.log(userToken)
+
+
+        axios.post('https://api.didalla.com/api/booster/create',{
+            city:userDetails.city,
+            country:userDetails.country,
+            phone:userDetails.phone,
+            image:userDetails.pic,
+            bio:overview,
+            interests:[
+                {arts:userInterests.arts},
+                {auto:userInterests.auto},
+                {fintech:userInterests.fintech},
+                {crypto:userInterests.crypto},
+                {food:userInterests.food},
+                {fashion:userInterests.fashion},
+                {lifestyle:userInterests.lifestyle},
+                {politics:userInterests.politics},
+                {tech:userInterests.tech},
+                {agric:userInterests.agric},
+                {tourism:userInterests.tourism},
+                {others:userInterests.others},
+            ],
+            instagram:instagram,
+            twitter:twitter,
+            youtube:youtube,
+            facebook:substack,
+            linkedin:linkedIn,
+            basic_plan:basicGross,
+            standard_plan:standardGross,
+            premium_plan:premiumGross,
+        },{
+            headers: {
+            'Authorization': `Bearer ${userToken}`
+            }})
+        .then((response) => {
+
+            console.log(response);
+
+        }, (error) => {
+            
+            console.log(error);
+            
+        });
+    }
 
     function getStepsContent (stepIndex){
         switch (stepIndex) {
@@ -199,6 +249,7 @@ const booster = () => {
                 activeStep={activeStep}
                 handleBack={handleBack}
                 handleNext={handleNext}
+                picInput={picInput}
                 obtainCountry={obtainCountry}
                 userDetails={userDetails}
                  />
@@ -245,6 +296,7 @@ const booster = () => {
                 dirty={dirty}
                 handleOnChange={handleOnChange}
                 overview={overview}
+                submitBooster={submitBooster}
                  />
         }
     }

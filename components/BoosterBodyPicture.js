@@ -6,21 +6,24 @@ const BoosterBodyPicture = ({
     handleBack,
     handleNext,
     obtainCountry,
-    userDetails
+    userDetails,
+    picInput
 }) => {
 
-    const [fileUrl, setFileUrl] = useState('')
+    const [picObject, setPicObject] = useState()
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(fileUrl)
-        console.log(userDetails.picUrl);
+        obtainCountry('pic',picObject);
+        console.log(userDetails.pic)
+        // console.log(fileUrl)
+        // console.log(userDetails.picUrl);
         handleNext();   
     }
 
     useEffect(() => {
-        obtainCountry('picUrl',fileUrl);
-    }, [fileUrl])
+        obtainCountry('pic',picObject);
+    }, [picObject])
     
     return (
         <div className=' col-span-5 px-3 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
@@ -44,8 +47,8 @@ const BoosterBodyPicture = ({
                                     name="fileUrl"
                                     id="fileUrl" 
                                     accept="image/png, image/jpeg" 
-                                    value={fileUrl} 
-                                    onChange={(e) =>{setFileUrl(e.target.value)}} 
+                                    ref={picInput} 
+                                    onChange={e=>{setPicObject(picInput.current.files[0])}}
                                     />
                                     
                                 </div>
@@ -60,8 +63,15 @@ const BoosterBodyPicture = ({
                                                 Back
                                     </button>
                                 </div>
+
+                                <div>
+                                        <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
+                                                font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
+                                                Next
+                                        </button>
+                                </div>
                                 
-                                {fileUrl===""
+                                {/* {fileUrl===undefined
                                     ? (<div>
                                         <button type='submit' className="block pointer-events-none opacity-50 w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
                                                 font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
@@ -73,7 +83,7 @@ const BoosterBodyPicture = ({
                                                 font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
                                                 Next
                                         </button>
-                                    </div>)}
+                                    </div>)} */}
                             </div>
                         
                 </form>

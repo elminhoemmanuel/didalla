@@ -7,9 +7,15 @@ import BrandBudget from '../../components/BrandBudget';
 import CampaignPlatforms from '../../components/CampaignPlatforms';
 import useForm from '../../components/useForm';
 import DisplayCreators from '../../components/DisplayCreators';
+import { useRouter } from 'next/router'
 
 
 const campaign = () => {
+
+    const router = useRouter()
+    const enteredData = router.query;
+
+    const [countries, setCountries] = useState([])
 
     //Define the state schema used for validation
     const stateSchema = {

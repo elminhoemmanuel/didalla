@@ -46,23 +46,21 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                         </a>
                     </Link>
 
-                    <Link href="" className="cursor-pointer ">
+                    <Link href="/" className="cursor-pointer ">
                         <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla border-b border-gray-800">
                             <div className='text-2xl'>Get the App</div>
                         </a>
                     </Link>
 
-                    <Link href="" className="cursor-pointer ">
-                        <a  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla"  onClick={() =>{setExploreClick(!exploreclick)}}>
+                    <div  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla"  onClick={() =>{setExploreClick(!exploreclick)}}>
                             <div>Explore</div>
                             <div><BiChevronDown className="dropdown" /></div>
-                        </a>
-                    </Link>
+                    </div>
 
                         {
                             exploreclick ? (<div className=''>
                                 {exploreDrop.map(item =>{
-                                    return <Link href="" className="cursor-pointer " key={item.id} >
+                                    return <Link href={item.url} className="cursor-pointer " key={item.id} >
                                                 <a  className="px-8 py-4 flex flex-row justify-start w-full cursor-pointer hover:bg-didalla" onClick={handleClickMobile}>
                                                     <div className='pr-2'>{item.icon} </div>
                                                     <div>{item.text}</div>
@@ -73,17 +71,16 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                         </div>) :null
                         }
 
-                    <Link href="" className="cursor-pointer ">
-                        <a  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla" onClick={() =>{setCreatorClick(!creatorclick)}}>
+                    
+                    <div  className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla" onClick={() =>{setCreatorClick(!creatorclick)}}>
                             <div>For&nbsp;Creators</div>
                             <div><BiChevronDown className="dropdown" /></div>
-                        </a>
-                    </Link>
+                    </div>
 
                         {
                             creatorclick ? (<div className=''>
                             {creatorDrop.map(item =>{
-                                    return <Link href="" className="cursor-pointer " key={item.id} >
+                                    return <Link href={item.url} className="cursor-pointer " key={item.id} >
                                                 <a onClick={handleClickMobile} className="px-8 py-4 flex flex-row justify-start w-full cursor-pointer hover:bg-didalla">
                                                     <div className='pr-2'>{item.icon} </div>
                                                     <div>{item.text}</div>
@@ -128,7 +125,7 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                                     exploreclicklarge ? (<div className='bg-white border border-gray-50 absolute rounded top-8 left-0 w-48 py-2 shadow-2xl'>
                                     
                                     {exploreDrop.map(item =>{
-                                    return <Link href="" className="cursor-pointer " key={item.id} >
+                                    return <Link href={item.url} className="cursor-pointer " key={item.id} >
                                                 <a  className="py-3 px-3 flex flex-row justify-start w-full cursor-pointer hover:bg-gray-100" onClick={handleClickMobile}>
                                                     <div className='pr-2'>{item.icon} </div>
                                                     <div>{item.text}</div>
@@ -146,7 +143,7 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                                 {
                                     creatorclicklarge ? <div className='bg-white border border-gray-50 absolute rounded top-8 left-0 w-48 py-2 shadow-2xl'>
                                     {creatorDrop.map(item =>{
-                                    return <Link href="" className="cursor-pointer " key={item.id} >
+                                    return <Link href={item.url} className="cursor-pointer " key={item.id} >
                                                 <a  className="py-3 px-3 flex flex-row justify-start w-full cursor-pointer hover:bg-gray-100" onClick={handleClickMobile}>
                                                     <div className='pr-2'>{item.icon} </div>
                                                     <div>{item.text}</div>

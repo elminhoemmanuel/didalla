@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import axios from 'axios'
 
 
 const BoosterBodyDetails = ({
@@ -12,21 +13,24 @@ const BoosterBodyDetails = ({
     obtainCountry,
     userDetails
 }) => {
-
     
     const [selectedCountry, setSelectedCountry] = useState()
     const [selectedCity, setSelectedCity] = useState()
     const [phone, setPhone] = useState();
-    const [cities, setCities] = useState(countries[0].cities)
+    const [cities, setCities] = useState([{name:'Select city'}])
 
     const processCountry = ((country) => {
         setSelectedCountry(country)
-        {countries.map((item) =>{
-            if(country === item.country){
-               setCities(item.cities)
+        countries.map(item =>{
+            if(item.name === country){
+                axios.get(`https://api.didalla.com/api/misc/cities/${item.id}`)
+                .then((response) => {
+                    setCities(response.data.data)
+                }, (error) => {
+                    console.log(error)
+                });
             }
-              
-        })}
+        })
     });
 
     
@@ -34,9 +38,6 @@ const BoosterBodyDetails = ({
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        // console.log(selectedCountry);
-        // console.log(selectedCity);
-        // console.log(phone);
         obtainCountry('country',selectedCountry);
         obtainCountry('city',selectedCity);
         obtainCountry('phone',phone);
@@ -47,6 +48,9 @@ const BoosterBodyDetails = ({
         
     }
 
+    
+
+
     useEffect(() => {
         obtainCountry('country',selectedCountry);
     }, [selectedCountry])
@@ -56,7 +60,8 @@ const BoosterBodyDetails = ({
     useEffect(() => {
         obtainCountry('phone',phone);
     }, [phone])
-    
+
+
     return (
         <div className=' col-span-5 px-3 md:px-6 pt-6 md:pt-20 pb-20 h-full bg-onboardinggray'>
             <div className='py-8 px-10 bg-white rounded'>
@@ -79,9 +84,9 @@ const BoosterBodyDetails = ({
                             <div className='mb-1'><label htmlFor="country" className='text-didallabody text-sm'>Country</label></div>
                             <div className=''>
                                 <select name="country" value={selectedCountry} 
-                                onChange={e =>{processCountry(e.target.value);}}  id="country" className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
-                                    {countries.map((item , x=1) =>{
-                                        return <option key={x++} className='p-1 hover:bg-didalla' value={item.country} >{item.country}</option>
+                                onChange={(e) =>{processCountry(e.target.value);}}  id="country" className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
+                                    {countries.map((item ) =>{
+                                        return <option key={item.id} className='p-1 hover:bg-didalla' value={item.name} >{item.name}</option>
                                     })}
                                 </select>
 
@@ -93,7 +98,7 @@ const BoosterBodyDetails = ({
                             <div className=''>
                                 <select name="city" id="city" value={selectedCity} onChange={(e) =>{setSelectedCity(e.target.value)}} className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
                                     {cities.map((item , x=1) =>{
-                                        return <option key={x++} className='p-1 hover:bg-didalla' value={item} >{item}</option>
+                                        return <option key={x++} className='p-1 hover:bg-didalla' value={item.name} >{item.name}</option>
                                     })}
                                 </select>
 
@@ -126,6 +131,7 @@ const BoosterBodyDetails = ({
                                         Back
                             </button>
                         </div>
+
                         {selectedCountry === undefined || selectedCity === undefined || phone===undefined
                                     ? (<div>
                                         <button type='submit' className="block pointer-events-none opacity-50 w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla

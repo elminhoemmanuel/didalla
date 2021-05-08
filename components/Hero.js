@@ -6,8 +6,8 @@ const Hero = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) =>{
-            console.log(data); 
-            router.push('/campaign')    
+            console.log(data.enteredValue);
+            router.push(`/campaign/${data.enteredValue}`)    
     }
 
     const router = useRouter()
@@ -17,7 +17,7 @@ const Hero = () => {
         <div className='px-6 hero'>
             <div className='flex flex-col font-black md:items-center justify-start md:justify-center 
                 pt-32 pb-6 text-3xl md:text-6xl text-didallatitle'>
-                <h1 className='whitespace-nowrap leading-tight'>Book a <span className='text-didalla'>content</span></h1>
+                <h1 className='whitespace-nowrap leading-tight'>Find a <span className='text-didalla'>content</span></h1>
                 <h1 className='whitespace-nowrap leading-tight'><span className='text-didalla'>creator</span>, promote</h1>
                 <h1 className='whitespace-nowrap leading-tight '>your business</h1>
                 <p className='text-didallabody text-sm md:text-base mt-3 text-left md:text-center tracking-widest'>The largest marketplace for booking advertising gigs<br/>with content creators.</p>
@@ -28,7 +28,7 @@ const Hero = () => {
                         {...register("enteredValue", { required: true })} name='enteredValue'
                          type="text" className='w-full md:w-96 rounded p-4 pl-10 border border-didalla 
                         focus:border-didalla focus:outline-none mr-3 text-xs
-                        bg-footergray' placeholder='What brand or business do you want to promote'/>
+                        bg-footergray' placeholder='What do you want to promote'/>
                         <img className='absolute search-icon' src="/images/MagnifyingGlass.svg" alt="search icon"/>
                     </div>
                     

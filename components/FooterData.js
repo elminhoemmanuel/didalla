@@ -1,29 +1,35 @@
 export const footerObjOne = [
     {
         id:1,
-        value:'For creators'
+        value:'For creators',
+        url:'/'
     },
     {
         id:2,
-        value:'About Us'
+        value:'About Us',
+        url:'/'
     },
     {
         id:3,
-        value:'Support'
+        value:'Support',
+        url:'/'
     },
 ]
 export const footerObjTwo = [
     {
         id:1,
-        value:'FAQs'
+        value:'FAQs',
+        url:'/'
     },
     {
         id:2,
-        value:'Privacy policy'
+        value:'Privacy policy',
+        url:'/'
     },
     {
         id:3,
-        value:'Contact Us'
+        value:'Contact Us',
+        url:'/'
     }
 ]
 export const footerObjThree = [

@@ -11,14 +11,15 @@ const BoosterBodySocial = ({
     errors,
     dirty,
     handleOnChange,
-    overview
+    overview,
+    submitBooster
 
 }) => {
 
     const onSubmit = (e) =>{
         e.preventDefault();
         console.log(overview);
-        // handleNext();
+        submitBooster();
         
     }
 
