@@ -47,6 +47,7 @@ const campaign = () => {
         startdate:{value:"" , error:""},
         enddate:{value:"" , error:""},
         campaignbrief:{value:"" , error:""},
+        campaigngoal:{value:"" , error:""},
         
     }
 
@@ -90,8 +91,15 @@ const campaign = () => {
         campaignbrief:{
             required:true,
             validator:{
-                func: value=> /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-]+)*/.test(value),
-                error:"Must be more than one character without space inbetween"
+                func: value=> /^(?=.*[a-zA-Z0-9]).{2,}$/.test(value),
+                error:"Must be more than two character "
+            }
+        },
+        campaigngoal:{
+            required:true,
+            validator:{
+                func: value=> /^(?=.*[a-zA-Z0-9]).{2,}$/.test(value),
+                error:"Must be more than two character "
             }
         },
     }
@@ -105,7 +113,7 @@ const campaign = () => {
     }
 
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema);
-    const {brandname, brandbudget, startdate, enddate, campaignbrief} = values;
+    const {brandname, brandbudget, startdate, enddate, campaignbrief ,campaigngoal} = values;
 
     //user body details
     const [userDetails, setUserDetails] = useState({country:'',city:'',phone:'', pic:{}});
@@ -114,7 +122,7 @@ const campaign = () => {
         setUserDetails({...userDetails,[detail]:value});
     }
 
-    const [activeStep, setActiveStep] = useState(3);
+    const [activeStep, setActiveStep] = useState(2);
     const handleNext = () =>{
         
         setActiveStep (prevActiveStep => prevActiveStep +1);
@@ -148,6 +156,7 @@ const campaign = () => {
                 startdate={startdate}
                 enddate={enddate}
                 campaignbrief={campaignbrief}
+                campaigngoal={campaigngoal}
                  />
             
             case 3:

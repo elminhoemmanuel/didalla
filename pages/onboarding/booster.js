@@ -139,8 +139,8 @@ const booster = () => {
         overview:{
             required:true,
             validator:{
-                func: value=> /^(?=.*[a-zA-Z0-9]).{1,}$/.test(value),
-                error:"overview must be more than two characters without space inbetween"
+                func: value=> /^(?=.*[a-zA-Z0-9]).{2,}$/.test(value),
+                error:"overview must be more than two characters "
             }
         },
         

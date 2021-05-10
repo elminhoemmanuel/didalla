@@ -9,7 +9,8 @@ const BrandBudget = ({
     brandbudget,
     startdate,
     enddate,
-    campaignbrief
+    campaignbrief,
+    campaigngoal
 }) => {
 
     const onSubmit = (e) =>{
@@ -87,6 +88,27 @@ const BrandBudget = ({
                     </div>
                 </div>
 
+                <div className='mb-5'>
+                    <div className='mb-3'>
+                        <label htmlFor="campaigngoal" className='text-black text-base font-bold'>Campaign goal</label>
+                        <p className='text-sm text-didallabody'>What is The main goal of this campaign</p>
+                    </div>
+                    <div className=''>
+                        <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
+                            type="text"
+                            id='campaigngoal'
+                            name="campaigngoal"
+                            value={campaigngoal}
+                            onChange={handleOnChange}
+                            placeholder='To promote my new clothing line'
+                            required
+                        />
+                        {errors.campaigngoal && dirty.campaigngoal && (
+                            <p className='text-red-500 text-xs'>{errors.campaigngoal}</p>
+                        )}
+                    </div>
+                </div>
+
                 <div className='mb-10'>
                     <div className='mb-3'>
                         <label htmlFor="campaignbrief" className='text-black text-base font-bold'>Campaign brief</label>
@@ -99,7 +121,7 @@ const BrandBudget = ({
                             name="campaignbrief"
                             value={campaignbrief}
                             onChange={handleOnChange}
-                            placeholder='A campaign to promote a mobile phone'
+                            placeholder='My brand will like to find a creative to push the narrative of our new clothing line'
                             rows='3'
                             required
                         ></textarea>
