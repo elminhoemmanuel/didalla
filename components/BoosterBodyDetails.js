@@ -122,10 +122,10 @@ const BoosterBodyDetails = ({
                         
                     </div>
 
-                    <div className='pt-6 flex flex-col-reverse md:flex-row flex-nowrap justify-start md:justify-end'>
-                        <div>
-                            <button type='button' className="block w-full md:w-auto py-3 px-12 text-center bg-transparent text-didalla rounded border border-didalla
-                                    font-bold hover:text-white hover:bg-didalla focus:outline-none mr-2 "  
+                    <div className='pt-6 flex flex-row items-center flex-nowrap justify-end'>
+                        <div className='mr-2'>
+                            <button type='button' className="text-sm md:text-base block w-full md:w-auto py-3 px-2 md:px-12 text-center bg-transparent text-didalla rounded border border-didalla
+                                    font-bold hover:text-white hover:bg-didalla focus:outline-none "  
                                     onClick={handleBack}
                                     >
                                         Back
@@ -134,15 +134,15 @@ const BoosterBodyDetails = ({
 
                         {selectedCountry === undefined || selectedCity === undefined || phone===undefined
                                     ? (<div>
-                                        <button type='submit' className="block pointer-events-none opacity-50 w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
-                                                font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
-                                                Next
+                                        <button type='submit' className="text-sm md:text-base block pointer-events-none opacity-50 w-full md:w-auto py-3 px-2 md:px-12 text-center bg-didalla rounded border border-didalla
+                                                font-bold text-white hover:bg-green-600 focus:outline-none ">
+                                                Next: Profile picture
                                         </button>
                                     </div>) : 
                                     (<div>
-                                        <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
-                                                font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
-                                                Next
+                                        <button type='submit' className="text-sm md:text-base block w-full md:w-auto py-3 px-2 md:px-12 text-center bg-didalla rounded border border-didalla
+                                                font-bold text-white hover:bg-green-600 focus:outline-none ">
+                                                Next: Profile picture
                                         </button>
                                     </div>)}
                     </div>

@@ -52,7 +52,7 @@ const OnboardingBoosterBody = ({
                                 font-bold text-white hover:bg-green-600 focus:outline-none"  
                                 onClick={handleNext}
                                 >
-                                    Next
+                                    Continue
                         </button>
                     </div>
                 </div>

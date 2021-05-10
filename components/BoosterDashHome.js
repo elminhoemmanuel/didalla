@@ -18,11 +18,21 @@ const BoosterDashHome = () => {
                 </div>
                 <div className='w-1/5'>
                     <div className='p-4'>
-                        <button className='text-black mb-3 p-3 rounded font-bold text-sm text-center block w-full bg-white hover:bg-gray-300 whitespace-nowrap'>
-                            Offers (4) &nbsp;<svg className="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                        <button className='text-black mb-3 p-4 rounded font-bold text-sm text-center flex flex-row items-center justify-between w-full bg-white hover:bg-gray-300 whitespace-nowrap'>
+                            <div>
+                                Offers (4)
+                            </div> 
+                            <div>
+                                <svg className="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                            </div>
                         </button>
-                        <button className='text-black p-3 rounded font-bold text-sm text-center block w-full bg-white hover:bg-gray-300 whitespace-nowrap'>
-                            My proposals &nbsp;<svg className="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                        <button className='text-black p-4 rounded font-bold text-sm text-center flex flex-row items-center justify-between w-full bg-white hover:bg-gray-300 whitespace-nowrap'>
+                            <div>
+                                My proposals
+                            </div> 
+                            <div>
+                                <svg className="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                            </div>
                         </button>
 
                     </div>

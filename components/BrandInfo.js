@@ -1,7 +1,16 @@
 import React, { useState, useEffect} from 'react'
 import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
-import axios from 'axios';
+
+export const getStaticProps = async () =>{
+    const res = await fetch('https://api.didalla.com/api/misc/countries');
+    const data = await res.json();
+    console.log(data)
+
+    return {
+        props:{ countries:data }
+    }
+}
 
 const BrandInfo = ({
     handleNext,
@@ -11,33 +20,25 @@ const BrandInfo = ({
     brandname,
     obtainCountry,
     userDetails,
+    countries,
+    isLoading
 }) => {
 
-    const [countries, setCountries] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const holder = countries
 
-    useEffect(() => {
-        //axios call for creator country details
-        axios.get(`https://api.didalla.com/api/misc/countries`)
-        .then((response) => {
-            setIsLoading(false);
-            console.log(response.data.data);
-            response.data.data.map(item =>{
-               countries.push(item);
-            })
-
-            console.log(countries)
-            
-        }, (error) => {
-            setIsLoading(false);
-            console.log(error)
-        });
-        
-    }, [countries])
+    const getOptions = () =>{
+        countries.map((item ) =>(
+            <option key={item.id} className='p-1 hover:bg-didalla' value={item.name} >{item.name}</option>
+        ))
+        console.log('ran')
+    }
 
     const [selectedCountry, setSelectedCountry] = useState()
     const [selectedCity, setSelectedCity] = useState()
     const [cities, setCities] = useState([{name:'Select city'}])
+
+    console.log('holder',holder)
+    
 
     const processCountry = ((country) => {
         setSelectedCountry(country)
@@ -80,12 +81,7 @@ const BrandInfo = ({
 
     return (
         <div className='w-3/4 md:w-1/2 lg:w-2/6 mx-auto'>
-            {
-                isLoading?
-                <div className='flex justify-center items-center px-20 py-32'>
-                    <BeatLoader color={color}  loading={isLoading} css={override} size={40} />
-                </div>
-                :
+            
                 <div>
                     <div className='mb-3'>
                         <img className='' src="/images/BrandInfo.svg" alt="Brand info image"/>
@@ -126,10 +122,7 @@ const BrandInfo = ({
                                     <div className=''>
                                         <select name="country" value={selectedCountry} 
                                         onChange={(e) =>{processCountry(e.target.value);}}  id="country" className='py-3 pl-3 pr-5 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'>
-                                            {countries
-                                            .map((item ) =>{
-                                                return <option key={item.id} className='p-1 hover:bg-didalla' value={item.name} >{item.name}</option>
-                                            })}
+                                            {getOptions()}
                                         </select>
 
                                     </div>
@@ -151,26 +144,23 @@ const BrandInfo = ({
                         </div>
 
                         {brandname.length === 0 || selectedCountry === undefined || selectedCity === undefined ||  errors.brandname 
-                                ? (<div className='flex items-center justify-end'>
+                                ? (<div className='flex items-center justify-start md:justify-end'>
                                 <button type='submit' className="block pointer-events-none opacity-50 w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
                                     font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
-                                    Next
+                                    Next:Campaign Details
                                 </button>
                             </div>) : 
                                 (<div className='flex items-center justify-end'>
                                 <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
                                     font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
-                                    Next
+                                    Next:Campaign Details
                                 </button>
                             </div>)
                         }
 
                         
                     </form>
-                </div>
-                
-            }
-            
+                </div>  
             
 
         </div>

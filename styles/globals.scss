@@ -42,6 +42,7 @@ html, body{
     top: 47%;
 }
 
+//how it works section
 .right-curve{
     top: 28%;
     right: 0%;
@@ -98,6 +99,7 @@ html, body{
     display: none;
 }
 
+//cta section
 .cta-holder{
     background-image: url('../public/images/Pattern.svg');
     background-repeat: no-repeat;
@@ -105,6 +107,7 @@ html, body{
     background-size: contain;
 }
 
+//hero section
 .hero{
     background-image: url('../public/images/world.svg');
     background-repeat: no-repeat;
@@ -112,6 +115,7 @@ html, body{
     background-size: cover;
 }
 
+//navigation section both mobile and full screen
 .dropdown{
     font-size: 2rem;
 }
@@ -130,10 +134,12 @@ html, body{
     transition-property: display;
 }
 
+//onboarding
 .onboarding-container{
     flex-wrap:wrap !important;
 }
 
+//booster onboarding
 .PhoneInputInput, .PhoneInputCountry{
     padding: 0.75rem;
     border:1px solid #D6D8E7;
@@ -146,7 +152,7 @@ html, body{
 }
 
 
-
+//media queries
 @media screen and (min-width:1536px){
     body{
         margin:0 auto;

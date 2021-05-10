@@ -109,12 +109,12 @@ const BrandBudget = ({
                     </div>
                 </div>
 
-                <div className='flex flex-col-reverse md:flex-row items-center justify-start md:justify-end
+                <div className='flex flex-row items-center justify-end
                 '>
 
                     <div>
-                        <button type='button' className="block w-full md:w-auto py-3 px-12 text-center bg-transparent text-didalla rounded 
-                        font-bold hover:text-green-600  focus:outline-none mr-2 "  
+                        <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-transparent text-didalla rounded 
+                        font-bold hover:text-green-600  focus:outline-none mr-2 text-sm md:text-base"  
                             onClick={handleBack}
                         >
                             Back
@@ -124,13 +124,13 @@ const BrandBudget = ({
                     {brandbudget.length === 0 || startdate.length === 0 ||enddate.length === 0 ||campaignbrief.length === 0 
                     || errors.brandbudget ||errors.startdate ||errors.enddate ||errors.campaignbrief
                         ? (<div className='flex items-center justify-end'>
-                        <button type='submit' className="block pointer-events-none opacity-50 w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
+                        <button type='submit' className="block pointer-events-none opacity-50 w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
                             font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
-                            Next
+                            Next:Platforms
                         </button>
                     </div>) : 
                         (<div className='flex items-center justify-end'>
-                        <button type='submit' className="block w-full md:w-auto py-3 px-12 text-center bg-didalla rounded border border-didalla
+                        <button type='submit' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
                             font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
                             Next
                         </button>

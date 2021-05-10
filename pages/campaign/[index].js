@@ -8,7 +8,7 @@ import CampaignPlatforms from '../../components/CampaignPlatforms';
 import useForm from '../../components/useForm';
 import DisplayCreators from '../../components/DisplayCreators';
 import { useRouter } from 'next/router'
-
+import axios from 'axios';
 
 
 
@@ -17,7 +17,27 @@ const campaign = () => {
     const router = useRouter()
     const enteredData = router.query;
 
-    
+    const [countries, setCountries] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        //axios call for creator country details
+        axios.get(`https://api.didalla.com/api/misc/countries`)
+        .then((response) => {
+            setIsLoading(false);
+            console.log(response.data.data);
+            response.data.data.map(item =>{
+               countries.push(item);
+            })
+            
+            // console.log('done')
+            
+        }, (error) => {
+          console.log(error)
+        });
+
+        
+    }, [])
 
     //Define the state schema used for validation
     const stateSchema = {
@@ -94,7 +114,7 @@ const campaign = () => {
         setUserDetails({...userDetails,[detail]:value});
     }
 
-    const [activeStep, setActiveStep] = useState(1);
+    const [activeStep, setActiveStep] = useState(3);
     const handleNext = () =>{
         
         setActiveStep (prevActiveStep => prevActiveStep +1);
@@ -114,6 +134,7 @@ const campaign = () => {
                 brandname={brandname}
                 obtainCountry={obtainCountry}
                 userDetails={userDetails}
+                countries={countries}
                  />
             
             case 2:
@@ -159,7 +180,7 @@ const campaign = () => {
 
             <LogoNavbar />
 
-            <div className='pt-24 pb-10'>
+            <div className='pt-32 pb-10'>
                 {getStepsContent(activeStep)}
             </div>
 

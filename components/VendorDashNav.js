@@ -8,7 +8,7 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
     const messagesLinkStyle = "block whitespace-nowrap pr-3 " + messagesColour +" "
 
     return ( 
-        <nav className='flex flex-row py-6 px-6 md:px-10 lg:px-16 justify-between items-center fixed top-0 w-full bg-white max-w-screen-2xl z-10'>
+        <nav className='border-b border-grayborder flex flex-row py-6 px-6 md:px-10 lg:px-16 justify-between items-center fixed top-0 w-full bg-white max-w-screen-2xl z-10'>
                 <div className='flex flex-row items-center justify-start'>
                     <div className='pl-0'>
                         <Link href="/"><a><img alt="didalla-logo" src='/images/logo.svg' className='mr-16 pl-0 h-10 w-28 md:h-12 md:w-40 
