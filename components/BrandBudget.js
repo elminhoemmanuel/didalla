@@ -56,7 +56,7 @@ const BrandBudget = ({
                         
                         <div className=''>
                             <p className='text-sm text-didallabody mb-2'>Start date</p>
-                            <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
+                            <input className='bg-transparent p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
                                 type="date"
                                 id='startdate'
                                 name="startdate"
@@ -72,7 +72,7 @@ const BrandBudget = ({
 
                         <div className=''>
                             <p className='text-sm text-didallabody mb-2'>End date</p>
-                            <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
+                            <input className='bg-transparent p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
                                 type="date"
                                 id='enddate'
                                 name="enddate"
@@ -131,8 +131,7 @@ const BrandBudget = ({
                     </div>
                 </div>
 
-                <div className='flex flex-row items-center justify-end
-                '>
+                <div className='flex flex-row items-center justify-end'>
 
                     <div>
                         <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-transparent text-didalla rounded 
