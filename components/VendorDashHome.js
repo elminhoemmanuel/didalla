@@ -4,7 +4,7 @@ import {DashboardInterests} from './DashboardInterestsData'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import { creatorsDataTop } from './CreatorsDataTop'
-import CreatorsCard from './CreatorCard'
+import CreatorsCard from './CreatorsCard'
 import CreatorsSlide from './CreatorsSlide';
 
 
@@ -26,10 +26,10 @@ const VendorDashHome = ({
             messagesColour = ""
             />
 
-            <div  className='bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20 flex flex-col-reverse md:flex-row '>
+            <div  className='bg-onboardinggray px-6 md:px-10 lg:px-10 pt-32 pb-20 flex flex-col-reverse md:flex-row '>
                 {/* discover box */}
-                <div className='w-full md:w-4/5 pt-6 pr-4'>
-                    <div className='flex items-center justify-between mb-6'>
+                <div className='w-full md:w-3/4 pt-6 pr-4'>
+                    <div className='flex items-center justify-between mb-3'>
                         <div className=''>
                             <h1 className='font-bold text-didallablack text-lg md:text-xl lg:text-xl'>Discover</h1>
                         </div>
@@ -46,6 +46,74 @@ const VendorDashHome = ({
                         </div>
                     </div>
 
+                    <div className='mb-5 hidden md:block'>
+                        <form action="" className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2'>
+                            <div className=''>
+                                <select id=''
+                                className='w-full p-2 rounded bg-transparent border border-black focus:outline-none
+                                focus:border-didalla' 
+                                >
+                                    <option value="Network">Network</option>
+                                    <option value="facebook">facebook</option>
+                                    <option value="twitter">twitter</option>
+                                    <option value="instagram">instagram</option>
+                                    <option value="youtube">youtube</option>
+                                    <option value="substack">substack</option>
+                                </select>
+                            </div>
+
+                            <div className=''>
+                                <select id=''
+                                className='w-full p-2 rounded bg-transparent border border-black focus:outline-none
+                                focus:border-didalla' 
+                                >
+                                    <option value="budget">Budget($)</option>
+                                    <option value="100-500">100-500</option>
+                                    <option value="500-1000">500-1000</option>
+                                    <option value="1000-2000">1000-2000</option>
+                                    <option value="2500-5000">2500-5000</option>
+                                    <option value="5000-10000">5000-10000</option>
+                                </select>
+                            </div>
+
+                            <div className=''>
+                                <select id=''
+                                className='w-full p-2 rounded bg-transparent border border-black focus:outline-none
+                                focus:border-didalla' 
+                                >
+                                    <option value="topic">Topic</option>
+                                    <option value="fashion">fashion</option>
+                                    <option value="food">food</option>
+                                    <option value="arts">arts</option>
+                                    <option value="crypto">crypto</option>
+                                    <option value="tourism">tourism</option>
+                                </select>
+                            </div>
+
+                            <div className=''>
+                                <select id=''
+                                className='w-full p-2 rounded bg-transparent border border-black focus:outline-none
+                                focus:border-didalla' 
+                                >
+                                    <option value="nigeria">Nigeria</option>
+                                    <option value="fashion">fashion</option>
+                                    <option value="food">food</option>
+                                    <option value="arts">arts</option>
+                                    <option value="crypto">crypto</option>
+                                    <option value="tourism">tourism</option>
+                                </select>
+                            </div>
+
+                            <div className=''>
+                                <button className='text-white p-2 rounded font-bold text-sm text-center block w-full 
+                                border border-didalla hover:border-green-600 bg-didalla hover:bg-green-600 whitespace-nowrap'>
+                                    Search
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
                     <form action="" className='md:hidden mb-8'>
                         <div className='w-full md:w-4/5' >
                             <input type="text" name="searchtext" id="searchtext"
@@ -60,9 +128,9 @@ const VendorDashHome = ({
                         </div>
                     </form>
 
-                    {/* <div className='md:hidden mb-6'>
+                    <div className='md:hidden mb-6'>
                         <CreatorsSlide  />
-                    </div> */}
+                    </div>
 
                     <div className='mb-8'>
                         <div className='flex items-center justify-between mb-1'>
@@ -115,9 +183,10 @@ const VendorDashHome = ({
                     </div>
 
                 </div>
-                <div className='hidden md:block w-full  md:w-1/5 mb-3'>
+                <div className='hidden md:block w-full  md:w-1/4 mb-3'>
                     <div className='bg-didallablack rounded p-6'>
-                        <h1 className=' text-2xl text-white mb-6'>Start a campaign</h1>
+                        <h1 className='text-base md:text-lg text-white'>Ready to start </h1>
+                        <h1 className='text-base md:text-lg text-white mb-5'>a new campaign</h1>
                         <button className='text-white p-3 rounded font-bold text-sm text-center block w-full bg-didalla hover:bg-green-600 whitespace-nowrap'>
                             Get Started
                         </button>

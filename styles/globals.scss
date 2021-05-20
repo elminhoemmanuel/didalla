@@ -60,18 +60,18 @@ html, body{
 }
 
 /* styles for carousel */
-.swiper-container{
+.dash .swiper-container{
     width:100%;
     height:auto !important;
     padding: 0rem 3rem 5rem 3rem !important;
     position: relative;
 }
 
-.swiper-wrapper{
+.dash .swiper-wrapper{
     padding-inline-start: 0;
 }
 
-.swiper-button-prev{
+.dash .swiper-button-prev{
     background-color: white !important;
     color:black !important;
     position: absolute !important;
@@ -81,11 +81,11 @@ html, body{
     background-position: center;
 }
 
-.swiper-button-prev::after {
+.dash .swiper-button-prev::after {
     display: none;
 }
 
-.swiper-button-next{
+.dash .swiper-button-next{
     background-color: white !important;
     color:black !important;
     position: absolute !important;
@@ -95,7 +95,7 @@ html, body{
     background-position: center;
 }
 
-.swiper-button-next::after {
+.dash .swiper-button-next::after {
     display: none;
 }
 
@@ -150,6 +150,20 @@ html, body{
 .PhoneInputInput:focus{
     outline: none;
 }
+
+//dashboard carousel
+.dash .swiper-container{
+    width:100%;
+    height:auto !important;
+    padding: 0rem !important;
+    position: relative;
+}
+
+.dash .swiper-wrapper{
+    padding-inline-start: 0;
+}
+
+
 
 
 //media queries

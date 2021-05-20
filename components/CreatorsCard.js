@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const CreatorCard = ({ creators }) => {
+const CreatorsCard = ({ creators }) => {
     return (
         <div className='border border-grayborder p-4 rounded bg-white'>
             <div className='flex items-center justify-between mb-3'>
@@ -47,4 +47,4 @@ const CreatorCard = ({ creators }) => {
     )
 }
 
-export default CreatorCard
+export default CreatorsCard

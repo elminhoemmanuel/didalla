@@ -1,26 +1,24 @@
 import React , { useState} from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Keyboard } from 'swiper';
+import SwiperCore, { Navigation, Keyboard, Scrollbar } from 'swiper';
 import 'swiper/swiper-bundle.css';
-import CreatorsCard from './CreatorCard'
+import CreatorsCard from './CreatorsCard'
 import { creatorsDataTop } from './CreatorsDataTop'
 
-SwiperCore.use([Navigation, Keyboard])
+SwiperCore.use([Navigation, Keyboard, Scrollbar])
 
-const CreatorsSlide = ({creators}) => {
+const CreatorsSlide = ({ creators }) => {
 
     const slides = [];
 
-    for ( let i=0; i<3; i+=1){
-        slides.push(
-            <SwiperSlide key={`slide-${i}`} tag='li'>
-                <CreatorsCard creators={creatorsDataTop[i]} />
-            </SwiperSlide>
-        )
-    }
+    creatorsDataTop.map(item =>(
+        slides.push(<SwiperSlide key={item.id} tag='li'>
+        <CreatorsCard creators={item} />
+    </SwiperSlide>)
+    ))
 
     return (
-        <div className=''>
+        <div className='dash'>
             <Swiper breakpoints={{
                 // when window width is >= 640px
                 600: {
@@ -34,7 +32,7 @@ const CreatorsSlide = ({creators}) => {
                 slidesPerView: 3,
                 },
             }} id='main' tag="section" wrapperTag="ul"
-            navigation keyboard spaceBetween={0} slidesPerView={1}  spaceBetween={30}
+            keyboard spaceBetween={0} slidesPerView={1}  spaceBetween={30} scrollbar={{ draggable: true }}
             // onInit={(swiper) =>console.log('Swiper initialized', swiper)}
             // onSlideChange={(swiper) =>console.log('Slide changed to:', swiper.activeIndex)}
             // onReachEnd={() =>console.log('Swiper end reached')}
