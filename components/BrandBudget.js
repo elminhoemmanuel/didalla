@@ -19,7 +19,7 @@ const BrandBudget = ({
     }
 
     return (
-        <div className='w-3/4 md:w-1/2 lg:w-2/6 mx-auto'>
+        <div className='w-3/4 md:w-1/2 lg:w-2/5 mx-auto'>
             <div className='mb-3'>
                 <img className='' src="/images/BrandBudget.svg" alt="Brand Budget image"/>
             </div>
@@ -153,7 +153,7 @@ const BrandBudget = ({
                         (<div className='flex items-center justify-end'>
                         <button type='submit' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
                             font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
-                            Next
+                            Next:Platforms
                         </button>
                     </div>)
                 }

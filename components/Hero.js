@@ -6,8 +6,8 @@ const Hero = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) =>{
-            console.log(data.enteredValue);
-            router.push(`/campaign/${data.enteredValue}`)    
+            // console.log(data.enteredValue);
+            router.push(`/search/`)    
     }
 
     const router = useRouter()

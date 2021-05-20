@@ -43,7 +43,6 @@ const BoosterBodyInterests = ({
         obtainInterest('agric',agric)
         obtainInterest('tourism',tourism)
         obtainInterest('others',others)
-        console.log(userInterests)
         handleNext();
         
     }

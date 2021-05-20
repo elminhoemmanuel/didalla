@@ -1,11 +1,25 @@
 import React , {useState, useEffect} from 'react'
+import { css } from "@emotion/core";
+import BeatLoader from "react-spinners/BeatLoader";
+
 
 const CampaignPlatforms = ({
     handleNext,
     handleBack,
     obtainPlatform,
-    brandPlatforms
+    brandPlatforms,
+    submitSearch,
+    isSubmitting
 }) => {
+
+    //code for spinner
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: white;
+    `;
+
+    let [color, setColor] = useState("#FFFFFF");
 
     const [facebook, setfacebook] = useState(false)
     const [instagram, setinstagram] = useState(false)
@@ -22,8 +36,7 @@ const CampaignPlatforms = ({
         obtainPlatform('twitter',twitter)
         obtainPlatform('linkedIn',linkedIn)
         obtainPlatform('youtube',youtube)
-        console.log(brandPlatforms)
-        handleNext();
+        submitSearch();
     }
 
     useEffect(() => {obtainPlatform('facebook',facebook)},[facebook])
@@ -33,7 +46,7 @@ const CampaignPlatforms = ({
     useEffect(() => {obtainPlatform('youtube',youtube)},[youtube])
 
     return (
-        <div className='w-3/4 md:w-1/2 lg:w-2/6 mx-auto'>
+        <div className='w-3/4 md:w-1/2 lg:w-2/5 mx-auto'>
             <div className='mb-3'>
                 <img className='' src="/images/Platforms.svg" alt="Platforms image"/>
             </div>
@@ -133,7 +146,7 @@ const CampaignPlatforms = ({
                         (<div className='flex items-center justify-end'>
                         <button type='submit' className="block w-full md:w-auto py-3 px-4 md:px-12 text-center bg-didalla rounded border border-didalla
                             font-bold text-white hover:bg-green-600 focus:outline-none mb-2">
-                            Next:Find creators
+                            {isSubmitting ? <BeatLoader color={color}  loading={isSubmitting} css={override} size={20} />:<span>Next:Find creators</span>}
                         </button>
                     </div>)
                 }

@@ -12,34 +12,11 @@ import axios from 'axios';
 
 
 
-const campaign = () => {
+const campaign = ({ countries }) => {
 
-    const router = useRouter()
-    const enteredData = router.campaignquery;
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const [countries, setCountries] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-
-    useEffect(() => {
-        //axios call for creator country details
-        axios.get(`https://api.didalla.com/api/misc/countries`)
-        .then((response) => {
-            setIsLoading(false);
-            console.log(response.data.data);
-            response.data.data.map(item =>{
-               countries.push(item);
-            })
-            
-            // console.log('done')
-            
-        }, (error) => {
-          console.log(error)
-        });
-
-        
-    }, [])
-
-    //Define the state schema used for validation
+    // Define the state schema used for validation
     const stateSchema = {
         brandname:{value:"" , error:""},
         brandlocation:{value:"" , error:""},
@@ -104,7 +81,7 @@ const campaign = () => {
         },
     }
 
-    //brand platforms
+    // brand platforms
     const [brandPlatforms, setBrandPlatforms] = useState({facebook:false, instagram:false, twitter:false,
     linkedIn:false, youtube:false});
 
@@ -115,14 +92,14 @@ const campaign = () => {
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema);
     const {brandname, brandbudget, startdate, enddate, campaignbrief ,campaigngoal} = values;
 
-    //user body details
-    const [userDetails, setUserDetails] = useState({country:'',city:'',phone:'', pic:{}});
+    // user body details
+    const [userDetails, setUserDetails] = useState({country:'',city:''});
 
     const obtainCountry = (detail,value) =>{
         setUserDetails({...userDetails,[detail]:value});
     }
 
-    const [activeStep, setActiveStep] = useState(4);
+    const [activeStep, setActiveStep] = useState(1);
     const handleNext = () =>{
         
         setActiveStep (prevActiveStep => prevActiveStep +1);
@@ -130,6 +107,65 @@ const campaign = () => {
     const handleBack = () =>{
         setActiveStep (prevActiveStep => prevActiveStep -1);
     }
+
+    //array of boosters to display
+    // const [boostersArray, setboostersArray] = useState({boosters:[]})
+
+    // useEffect(() => {
+    //     setboostersArray({...boostersArray,boosters:["some",'']})
+    // }, [])
+    const [boostersArray, setboostersArray] = useState([])
+
+    //function to submit form finally
+    const submitSearch = () =>{
+        setIsSubmitting(!isSubmitting)
+
+        const userToken = localStorage.getItem('userToken');
+
+        const key = 'I need to promote'
+
+        const interestsArray = [];
+
+        for (platform in brandPlatforms){
+            if (brandPlatforms[platform] === true){
+                interestsArray.push(platform);
+            }
+        }
+
+        // console.log(interestsArray);
+
+        const formdata = new FormData();
+        formdata.append("key", key)
+        formdata.append("city", userDetails.city)
+        formdata.append("country", userDetails.country)
+        formdata.append("brand_name", brandname)
+        formdata.append("budget", brandbudget)
+        formdata.append("start_date", startdate)
+        formdata.append("end_date", enddate)
+        formdata.append("brief", campaigngoal)
+        formdata.append("platform", JSON.stringify(interestsArray))
+        
+
+        axios.post('https://api.didalla.com/api/vendor/search',formdata)
+        .then((response) => {
+            console.log(response.data.data);
+            response.data.data.map(item =>(
+                boostersArray.push(item)
+            ))
+            // setboostersArray({...boostersArray,boosters:response.data.data})
+            console.log(boostersArray);
+            setIsSubmitting(false)
+
+        }, (error) => {
+            setIsSubmitting(false)
+            console.log(error);
+            
+        });
+
+        handleNext();
+
+    }
+
 
     function getStepsContent (stepIndex){
         switch (stepIndex) {
@@ -165,18 +201,19 @@ const campaign = () => {
                 handleBack={handleBack}
                 obtainPlatform={obtainPlatform}
                 brandPlatforms={brandPlatforms}
+                submitSearch={submitSearch}
+                isSubmitting={isSubmitting}
                  />
             case 4:
                 return <DisplayCreators 
                 handleBack={handleBack}
+                boostersArray={boostersArray}
                  />
             
             
             
         }
     }
-
-    // console.log(campaignbrief);
 
     return (
 
@@ -197,5 +234,20 @@ const campaign = () => {
         </>
     )
 }
+
+export async function getStaticProps() {
+    // Call an external API endpoint to get posts.
+    // You can use any data fetching library
+    const res = await fetch('https://api.didalla.com/api/misc/countries')
+    const countries = await res.json()
+  
+    // By returning { props: { posts } }, the Blog component
+    // will receive `posts` as a prop at build time
+    return {
+      props: {
+        countries,
+      },
+    }
+  }
 
 export default campaign

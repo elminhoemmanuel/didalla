@@ -19,9 +19,6 @@ const BoosterBodySocial = ({
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(basicGross);
-        console.log(standardGross);
-        console.log(premiumGross);
         handleNext();
         
     }

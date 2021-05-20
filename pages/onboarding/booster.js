@@ -30,12 +30,11 @@ const booster = () => {
         axios.get(`https://api.didalla.com/api/misc/countries`)
         .then((response) => {
             setIsLoading(false);
-            console.log(response.data.data);
+            // console.log(response.data.data);
             response.data.data.map(item =>{
                countries.push(item);
             })
             
-            // console.log('done')
             
         }, (error) => {
           console.log(error)
@@ -181,7 +180,7 @@ const booster = () => {
     const submitBooster = () =>{
         setIsSubmitting(!isSubmitting)
         const userToken = localStorage.getItem('userToken');
-        console.log(userDetails)
+        // console.log(userDetails)
 
         const interests = [
             {arts:userInterests.arts},

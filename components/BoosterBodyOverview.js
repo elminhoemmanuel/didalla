@@ -29,7 +29,6 @@ const BoosterBodySocial = ({
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(overview);
         submitBooster();
         
     }
@@ -77,7 +76,7 @@ const BoosterBodySocial = ({
                                             (<div>
                                                 <button type='submit' className="text-xs md:text-base block w-full md:w-auto py-3 px-4 md:px-12 text-center bg-didalla rounded border border-didalla
                                                         font-bold text-white hover:bg-green-600 focus:outline-none ">
-                                                        Finish
+                                                        {isSubmitting ? <BeatLoader color={color}  loading={showSpinner} css={override} size={20} />:<span>Finish</span>}
                                                 </button>
                                             </div>)}
                     </div>

@@ -3,6 +3,9 @@ import VendorDashNav from './VendorDashNav'
 import {DashboardInterests} from './DashboardInterestsData'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
+import { creatorsDataTop } from './CreatorsDataTop'
+import CreatorsCard from './CreatorCard'
+import CreatorsSlide from './CreatorsSlide';
 
 
 const VendorDashHome = ({
@@ -25,35 +28,65 @@ const VendorDashHome = ({
 
             <div  className='bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20 flex flex-col-reverse md:flex-row '>
                 {/* discover box */}
-                <div className='w-4/5 pt-6'>
-                    <form 
-                    onSubmit={(e) =>{
-                        e.preventDefault()
-                        if(!errors.searchtext && dirty.searchtext){
-                            router.push(`/dashboard/vendor/result/${searchtext}`)
-                        }
-                    }}
-                    action="" className='flex flex-col md:flex-row items-center justify-start w-full pr-10 mb-16'>
-                        <div className='pl-0 md:pl-5 w-full md:w-1/5'>
-                            <h1 className='font-bold text-didallablack text-lg md:text-xl lg:text-3xl'>Discover</h1>
+                <div className='w-full md:w-4/5 pt-6 pr-4'>
+                    <div className='flex items-center justify-between mb-6'>
+                        <div className=''>
+                            <h1 className='font-bold text-didallablack text-lg md:text-xl lg:text-xl'>Discover</h1>
                         </div>
+                        <div className='md:hidden'>
+                            <button className='p-2 rounded text-sm text-center flex flex-row items-center justify-between w-full bg-white hover:bg-gray-300 whitespace-nowrap'>
+                                <div>
+                                    <img src="/images/Funnel.svg" alt="filter icon" />
+                                </div>
+                                <div>
+                                    &nbsp;Filter
+                                </div> 
+                                
+                            </button>
+                        </div>
+                    </div>
 
+                    <form action="" className='md:hidden mb-8'>
                         <div className='w-full md:w-4/5' >
                             <input type="text" name="searchtext" id="searchtext"
-                            placeholder='Search by keyword'
-                            value={searchtext}
-                            onChange={handleOnChange}
-                            className='p-3 border border-grayscale rounded bg-grayscale w-full focus:outline-none focus:border-didalla'
+                                placeholder='Search by keyword'
+                                value={searchtext}
+                                onChange={handleOnChange}
+                                className='p-2 border border-grayscale rounded bg-white w-full focus:outline-none focus:border-didalla'
                             />
-                            {errors.searchtext && dirty.searchtext && (
+                                {errors.searchtext && dirty.searchtext && (
                                     <p className='text-red-500 text-xs'>{errors.searchtext}</p>
                                 )}
                         </div>
-
                     </form>
 
-                    <div className='pl-0 md:pl-5'>
-                        <p className='text-lg md:text-xl text-didallablack font-bold mb-10'>Popular Topics <span className='text-didallabody text-sm'>Based on popular searches</span></p>
+                    {/* <div className='md:hidden mb-6'>
+                        <CreatorsSlide  />
+                    </div> */}
+
+                    <div className='mb-8'>
+                        <div className='flex items-center justify-between mb-1'>
+                            <div><p className='text-base text-didallablack font-bold'>Top Creators</p></div>
+                            <div>
+                                <Link href="/result/topcreators">
+                                    <a className='text-sm text-didallablack mb-10'>View more</a>
+                                </Link>
+                            </div>
+
+                        </div>
+
+                        <div className='hidden md:grid grid-cols-2 gap-4'>
+                            {
+                                creatorsDataTop.map(item =>(
+                                    <CreatorsCard key={item.id} creators={item}/>
+                                ))
+                            } 
+                        </div>
+
+                    </div>
+
+                    <div className='pl-0'>
+                        <p className='text-base text-didallablack font-bold mb-10'>Popular interests</p>
 
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
                             {
@@ -82,7 +115,7 @@ const VendorDashHome = ({
                     </div>
 
                 </div>
-                <div className='w-full  md:w-1/5 mb-3'>
+                <div className='hidden md:block w-full  md:w-1/5 mb-3'>
                     <div className='bg-didallablack rounded p-6'>
                         <h1 className=' text-2xl text-white mb-6'>Start a campaign</h1>
                         <button className='text-white p-3 rounded font-bold text-sm text-center block w-full bg-didalla hover:bg-green-600 whitespace-nowrap'>

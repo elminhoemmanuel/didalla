@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 
 const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesColour}) => {
 
-    const homeLinkStyle = "block whitespace-nowrap pr-3 " + homeColour +" "
-    const campaignLinkStyle = "block whitespace-nowrap pr-3 " + campaignColour +" "
-    const creatorsLinkStyle = "block whitespace-nowrap pr-3 " + creatorsColour +" "
-    const messagesLinkStyle = "block whitespace-nowrap pr-3 " + messagesColour +" "
+    const homeLinkStyle = "block whitespace-nowrap px-4 py-3 " + homeColour +" "
+    const campaignLinkStyle = "block whitespace-nowrap px-4 py-3 " + campaignColour +" "
+    const creatorsLinkStyle = "block whitespace-nowrap px-4 py-3 " + creatorsColour +" "
+    const messagesLinkStyle = "block whitespace-nowrap px-4 py-3 " + messagesColour +" "
 
     const [menuclick, setMenuClick] = useState(false);
 

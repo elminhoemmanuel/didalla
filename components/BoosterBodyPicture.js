@@ -15,9 +15,6 @@ const BoosterBodyPicture = ({
     const onSubmit = (e) =>{
         e.preventDefault();
         obtainCountry('pic',picObject);
-        console.log(userDetails.pic)
-        // console.log(fileUrl)
-        // console.log(userDetails.picUrl);
         handleNext();   
     }
 

@@ -5,7 +5,7 @@ import PhoneInput from 'react-phone-number-input'
 import axios from 'axios'
 
 
-const BoosterBodyDetails = ({
+const CampaignBodyDetails = ({
     activeStep,
     countries,
     handleBack,
@@ -41,6 +41,9 @@ const BoosterBodyDetails = ({
         obtainCountry('country',selectedCountry);
         obtainCountry('city',selectedCity);
         obtainCountry('phone',phone);
+        console.log(userDetails.country);
+        console.log(userDetails.city);
+        console.log(userDetails.phone);
         handleNext();
         
     }
@@ -152,4 +155,4 @@ const BoosterBodyDetails = ({
     )
 }
 
-export default BoosterBodyDetails
+export default CampaignBodyDetails

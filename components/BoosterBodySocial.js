@@ -16,11 +16,6 @@ const BoosterBodySocial = ({
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(instagram)
-        console.log(twitter)
-        console.log(youtube)
-        console.log(linkedIn)
-        console.log(substack)
         handleNext();
         
     }
