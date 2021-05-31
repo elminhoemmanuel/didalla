@@ -1,16 +1,16 @@
 import React from 'react'
 
 
-const CreatorsCard = ({ creators }) => {
-    return (
+const CreatorsCard = ({ creators , sendOffer , showSendOffer}) => {
+    return ( 
         <div className='border border-grayborder p-4 rounded bg-white'>
             <div className='flex items-center justify-between mb-3'>
                 <div className='flex items-center'>
                     <div className='mr-3'>
-                        <img src={creators.img} alt="creator avatar" />
+                        <img className='h-8 w-8 rounded' src={creators.photo_url} alt="creator avatar" />
                     </div>
                     <div>
-                        <h1 className='text-didallablack text-sm font-bold'>{creators.name}</h1>
+                        <h1 className='text-didallablack text-sm font-bold'>{creators.user.first_name} {creators.user.last_name}</h1>
                         <p className='text-didallabody'>{creators.city}, {creators.country}</p>
                     </div>
 
@@ -24,9 +24,9 @@ const CreatorsCard = ({ creators }) => {
                 <div className=''>
                     <p className='text-didallabody text-sm mb-1'>Networks</p>
                     <div className='flex flex-row flex-nowrap items-center'>
-                        {creators.facebookFollowers && <div><img src="/images/DashboardFacebook.svg" alt="facebook logo"/></div>}
-                        {creators.twitterFollowers && <div><img src="/images/DashboardTwitter.svg" alt="Twitter logo"/></div>}
-                        {creators.youtubeFollowers && <div><img src="/images/DashboardYoutube.svg" alt="Youtube logo"/></div>}
+                        {creators.facebook && <div><img src="/images/DashboardFacebook.svg" alt="facebook logo"/></div>}
+                        {creators.twitter && <div><img src="/images/DashboardTwitter.svg" alt="Twitter logo"/></div>}
+                        {creators.youtube && <div><img src="/images/DashboardYoutube.svg" alt="Youtube logo"/></div>}
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@ const CreatorsCard = ({ creators }) => {
             </div>
 
             <div>
-                <button className='text-white p-2 rounded font-bold text-sm text-center block w-full bg-didalla hover:bg-green-600 whitespace-nowrap'>
+                <button onClick={showSendOffer} className='text-white p-2 rounded font-bold text-sm text-center block w-full bg-didalla hover:bg-green-600 whitespace-nowrap'>
                     Send offer
                 </button>
             </div>

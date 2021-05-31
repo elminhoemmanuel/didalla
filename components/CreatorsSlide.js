@@ -7,13 +7,13 @@ import { creatorsDataTop } from './CreatorsDataTop'
 
 SwiperCore.use([Navigation, Keyboard, Scrollbar])
 
-const CreatorsSlide = ({ creators }) => {
+const CreatorsSlide = ({ boosters, sendOffer , showSendOffer }) => {
 
     const slides = [];
 
-    creatorsDataTop.map(item =>(
+    boosters.map(item =>(
         slides.push(<SwiperSlide key={item.id} tag='li'>
-        <CreatorsCard creators={item} />
+        <CreatorsCard creators={item} sendOffer={sendOffer} showSendOffer={showSendOffer}/>
     </SwiperSlide>)
     ))
 

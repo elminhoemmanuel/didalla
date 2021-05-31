@@ -219,7 +219,7 @@ const campaign = ({ countries }) => {
 
         <>
             <Head>
-                <title>Didalla | Campaign</title>
+                <title>Didalla | Search</title>
                 <meta name="keywords" content="didalla content-creators marketplace content"/>
                 <meta name="description" content="Marketplace to book advertsing gigs with content creators"/>
             </Head>

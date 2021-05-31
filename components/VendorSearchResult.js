@@ -3,13 +3,34 @@ import VendorDashNav from './VendorDashNav'
 import {creatorsObjOne} from './CreatorsData'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
+import SendOffer from './SendOffer';
+import ViewProfile from './ViewProfile';
+
 
 const VendorSearchResult = () => {
 
     const router = useRouter()
     const enteredData = router.query.searchquery
 
-    
+    const [viewProfile, setviewProfile] = useState(false);
+    const showViewProfile = () =>{
+        setviewProfile(!viewProfile);
+        document.body.style.overflowY= 'hidden';
+    }
+    const hideViewProfile = () =>{
+        setviewProfile(!viewProfile);
+        document.body.style.overflowY= 'visible';
+    }
+
+    const [sendOffer, setsendOffer] = useState(false);
+    const showSendOffer = () =>{
+        setsendOffer(!sendOffer);
+        document.body.style.overflowY= 'hidden';
+    }
+    const hideSendOffer = () =>{
+        setsendOffer(!sendOffer);
+        document.body.style.overflowY= 'visible';
+    }
 
     return (
         <div>
@@ -19,6 +40,13 @@ const VendorSearchResult = () => {
             creatorsColour = ""
             messagesColour = ""
             />
+
+            {
+             viewProfile && <ViewProfile showViewProfile={showViewProfile} hideViewProfile={hideViewProfile} showSendOffer={showSendOffer} hideSendOffer={hideSendOffer}/>
+            }
+            {
+             sendOffer && <SendOffer showSendOffer={showSendOffer} hideSendOffer={hideSendOffer}/>
+            }
 
             <div className='px-6 md:px-10 lg:px-16 pt-32 pb-20 bg-onboardinggray'>
                 
@@ -86,14 +114,14 @@ const VendorSearchResult = () => {
                                 <div className='flex items-center flex-nowrap'>
 
                                     <div className='flex items-center justify-end'>
-                                        <button type='submit' className="block w-full md:w-auto py-3 px-6  text-center bg-didalla rounded border border-didalla
+                                        <button type='submit' onClick={showSendOffer} className="block w-full md:w-auto py-3 px-6  text-center bg-didalla rounded border border-didalla
                                             font-bold text-white hover:bg-green-600 focus:outline-none text-xs md:text-sm">
                                             Send offer
                                         </button>
                                     </div>
 
                                     <div className='ml-2'>
-                                        <button type='button' className="block w-full md:w-auto py-3 px-6 text-center bg-transparent text-didalla rounded 
+                                        <button type='button' onClick={showViewProfile} className="block w-full md:w-auto py-3 px-6 text-center bg-transparent text-didalla rounded 
                                         font-bold hover:text-green-600  focus:outline-none  text-sm md:text-base"  
                                             
                                         >
