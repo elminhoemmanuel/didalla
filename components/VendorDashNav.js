@@ -79,7 +79,7 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                         </Link>
                     </div>
                     <div className=''>
-                        <Link href="/dashboard/vendor/creators" className="cursor-pointer " >
+                        <Link href="/dashboard/vendor/creatorslist" className="cursor-pointer " >
                             <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
                                 <div className='flex items-center '>
                                     <div className='mr-2'>
@@ -146,7 +146,7 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                             </Link>
                         </div>
                         <div className='hidden md:block'>
-                            <Link href="/dashboard/vendor/creators" >
+                            <Link href="/dashboard/vendor/creatorslist" >
                                 <a className={creatorsLinkStyle}>Creators List</a>
                             </Link>
                         </div>

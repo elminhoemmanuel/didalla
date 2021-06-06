@@ -212,7 +212,7 @@ const BoosterBodySocial = ({
                                     </button>
                                 </div>
 
-                                {basicGross!==0 && standardGross!==0 && premiumGross!==0 && basicGross !==''&& standardGross !==''&& premiumGross !==''
+                                {basicGross <=0 || standardGross <=0 || premiumGross<=0 
                                             ? (<div>
                                                 <button type='submit' className="text-xs md:text-base block pointer-events-none opacity-50 w-full md:w-auto py-3 px-4 md:px-12 text-center bg-didalla rounded border border-didalla
                                                         font-bold text-white hover:bg-green-600 focus:outline-none ">

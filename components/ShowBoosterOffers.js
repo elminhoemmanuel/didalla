@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Select from 'react-select';
 
 
-const ShowCreatorBids = ({ openShowBids, closeShowBids }) => {
+const ShowBoosterOffers = ({ openShowOffers, closeShowOffers }) => {
 
     return (
         <div className='absolute py-6 px-8 md:px-52 lg:px-80 w-full h-full bg-gray-700 bg-opacity-50 
@@ -11,11 +11,11 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids }) => {
                 <div className='px-6 py-2 border-b border-grayborder'>
                     <div className='flex items-center'>
                         <div className='mr-3'>
-                            <button className='focus:outline-none block' onClick={closeShowBids}>
+                            <button className='focus:outline-none block' onClick={closeShowOffers}>
                                 <img className='' src="/images/ModalClose.svg" alt="close icon" />
                             </button>
                         </div>
-                        <div><h1 className='text-lg text-black font-bold'>Creator bids</h1></div>
+                        <div><h1 className='text-lg text-black font-bold'>Offers</h1></div>
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids }) => {
 
                             <div className='flex items-center justify-end'>
                                 <button onClick={()=>{
-                                    closeShowBids();
+                                    closeShowOffers();
                                 }} type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
                                     font-bold text-white text-sm hover:bg-green-600 focus:outline-none mb-2">
                                     Accept offer
@@ -52,7 +52,7 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids }) => {
                             <div>
                                 <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-transparent text-didalla rounded 
                                     font-bold hover:text-green-600 text-sm  focus:outline-none mr-2 text-sm md:text-base"  
-                                    onClick={closeShowBids}>
+                                    onClick={closeShowOffers}>
                                     Reject offer
                                 </button>
                             </div>
@@ -67,4 +67,4 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids }) => {
     )
 }
 
-export default ShowCreatorBids
+export default ShowBoosterOffers

@@ -2,7 +2,7 @@ import React,{ useState, useEffect, useRef} from 'react';
 import Head from 'next/head';
 import BoosterDashHome from '../../../components/BoosterDashHome';
 
-const vendor = () => {
+const booster = () => {
     return (
         <>
             <Head>
@@ -19,4 +19,4 @@ const vendor = () => {
     )
 }
 
-export default vendor
+export default booster

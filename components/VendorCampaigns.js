@@ -52,8 +52,8 @@ const VendorCampaigns = ({
                 }}
             )
             .then((response) => {
-                console.log(response.data.data);
-                response.data.data.map(item =>{
+                // console.log(response.data.data.data);
+                response.data.data.data.map(item =>{
                     campaigns.push(item);
                  })
                 console.log(campaigns);
@@ -217,7 +217,7 @@ const VendorCampaigns = ({
 
                                 <button onClick={openShowBids} className='text-black mb-3 p-3 lg:p-4 rounded font-bold text-sm text-center flex flex-row items-center justify-between w-full bg-white hover:bg-gray-300 whitespace-nowrap'>
                                     <div>
-                                        Creator bids (4)
+                                        Creator bids
                                     </div> 
                                     <div>
                                         <svg className="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
