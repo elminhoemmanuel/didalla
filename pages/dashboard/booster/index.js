@@ -1,8 +1,21 @@
 import React,{ useState, useEffect, useRef} from 'react';
 import Head from 'next/head';
 import BoosterDashHome from '../../../components/BoosterDashHome';
+import { useRouter } from 'next/router';
 
-const booster = () => {
+const index = () => {
+
+    const router = useRouter();
+
+    useEffect(() => {
+        const userToken = localStorage.getItem('userToken');
+
+        if(!userToken){
+            router.push('/login')
+        }
+        
+    }, [])
+
     return (
         <>
             <Head>
@@ -19,4 +32,4 @@ const booster = () => {
     )
 }
 
-export default booster
+export default index

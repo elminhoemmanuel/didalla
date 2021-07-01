@@ -88,6 +88,7 @@ const Login = () => {
                 console.log(response);
                 localStorage.setItem('userToken',response.data.access_token)
                 // setresponsegotten(response.data.message)
+                localStorage.setItem('user',JSON.stringify(response.data))
                 setUserRole(response.data.user.role)
                 setIsOnboarded(response.data.user.reg_completed)
                 console.log(userRole);

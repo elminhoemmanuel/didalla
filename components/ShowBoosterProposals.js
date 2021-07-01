@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Select from 'react-select';
 
 
-const ShowBoosterProposals = ({ openShowProposals, closeShowProposals }) => {
+const ShowBoosterProposals = ({ openShowProposals, closeShowProposals , bids }) => {
 
     return (
         <div className='absolute py-6 px-8 md:px-52 lg:px-80 w-full h-full bg-gray-700 bg-opacity-50 
@@ -19,75 +19,33 @@ const ShowBoosterProposals = ({ openShowProposals, closeShowProposals }) => {
                     </div>
                 </div>
 
-                <div className='mb-3'>
+                {
+                    bids.map(item=>(
+                        <div className='mb-3' key={item.id}>
         
-                    <div className='px-6 py-4 border-b border-grayborder mb-3'>
-                        <h1 className='text-sm text-black font-bold mb-2'>Promote my cloth line</h1>
-                        <p className='text-didallabody mb-3'>marvel's place - <span className='text-didallabody'>posted 12 min ago</span></p>
+                            <div className='px-6 py-4 border-b border-grayborder mb-3'>
+                                <h1 className='text-sm text-black font-bold mb-2'>{item.campaign.name}</h1>
+                                <p className='text-didallabody mb-3'>marvel's place - <span className='text-didallabody'>posted {item.created_at.substr(0,10)}</span></p>
 
-                        <div className='flex items-center justify-start mb-4 text-sm'>
-                            <div className='mr-4 md:mr-6'>
-                                <h1 className=' text-didallablack font-bold'>$2000</h1>
-                                <p className='text-didallabody'>Budget</p>
-                            </div>
+                                <div className='flex items-center justify-start mb-4 text-sm'>
+                                    <div className='mr-4 md:mr-6'>
+                                        <h1 className=' text-didallablack font-bold'>{item.bid}</h1>
+                                        <p className='text-didallabody'>Budget</p>
+                                    </div>
 
-                            <div className=''>
-                                <h1 className=' text-didallablack font-bold'>20/05/2020-20/06/2020</h1>
-                                <p className='text-didallabody'>Campaign duration</p>
+                                    <div className=''>
+                                        <h1 className=' text-didallablack font-bold'>{item.campaign.start_date.substr(0,10)} - {item.campaign.end_date.substr(0,10)}</h1>
+                                        <p className='text-didallabody'>Campaign duration</p>
+                                    </div>
+
+                                </div>
+
+                                
                             </div>
 
                         </div>
-
-                        
-                    </div>
-
-                </div>
-                <div className='mb-3'>
-        
-                    <div className='px-6 py-4 border-b border-grayborder mb-3'>
-                        <h1 className='text-sm text-black font-bold mb-2'>Promote my cloth line</h1>
-                        <p className='text-didallabody mb-3'>marvel's place - <span className='text-didallabody'>posted 12 min ago</span></p>
-
-                        <div className='flex items-center justify-start mb-4 text-sm'>
-                            <div className='mr-4 md:mr-6'>
-                                <h1 className=' text-didallablack font-bold'>$2000</h1>
-                                <p className='text-didallabody'>Budget</p>
-                            </div>
-
-                            <div className=''>
-                                <h1 className=' text-didallablack font-bold'>20/05/2020-20/06/2020</h1>
-                                <p className='text-didallabody'>Campaign duration</p>
-                            </div>
-
-                        </div>
-
-                        
-                    </div>
-
-                </div>
-                <div className='mb-3'>
-        
-                    <div className='px-6 py-4 border-b border-grayborder mb-3'>
-                        <h1 className='text-sm text-black font-bold mb-2'>Promote my cloth line</h1>
-                        <p className='text-didallabody mb-3'>marvel's place - <span className='text-didallabody'>posted 12 min ago</span></p>
-
-                        <div className='flex items-center justify-start mb-4 text-sm'>
-                            <div className='mr-4 md:mr-6'>
-                                <h1 className=' text-didallablack font-bold'>$2000</h1>
-                                <p className='text-didallabody'>Budget</p>
-                            </div>
-
-                            <div className=''>
-                                <h1 className=' text-didallablack font-bold'>20/05/2020-20/06/2020</h1>
-                                <p className='text-didallabody'>Campaign duration</p>
-                            </div>
-
-                        </div>
-
-                        
-                    </div>
-
-                </div>
+                    ))
+                }
 
             </div>
         </div>

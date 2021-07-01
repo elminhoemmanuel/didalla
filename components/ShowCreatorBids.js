@@ -45,7 +45,7 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids }) => {
                                     closeShowBids();
                                 }} type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
                                     font-bold text-white text-sm hover:bg-green-600 focus:outline-none mb-2">
-                                    Accept offer
+                                    Accept Bid
                                 </button>
                             </div>
 
@@ -53,7 +53,7 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids }) => {
                                 <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-transparent text-didalla rounded 
                                     font-bold hover:text-green-600 text-sm  focus:outline-none mr-2 text-sm md:text-base"  
                                     onClick={closeShowBids}>
-                                    Reject offer
+                                    Reject Bid
                                 </button>
                             </div>
 

@@ -25,8 +25,12 @@ const VendorCampaigns = ({
 
     const [isLoading, setisLoading] = useState(true);
     const [isLoading2, setisLoading2] = useState(true);
-    const [countries, setCountries] = useState([])
+    const [isLoading3, setisLoading3] = useState(true);
+    const [isLoading4, setisLoading4] = useState(true);
     const [campaigns, setcampaigns] = useState([])
+    const [countries, setcountries] = useState([]);
+    const [user, setuser] = useState();
+    const [bids, setbids] = useState([])
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -38,8 +42,8 @@ const VendorCampaigns = ({
             response.data.data.map(item =>{
                countries.push(item);
             })
-            console.log(countries)
-            setisLoading(!isLoading)
+            // console.log(countries)
+            setisLoading3(!isLoading3)
             
         }, (error) => {
           console.log(error)
@@ -56,14 +60,35 @@ const VendorCampaigns = ({
                 response.data.data.data.map(item =>{
                     campaigns.push(item);
                  })
-                console.log(campaigns);
+                // console.log(campaigns);
                 setisLoading2(!isLoading2)
             }, (error) => {
             console.log(error)
             
-        });       
+        });        
                 
     }, [])
+
+
+    // useEffect(() => {
+    //     const userToken = localStorage.getItem('userToken');
+    //     //axios call for user details
+    //     axios.get(`https://api.didalla.com/api/user`, 
+    //         {
+    //             headers: {
+    //             'Authorization': `Bearer ${userToken}`
+    //             }}
+    //         )
+    //         .then((response) => {
+    //             console.log(response.data);
+    //             setuser(response.data)
+    //             console.log(user);
+    //             setisLoading4(!isLoading4)
+    //         }, (error) => {
+    //         console.log(error)          
+    //     });
+        
+    // }, [isLoading4])
 
     const [showBids, setshowBids] = useState(false);
     const openShowBids = () =>{
@@ -90,7 +115,7 @@ const VendorCampaigns = ({
     return (
         <div>
             {
-                isLoading && isLoading2 ? 
+                isLoading && isLoading2 && isLoading3 && isLoading4 ? 
 
                 <div className='flex justify-center items-center px-20 py-32'>
                 <BeatLoader color={color}  loading={isLoading} css={override} size={40} />
@@ -104,13 +129,14 @@ const VendorCampaigns = ({
                     campaignColour ="text-didalla"
                     creatorsColour = ""
                     messagesColour = ""
+                    // user={user}
                     />
 
                     {
-                    startCampaign && <StartCampaign countries={countries} openStartCampaign={openStartCampaign} closeStartCampaign={closeStartCampaign}/>
+                        startCampaign && <StartCampaign countries={countries} openStartCampaign={openStartCampaign} closeStartCampaign={closeStartCampaign}/>
                     }
                     {
-                    showBids && <ShowCreatorBids openShowBids={openShowBids} closeShowBids={closeShowBids}/>
+                        showBids && <ShowCreatorBids openShowBids={openShowBids} closeShowBids={closeShowBids}/>
                     }
 
                     <div className='bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20'>

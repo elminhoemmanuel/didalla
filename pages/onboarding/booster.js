@@ -21,6 +21,15 @@ const booster = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [userValues, setUserValues] = useState({first_name:'',last_name:''})
     const [countries, setCountries] = useState([])
+
+    useEffect(() => {
+        const userToken = localStorage.getItem('userToken');
+
+        if(!userToken){
+            router.push('/login')
+        }
+        
+    }, [])
     
 
     useEffect(() => {
@@ -197,13 +206,16 @@ const booster = () => {
             {others:userInterests.others},
         ]
 
+        const interests2 =[1,2,3]
+
         const formdata = new FormData();
         formdata.append("image", userDetails.pic)
         formdata.append("city", userDetails.city)
         formdata.append("country", userDetails.country)
         formdata.append("phone", userDetails.phone)
         formdata.append("bio", userDetails.overview)
-        formdata.append("interests", JSON.stringify(interests))
+        formdata.append("interests", interests2)
+        // JSON.stringify(interests)
         formdata.append("instagram", instagram)
         formdata.append("twitter", twitter)
         formdata.append("youtube", youtube)

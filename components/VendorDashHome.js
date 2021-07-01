@@ -3,10 +3,10 @@ import VendorDashNav from './VendorDashNav'
 import {DashboardInterests} from './DashboardInterestsData'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
-import { creatorsDataTop } from './CreatorsDataTop'
 import CreatorsCard from './CreatorsCard'
 import CreatorsSlide from './CreatorsSlide';
 import SendOffer from './SendOffer';
+import ViewProfile from './ViewProfile';
 import StartCampaign from './StartCampaign';
 import axios from 'axios';
 import { css } from "@emotion/core";
@@ -15,10 +15,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 
 const VendorDashHome = ({
-    searchtext,
-    errors,
-    dirty,
-    handleOnChange,
+    
 }) => {
 
     // Can be a string as well. Need to ensure each key-value pair ends with ;
@@ -31,9 +28,13 @@ const VendorDashHome = ({
     let [color, setColor] = useState("#39B54A");
 
     const [isLoading, setisLoading] = useState(true);
+    const [isLoading2, setisLoading2] = useState(true);
+    const [isLoading3, setisLoading3] = useState(true);   
 
     const [boosters, setboosters] = useState([]);
     const [countries, setcountries] = useState([]);
+    const [campaigns, setcampaigns] = useState([]);
+    const [singleBooster, setsingleBooster] = useState()
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -45,7 +46,7 @@ const VendorDashHome = ({
             response.data.data.map(item =>{
                countries.push(item);
             })
-            console.log(countries)
+            // console.log(countries)
             setisLoading(!isLoading)
             
         }, (error) => {
@@ -59,18 +60,38 @@ const VendorDashHome = ({
                 }}
             )
             .then((response) => {
-                console.log(response.data.data.data);
+                // console.log(response.data.data.data);
                 response.data.data.data.map(item =>{
                     boosters.push(item);
                 })
-                console.log(boosters);
-                setisLoading(!isLoading);
+                // console.log(boosters);
+                localStorage.setItem("boosters",JSON.stringify(response.data.data.data))
+                setisLoading2(!isLoading2);
             }, (error) => {
             console.log(error)
-            setisLoading(!isLoading);
-        });       
+        });  
+
+        axios.get(`https://api.didalla.com/api/campaign`, 
+            {
+                headers: {
+                'Authorization': `Bearer ${userToken}`
+                }}
+            )
+            .then((response) => {
+                // console.log(response.data.data.data);
+                response.data.data.data.map(item =>{
+                    campaigns.push(item);
+                 })
+                // console.log(campaigns);
+                setisLoading3(!isLoading3)
+            }, (error) => {
+            console.log(error)          
+        });
+
                 
     }, []) 
+
+    
 
     const router = useRouter()
 
@@ -79,6 +100,7 @@ const VendorDashHome = ({
         setsendOffer(!sendOffer);
         document.body.style.overflowY= 'hidden';
     }
+    
     const hideSendOffer = () =>{
         setsendOffer(!sendOffer);
         document.body.style.overflowY= 'visible';
@@ -93,19 +115,32 @@ const VendorDashHome = ({
         setStartCampaign(!startCampaign);
         document.body.style.overflowY= 'visible';
     }
+    const [viewProfile, setviewProfile] = useState(false);
+    const hideViewProfile = () =>{
+        setviewProfile(!viewProfile);
+        document.body.style.overflowY= 'hidden';
+    }
+    const showViewProfile = () =>{
+        setviewProfile(!viewProfile);
+        document.body.style.overflowY= 'visible';
+    }
+
+    const addSingleBooster = (item) =>{
+        setsingleBooster(item);
+    }
 
     return (
         <div className='relative'>
             {
-                isLoading ? 
+                isLoading && isLoading2 && boosters!==[] && isLoading3 ? 
 
                 <div className='flex justify-center items-center px-20 py-32'>
-                <BeatLoader color={color}  loading={isLoading} css={override} size={40} />
+                <BeatLoader color={color}  loading={isLoading && isLoading2} css={override} size={40} />
                 </div> 
 
                 : 
-
                 <div>
+
                         <VendorDashNav 
                         homeColour='text-didalla' 
                         campaignColour =""
@@ -113,17 +148,24 @@ const VendorDashHome = ({
                         messagesColour = ""
                         />
 
+
                         {
                         startCampaign && <StartCampaign countries={countries} openStartCampaign={openStartCampaign} closeStartCampaign={closeStartCampaign}/>
                         }
 
                         {
-                        sendOffer && <SendOffer showSendOffer={showSendOffer} hideSendOffer={hideSendOffer}/>
+                        sendOffer && <SendOffer hideSendOffer={hideSendOffer} booster={singleBooster} campaigns={campaigns} />
+                        }
+
+                        {
+                        viewProfile && <ViewProfile booster={singleBooster} showSendOffer={showSendOffer} showViewProfile={showViewProfile} hideViewProfile={hideViewProfile} addSingleBooster={addSingleBooster}/>
                         }
 
                         <div  className='bg-onboardinggray px-6 md:px-10 lg:px-10 pt-32 pb-20 flex flex-col-reverse md:flex-row '>
+
+
                             {/* discover box */}
-                            <div className='w-full md:w-3/4 pt-6 pr-4'>
+                            <div className='w-full md:w-3/4 pr-4'>
                                 <div className='flex items-center justify-between mb-3'>
                                     <div className=''>
                                         <h1 className='font-bold text-didallablack text-lg md:text-xl lg:text-xl'>Discover</h1>
@@ -148,7 +190,7 @@ const VendorDashHome = ({
                                             className='w-full p-2 rounded bg-white focus:outline-none
                                             focus:border-didalla' 
                                             >
-                                                <option value="Network">Network</option>
+                                                <option value="Network">Platform</option>
                                                 <option value="facebook">facebook</option>
                                                 <option value="twitter">twitter</option>
                                                 <option value="instagram">instagram</option>
@@ -176,7 +218,7 @@ const VendorDashHome = ({
                                             className='w-full p-2 rounded bg-white focus:outline-none
                                             focus:border-didalla' 
                                             >
-                                                <option value="topic">Topic</option>
+                                                <option value="topic">Keywords</option>
                                                 <option value="fashion">fashion</option>
                                                 <option value="food">food</option>
                                                 <option value="arts">arts</option>
@@ -191,11 +233,12 @@ const VendorDashHome = ({
                                             focus:border-didalla' 
                                             >
                                                 <option value="nigeria">Nigeria</option>
-                                                <option value="fashion">fashion</option>
-                                                <option value="food">food</option>
-                                                <option value="arts">arts</option>
-                                                <option value="crypto">crypto</option>
-                                                <option value="tourism">tourism</option>
+                                                <option value="nigeria">Nigeria</option>
+                                                <option value="nigeria">Nigeria</option>
+                                                <option value="nigeria">Nigeria</option>
+                                                <option value="nigeria">Nigeria</option>
+                                                <option value="nigeria">Nigeria</option>
+                                                
                                             </select>
                                         </div>
 
@@ -209,7 +252,7 @@ const VendorDashHome = ({
                                     </form>
                                 </div>
 
-                                <form action="" className='md:hidden mb-8'>
+                                {/* <form action="" className='md:hidden mb-8'>
                                     <div className='w-full md:w-4/5' >
                                         <input type="text" name="searchtext" id="searchtext"
                                             placeholder='Search by keyword'
@@ -221,11 +264,11 @@ const VendorDashHome = ({
                                                 <p className='text-red-500 text-xs'>{errors.searchtext}</p>
                                             )}
                                     </div>
-                                </form>
-
+                                </form> */}
                                 <div className='md:hidden mb-6'>
                                     <div className=' md:hidden'><p className='text-base text-didallablack font-bold mb-2'>Top Creators</p></div>
-                                    <CreatorsSlide boosters={boosters} sendOffer={sendOffer} showSendOffer={showSendOffer} />
+                                    <CreatorsSlide showViewProfile={showViewProfile} hideViewProfile={hideViewProfile} addSingleBooster={addSingleBooster}
+                                    boosters={boosters} showSendOffer={showSendOffer}  hideSendOffer={hideSendOffer} />
                                 </div>
 
                                 <div className='mb-3 md:hidden'>
@@ -257,19 +300,107 @@ const VendorDashHome = ({
                                         </div>
 
                                     </div>
-
-                                    <div className='hidden md:grid grid-cols-3 gap-4'>
+                                    <div className='hidden md:grid md:grid-cols-1 lg:grid-cols-2 gap-4'>
                                         {
-                                            boosters !==[] ? boosters.map(item =>(
-                                                <CreatorsCard sendOffer={sendOffer} showSendOffer={showSendOffer} key={item.id} creators={item}/>
-                                            )) : <div></div>
+                                            boosters.map(item=>(
+                                                <div className='border border-grayborder p-4 rounded bg-white' key={item.id}>
+                                                    <div>
+                                                        <img className='h-10 w-10 rounded-full' src={item.photo_url} alt="creator avatar"/>
+                                                    </div>
+                                                    <div className='flex items-center justify-between mt-1'>
+                                                        <div>
+                                                            <h1 className='text-didallablack text-base md:text-xl font-bold'>{item.user.first_name} - {item.user.last_name}</h1>
+                                                        </div>
+                                                        <div>
+                                                            <p className='text-didallabody'>{item.basic_plan}-{item.premium_plan}</p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div>
+                                                        <p className='text-didallabody mb-2'>{item.city}-{item.country}</p>
+                                                        <p className='text-didallabody mb-2'>{item.bio}</p>
+                                                    </div>
+
+                                                    <div className='grid grid-cols-2 lg:grid-cols-2 gap-4 md:gap-2 mb-3'>
+                                                        {
+                                                            item.facebook && 
+                                                            <div className='flex items-center '>
+                                                                <div className=' w-1/5'>
+                                                                    <img className='w-16' src="/images/FacebookLogoRegister.svg" alt="facebook logo"/>
+                                                                </div>
+                                                                <div className='w-4/5 pl-4'>
+                                                                    <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
+                                                                        <span className='text-didallabody'>followers</span>
+                                                                    </p>
+                                                                </div>
+
+                                                            </div>
+                                                        }
+                                                        {
+                                                            item.twitter && 
+                                                            <div className='flex items-center '>
+                                                                <div className='w-1/5'>
+                                                                    <img className='w-16' src="/images/TwitterLogoBlack.svg" alt="twitter logo"/>
+                                                                </div>
+                                                                <div className='w-4/5 pl-4'>
+                                                                    <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
+                                                                        <span className='text-didallabody'>followers</span>
+                                                                    </p>
+                                                                </div>
+
+                                                            </div>
+                                                        }
+                                                        {
+                                                            <div className='flex items-center '>
+                                                                <div className='w-1/5'>
+                                                                    <img className='w-16' src="/images/YoutubeLogoBlack.svg" alt="youtube logo"/>
+                                                                </div>
+                                                                <div className='w-4/5 pl-4'>
+                                                                    <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
+                                                                        <span className='text-didallabody'>subscribers</span>
+                                                                    </p>
+                                                                </div>
+
+                                                            </div>
+                                                        }
+
+                                                    </div>
+
+                                                    <div className='flex items-center flex-nowrap'>
+
+                                                        <div className='flex items-center justify-end'>
+                                                            <button type='submit' onClick={()=>{
+                                                                setsingleBooster(item);
+                                                                showSendOffer();
+                                                            }} className="block w-full md:w-auto py-3 px-6  text-center bg-didalla rounded border border-didalla
+                                                                font-bold text-white hover:bg-green-600 focus:outline-none text-xs md:text-sm">
+                                                                Send offer
+                                                            </button>
+                                                        </div>
+
+                                                        <div className='ml-2'>
+                                                            <button type='button' onClick={()=>{
+                                                                setsingleBooster(item);
+                                                                showViewProfile();
+                                                            }} className="block w-full md:w-auto py-3 px-6 text-center bg-transparent text-didalla rounded 
+                                                            font-bold hover:text-green-600  focus:outline-none  text-sm md:text-base"  
+                                                                
+                                                            >
+                                                                View profile
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            ))
                                         } 
                                         
                                     </div>
 
                                 </div>
 
-                                <div className='pl-0'>
+                                {/* <div className='pl-0'>
                                     <p className='text-base text-didallablack font-bold mb-10'>Popular interests</p>
 
                                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
@@ -296,7 +427,7 @@ const VendorDashHome = ({
 
                                     </div>
 
-                                </div>
+                                </div> */}
 
                             </div>
                             <div className='hidden md:block w-full  md:w-1/4 mb-3'>

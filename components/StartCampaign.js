@@ -6,7 +6,7 @@ import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
 
 
-const StartCampaign = ({ openStartCampaign, closeStartCampaign, countries }) => {
+const StartCampaign = ({ closeStartCampaign, countries }) => {
 
     // Can be a string as well. Need to ensure each key-value pair ends with ;
     const override = css`
@@ -21,10 +21,12 @@ const StartCampaign = ({ openStartCampaign, closeStartCampaign, countries }) => 
     const [selectedCountry, setSelectedCountry] = useState()
     const [selectedCity, setSelectedCity] = useState()
     const [picObject, setPicObject] = useState()
-    const [interestsBox, setinterestsBox] = useState()
+    const [interestsBox, setinterestsBox] = useState([])
     const [allowBid, setAllowBid] = useState(false)
     const [bidValue, setbidValue] = useState()
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errMsg, seterrMsg] = useState('');
+    const [successMsg, setsuccessMsg] = useState();
 
     
     const options = [
@@ -146,14 +148,14 @@ const StartCampaign = ({ openStartCampaign, closeStartCampaign, countries }) => 
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(interestsBox);
-        console.log(picObject);
-        console.log(selectedCity);
-        console.log(campaignname);
-        console.log(brandbudget);
-        console.log(startdate);
-        console.log(campaignbrief);
-        console.log(allowBid);
+        // console.log(interestsBox);
+        // console.log(picObject);
+        // console.log(selectedCity);
+        // console.log(campaignname);
+        // console.log(brandbudget);
+        // console.log(startdate);
+        // console.log(campaignbrief);
+        // console.log(allowBid);
         setIsSubmitting(!isSubmitting);
 
         const userToken = localStorage.getItem('userToken');
@@ -192,13 +194,16 @@ const StartCampaign = ({ openStartCampaign, closeStartCampaign, countries }) => 
         .then((response) => {
             setIsSubmitting(false)
             console.log(response);
-            setIsSubmitting(!isSubmitting);
-            if(isSubmitting === false){
-                closeStartCampaign();
+            setsuccessMsg('Offer sent successfully')
+            if(isSubmitting === false && errMsg === ''){
+                setTimeout(() => {
+                    closeStartCampaign();
+                }, 4000);
             }
 
         }, (error) => {
             setIsSubmitting(false)
+            seterrMsg('Something went wrong, try again')
             console.log(error);
             
         });
@@ -328,7 +333,6 @@ const StartCampaign = ({ openStartCampaign, closeStartCampaign, countries }) => 
                                         name="enddate"
                                         value={enddate}
                                         onChange={handleOnChange}
-                                        placeholder='E.g Texas, USA'
                                         required
                                     />
                                     {errors.enddate && dirty.enddate && (
@@ -451,12 +455,39 @@ const StartCampaign = ({ openStartCampaign, closeStartCampaign, countries }) => 
                                 </div>
 
                                 <div className='flex items-center justify-end'>
-                                    <button type='submit' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
+                                    {
+                                        campaignname.length === 0|| brandbudget <= 0 || selectedCity.length === 0 ||
+                                        selectedCountry.length === 0 || startdate.length === 0 || enddate.length === 0 || campaignbrief.length === 0 ||
+                                        campaigngoal.length === 0 || errors.campaignname  || errors.brandbudget
+                                        || errors.startdate || errors.enddate || errors.campaignbrief || errors.campaigngoal || picObject === undefined
+                                        || interestsBox === [] || interestsBox === undefined
+                                        
+                                        ?
+
+                                        <button type='submit' className="pointer-events-none opacity-50 block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
                                         font-bold text-white text-sm hover:bg-green-600 focus:outline-none mb-2">
                                         {isSubmitting ? <BeatLoader color={color}  loading={isSubmitting} css={override} size={15} />:<span>Create campaign</span>}
-                                    </button>
+                                        </button> 
+                                        
+                                        :
+
+                                        <button type='submit' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
+                                        font-bold text-white text-sm hover:bg-green-600 focus:outline-none mb-2">
+                                        {isSubmitting ? <BeatLoader color={color}  loading={isSubmitting} css={override} size={15} />:<span>Create campaign</span>}
+                                        </button>
+                                    }
                                 </div>
 
+                        </div>
+                        <div className='flex justify-end'>
+                                    {
+                                        isSubmitting === false && errMsg && <div className='text-sm text-red-400'>{errMsg}</div> 
+                                    }
+                        </div>
+                        <div className='flex justify-end'>
+                                    {
+                                        successMsg && <div className='text-sm text-didalla'>Campaign created successfully</div> 
+                                    }
                         </div>
                         
                 </form>

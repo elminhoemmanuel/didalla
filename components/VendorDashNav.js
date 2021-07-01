@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesColour}) => {
 
@@ -7,6 +8,7 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
     const campaignLinkStyle = "block whitespace-nowrap px-4 py-3 " + campaignColour +" "
     const creatorsLinkStyle = "block whitespace-nowrap px-4 py-3 " + creatorsColour +" "
     const messagesLinkStyle = "block whitespace-nowrap px-4 py-3 " + messagesColour +" "
+    const user = JSON.parse(localStorage.getItem('user'))
 
     const [menuclick, setMenuClick] = useState(false);
 
@@ -19,6 +21,27 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
         setMenuClick(!menuclick);
         document.body.style.overflowY= 'visible';
     }
+
+    // useEffect(() => {
+
+    //     const userToken = localStorage.getItem('userToken');
+
+    //     axios.get(`https://api.didalla.com/api/user`, 
+    //         {
+    //             headers: {
+    //             'Authorization': `Bearer ${userToken}`
+    //             }}
+    //         )
+    //         .then((response) => {
+    //             console.log(response);
+    //             userValues.user = response.data
+    //             console.log(userValues.user);
+    //             setisLoading4(!isLoading4)
+    //         }, (error) => {
+    //         console.log(error)          
+    //     });
+        
+    // }, [])
 
     return ( 
 
@@ -34,16 +57,16 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                     <div className='flex flex-row items-center justify-start text-white px-4 pb-10
                     border-b border-grayborder'>
                         <div className='mr-4' onClick={handleClickMobile}>
-                            <Link href="/dashboard/vendor/profile">
-                                <a className=''>
-                                    <img className='w-8 h-8' src="/images/ManImage.svg" alt="vendor avatar"/>
-                                </a>
+                        <Link href="/dashboard/vendor">
+                                <div className='cursor-pointer h-10 w-10 rounded-full bg-didalla text-white text-lg font-bold text-center pt-1'>
+                                    {user.user.first_name[0]} {user.user.last_name[0]}
+                                </div>
                             </Link>
                         </div>
                         <div onClick={handleClickMobile}>
-                            <Link href="/dashboard/vendor/profile">
+                            <Link href="/dashboard/vendor">
                                 <a className=''>
-                                    Emmanuel Amodu
+                                {user.user.first_name} {user.user.last_name}
                                 </a>
                             </Link>
                         </div>
@@ -78,7 +101,7 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                             </a>
                         </Link>
                     </div>
-                    <div className=''>
+                    {/* <div className=''>
                         <Link href="/dashboard/vendor/creatorslist" className="cursor-pointer " >
                             <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
                                 <div className='flex items-center '>
@@ -91,7 +114,7 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                                 </div>
                             </a>
                         </Link>
-                    </div>
+                    </div> */}
                     <div className=' pb-4 border-b border-grayborder'>
                         <Link href="/dashboard/vendor/messages" className="cursor-pointer " >
                             <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
@@ -145,11 +168,11 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                                 <a className={campaignLinkStyle}>My campaigns</a>
                             </Link>
                         </div>
-                        <div className='hidden md:block'>
+                        {/* <div className='hidden md:block'>
                             <Link href="/dashboard/vendor/creatorslist" >
                                 <a className={creatorsLinkStyle}>Creators List</a>
                             </Link>
-                        </div>
+                        </div> */}
                         <div className='hidden md:block'>
                             <Link href="/dashboard/vendor/messages" >
                                 <a className={messagesLinkStyle}>Messages</a>
@@ -158,20 +181,18 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
 
                     </div>
                     <div className='flex flex-row items-center justify-start'>
-                        <div className='hidden md:block'>
-                            <Link href="/dashboard/vendor/notifications">
-                                <a className=''>
-                                    <img className='mr-4' src="/images/BellSimple.svg" alt="bell icon"/>
-                                </a>
+                        <div className='mr-3'>
+                            <Link href="/dashboard/booster">
+                                <div className='cursor-pointer h-10 w-10 rounded-full bg-didalla text-white text-lg font-bold text-center pt-1'>
+                                    {user.user.first_name[0]} {user.user.last_name[0]}
+                                </div>
                             </Link>
                         </div>
 
                         <div>
-                            <Link href="/dashboard/vendor/profile">
-                                <a className=''>
-                                    <img className='' src="/images/ManImage.svg" alt="vendor avatar"/>
-                                </a>
-                            </Link>
+                            <button className='focus:outline-none block'>
+                            <svg className="w-6 h-6 text-didalla" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                            </button>
                         </div>
 
                     </div>

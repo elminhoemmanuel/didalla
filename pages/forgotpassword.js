@@ -8,7 +8,7 @@ import StepEnterResetPassword from '../components/StepEnterResetPassword';
 
 
 
-const Login = () => {
+const ForgotPassword = () => {
 
     const [resetMessage, setresetMessage] = useState('')
 
@@ -105,4 +105,4 @@ const Login = () => {
      );
 }
  
-export default Login;
+export default ForgotPassword;

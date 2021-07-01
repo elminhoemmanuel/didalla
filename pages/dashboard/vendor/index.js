@@ -1,28 +1,20 @@
-import React,{ useState, useEffect, useRef} from 'react';
+import React , { useState, useEffect} from 'react'
 import Head from 'next/head';
 import VendorDashHome from '../../../components/VendorDashHome';
-import useForm from '../../../components/useForm'
+import { useRouter } from 'next/router';
 
-const vendor = () => {
+const index = () => {
 
-    //Define the state schema used for validation
-    const stateSchema = {
-        searchtext:{value:"" , error:""},
-    }
+    const router = useRouter();
 
-    const stateValidatorSchema ={
-        searchtext:{
-            required:true,
-            validator:{
-                func: value=> /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-]+)*/.test(value),
-                error:"must be more than one character without space inbetween"
-            }
-        },
+    useEffect(() => {
+        const userToken = localStorage.getItem('userToken');
+
+        if(!userToken){
+            router.push('/login')
+        }
         
-    }
-
-    const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema)
-    const {searchtext} = values;
+    }, [])
 
     return (
         <>
@@ -33,10 +25,7 @@ const vendor = () => {
             </Head>
 
             <div className=''>
-                <VendorDashHome searchtext={searchtext}
-                errors={errors}
-                dirty={dirty}
-                handleOnChange={handleOnChange}
+                <VendorDashHome 
                 />
 
             </div>
@@ -44,4 +33,4 @@ const vendor = () => {
     )
 }
 
-export default vendor
+export default index
