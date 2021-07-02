@@ -8,7 +8,7 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
     const campaignLinkStyle = "block whitespace-nowrap pr-3 " + campaignColour +" "
     const creatorsLinkStyle = "block whitespace-nowrap pr-3 " + creatorsColour +" "
     const messagesLinkStyle = "block whitespace-nowrap pr-3 " + messagesColour +" "
-    const user = JSON.parse(localStorage.getItem('user'))
+    // const user = JSON.parse(localStorage.getItem('user'))
 
     const [menuclick, setMenuClick] = useState(false);
 
