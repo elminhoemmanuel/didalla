@@ -1,25 +1,25 @@
-import React , { useState, useEffect} from 'react'
-import SingleVendorCampaigns from '../../../../components/VendorCampaigns'
-import { useRouter } from 'next/router';
+// import React , { useState, useEffect} from 'react'
+// import SingleVendorCampaigns from '../../../../components/VendorCampaigns'
+// import { useRouter } from 'next/router';
 
-const campaigns = () => {
+// const campaigns = () => {
 
-    const router = useRouter();
+//     const router = useRouter();
 
-    useEffect(() => {
-        const userToken = localStorage.getItem('userToken');
+//     useEffect(() => {
+//         const userToken = localStorage.getItem('userToken');
 
-        if(!userToken){
-            router.push('/login')
-        }
+//         if(!userToken){
+//             router.push('/login')
+//         }
         
-    }, [])
+//     }, [])
 
-    return (
-        <div>
-            <SingleVendorCampaigns />
-        </div>
-    )
-}
+//     return (
+//         <div>
+//             <SingleVendorCampaigns />
+//         </div>
+//     )
+// }
 
-export default campaigns
+// export default campaigns

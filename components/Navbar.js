@@ -9,7 +9,7 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
     const [menuclick, setMenuClick] = useState(false);
     const [exploreclick, setExploreClick] = useState(false);
     const [creatorclick, setCreatorClick] = useState(false);
-    const userToken = localStorage.getItem('userToken');
+    // const userToken = localStorage.getItem('userToken');
     
 
     const handleClick = () => {
@@ -165,7 +165,7 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                         </Link>
                     </div>
                     {
-                        !userToken && 
+                        
                         <div className='hidden md:block'>
                             <Link href="/register">
                                 <button className='whitespace-nowrap px-4 py-2 bg-didalla
