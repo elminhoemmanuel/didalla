@@ -7,14 +7,14 @@ const index = () => {
 
     const router = useRouter();
 
-    // useEffect(() => {
-    //     const userToken = localStorage.getItem('userToken');
+    useEffect(() => {
+        const userToken = localStorage.getItem('userToken');
 
-    //     if(!userToken){
-    //         router.push('/login')
-    //     }
+        if(!userToken){
+            router.push('/login')
+        }
         
-    // }, [])
+    }, [])
 
     return (
         <>
