@@ -108,17 +108,12 @@ const campaign = ({ countries }) => {
         setActiveStep (prevActiveStep => prevActiveStep -1);
     }
 
-    //array of boosters to display
-    // const [boostersArray, setboostersArray] = useState({boosters:[]})
-
-    // useEffect(() => {
-    //     setboostersArray({...boostersArray,boosters:["some",'']})
-    // }, [])
+    
     const [boostersArray, setboostersArray] = useState([])
 
     //function to submit form finally
     const submitSearch = () =>{
-        setIsSubmitting(!isSubmitting)
+        setIsSubmitting(true)
 
         const userToken = localStorage.getItem('userToken');
 
@@ -208,6 +203,7 @@ const campaign = ({ countries }) => {
                 return <DisplayCreators 
                 handleBack={handleBack}
                 boostersArray={boostersArray}
+                isSubmitting={isSubmitting}
                  />
             
             

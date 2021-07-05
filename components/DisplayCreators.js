@@ -1,6 +1,7 @@
 import React , {useState} from 'react'
 import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
+import { useRouter } from 'next/router'
 
 const DisplayCreators = ({
     handleBack,
@@ -16,11 +17,8 @@ const DisplayCreators = ({
     `;
 
     let [color, setColor] = useState("#39B54A");
-
-    // const onSubmit = (e) =>{
-    //     e.preventDefault();
-    // }
     
+    const router = useRouter();
 
     return (
         <div className='px-6 md:px-10 lg:px-16'>
@@ -99,7 +97,11 @@ const DisplayCreators = ({
 
                                 <div className='flex items-center justify-end'>
                                     <button type='submit' className="block w-full md:w-auto py-3 px-6  text-center bg-didalla rounded border border-didalla
-                                        font-bold text-white hover:bg-green-600 focus:outline-none text-xs md:text-sm">
+                                        font-bold text-white hover:bg-green-600 focus:outline-none text-xs md:text-sm"
+                                        onClick={()=>{
+                                            router.push('/login')
+                                        }}
+                                        >
                                         Send offer
                                     </button>
                                 </div>
@@ -107,6 +109,9 @@ const DisplayCreators = ({
                                 <div className='ml-2'>
                                     <button type='button' className="block w-full md:w-auto py-3 px-6 text-center bg-transparent text-didalla rounded 
                                     font-bold hover:text-green-600  focus:outline-none  text-sm md:text-base"  
+                                    onClick={()=>{
+                                        router.push('/login')
+                                    }}
                                     >
                                         View profile
                                     </button>
