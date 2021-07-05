@@ -174,7 +174,7 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                             <Link href="/register">
                                 <button className='whitespace-nowrap px-4 py-2 bg-didalla
                                 border border-didalla rounded text-white hover:bg-green-600 hover:border-green-600
-                                focus:outline-none'>Sign&nbsp;Up</button>
+                                focus:outline-none'>Get&nbsp;Started</button>
                             </Link>
                         </div>
                     }

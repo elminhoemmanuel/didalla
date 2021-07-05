@@ -13,11 +13,11 @@ const ForBoosters = () => {
                 <VendorCard vendorObj={boosterObjTwo}/>
                 <VendorCard vendorObj={boosterObjThree}/>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-2'>
+            {/* <div className='grid grid-cols-1 md:grid-cols-3 gap-2'>
                 <VendorCard vendorObj={boosterObjFour}/>
                 <VendorCard vendorObj={boosterObjOne}/>
                 <VendorCard vendorObj={boosterObjOne}/>
-            </div>
+            </div> */}
         </div>
      );
 }

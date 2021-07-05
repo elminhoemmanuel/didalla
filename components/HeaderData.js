@@ -1,13 +1,13 @@
 export const headerObjOne = {
     tag:'FOR VENDORS',
     bold:'Promote your business in a few steps',
-    description:'Cupcake danish tiramisu powder soda ginger cake. Dessert carrot cake tartsweet marzipan for fruitcake.'
+    description:'Find the content creator that matches your campaign’s objectives. '
 }
 
 export const headerObjTwo = {
     tag:'FOR CREATORS',
     bold:'Earn money promoting businesses',
-    description:'Cupcake danish tiramisu powder soda ginger cake. Dessert carrot cake tartsweet marzipan for fruitcake.'
+    description:'Didalla makes it easier for small and medium scale businesses to promote ther business online.'
 }
 export const headerObjThree = {
     tag:'WHAT THEY SAY',

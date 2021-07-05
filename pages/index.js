@@ -46,7 +46,7 @@ export default function Home() {
             <Hero />
             <ForVendors />
             <ForBoosters />
-            <Testimonials />
+            {/* <Testimonials /> */}
             <CTA />
           </div>
         <Footer />
