@@ -30,11 +30,19 @@ const VendorDashHome = ({
     const [isLoading, setisLoading] = useState(true);
     const [isLoading2, setisLoading2] = useState(true);
     const [isLoading3, setisLoading3] = useState(true);   
+    const [searchLoading, setSearchLoading] = useState(false);
+    const [searchArrived, setSearchArrived] = useState(false);   
 
     const [boosters, setboosters] = useState([]);
+    const [searchBoosters, setSearchBoosters] = useState([]);
     const [countries, setcountries] = useState([]);
     const [campaigns, setcampaigns] = useState([]);
     const [singleBooster, setsingleBooster] = useState()
+    const [selectedCountry, setSelectedCountry] = useState()
+    const [selectedPlatform, setSelectedPlatform] = useState()
+    const [selectedBudget, setSelectedBudget] = useState()
+    const [selectedTopic, setSelectedTopic] = useState()
+
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -129,6 +137,33 @@ const VendorDashHome = ({
         setsingleBooster(item);
     }
 
+    const getSearchBoosters = (e)=>{
+        e.preventDefault();
+        setSearchLoading(true);
+        console.log(selectedCountry,selectedBudget,selectedPlatform,selectedTopic);
+
+        const userToken = localStorage.getItem('userToken');
+
+        axios.get(`https://api.didalla.com/api/booster?network=${selectedPlatform}&budget=${selectedBudget}&location=${selectedCountry}&topic=${selectedTopic}`, 
+            {
+                headers: {
+                'Authorization': `Bearer ${userToken}`
+                }}
+            )
+            .then((response) => {
+                // console.log(response.data.data.data);
+                setSearchBoosters(response.data.data.data);
+                // response.data.data.data.map(item =>{
+                //     searchBoosters.push(item);
+                // })
+                console.log(searchBoosters);
+                setSearchLoading(false);
+                setSearchArrived(true)
+            }, (error) => {
+            console.log(error)
+        });  
+    }
+
     return (
         <div className='relative'>
             {
@@ -188,9 +223,9 @@ const VendorDashHome = ({
                                         <div className=''>
                                             <select id=''
                                             className='w-full p-2 rounded bg-white focus:outline-none
-                                            focus:border-didalla' 
+                                            focus:border-didalla' value={selectedPlatform} onChange={(e)=>{setSelectedPlatform(e.target.value)}}
                                             >
-                                                <option value="Network">Platform</option>
+                                                <option value="platform">Platform</option>
                                                 <option value="facebook">facebook</option>
                                                 <option value="twitter">twitter</option>
                                                 <option value="instagram">instagram</option>
@@ -202,49 +237,47 @@ const VendorDashHome = ({
                                         <div className=''>
                                             <select id=''
                                             className='w-full p-2 rounded bg-white focus:outline-none
-                                            focus:border-didalla' 
+                                            focus:border-didalla' value={selectedBudget} onChange={(e)=>{setSelectedBudget(e.target.value)}}
                                             >
                                                 <option value="budget">Budget($)</option>
-                                                <option value="100-500">100-500</option>
-                                                <option value="500-1000">500-1000</option>
-                                                <option value="1000-2000">1000-2000</option>
-                                                <option value="2500-5000">2500-5000</option>
-                                                <option value="5000-10000">5000-10000</option>
+                                                <option value="100">100-500</option>
+                                                <option value="500">500-1000</option>
+                                                <option value="1000">1000-2000</option>
+                                                <option value="2500">2500-5000</option>
+                                                <option value="5000">5000-10000</option>
                                             </select>
                                         </div>
 
                                         <div className=''>
                                             <select id=''
                                             className='w-full p-2 rounded bg-white focus:outline-none
-                                            focus:border-didalla' 
+                                            focus:border-didalla' value={selectedTopic} onChange={(e)=>{setSelectedTopic(e.target.value)}}
                                             >
                                                 <option value="topic">Keywords</option>
-                                                <option value="fashion">fashion</option>
-                                                <option value="food">food</option>
-                                                <option value="arts">arts</option>
-                                                <option value="crypto">crypto</option>
-                                                <option value="tourism">tourism</option>
+                                                <option value="fashion">Fashion</option>
+                                                <option value="food">Food</option>
+                                                <option value="arts">Arts</option>
+                                                <option value="crypto">Crypto</option>
+                                                <option value="tourism">Tourism</option>
+                                                <option value="tech">Tech</option>
                                             </select>
                                         </div>
 
                                         <div className=''>
-                                            <select id=''
-                                            className='w-full p-2 rounded bg-white focus:outline-none
-                                            focus:border-didalla' 
-                                            >
-                                                <option value="nigeria">Nigeria</option>
-                                                <option value="nigeria">Nigeria</option>
-                                                <option value="nigeria">Nigeria</option>
-                                                <option value="nigeria">Nigeria</option>
-                                                <option value="nigeria">Nigeria</option>
-                                                <option value="nigeria">Nigeria</option>
-                                                
+                                            <select name="country" value={selectedCountry} 
+                                            onChange={(e) =>{setSelectedCountry(e.target.value);}}  id="country" className='w-full p-2 rounded bg-white focus:outline-none
+                                            focus:border-didalla'>
+                                                {countries.map((item ) =>(
+                                                    <option key={item.id} className='p-1 hover:bg-didalla' value={item.name} >{item.name}</option>
+                                                ))}
                                             </select>
                                         </div>
 
                                         <div className=''>
                                             <button className='text-white p-2 rounded font-bold text-sm text-center block w-full 
-                                            border border-didalla hover:border-green-600 bg-didalla hover:bg-green-600 whitespace-nowrap'>
+                                            border border-didalla hover:border-green-600 bg-didalla hover:bg-green-600 whitespace-nowrap focus:outline-none'
+                                            onClick={getSearchBoosters}
+                                            >
                                                 Search
                                             </button>
                                         </div>
@@ -252,19 +285,132 @@ const VendorDashHome = ({
                                     </form>
                                 </div>
 
-                                {/* <form action="" className='md:hidden mb-8'>
-                                    <div className='w-full md:w-4/5' >
-                                        <input type="text" name="searchtext" id="searchtext"
-                                            placeholder='Search by keyword'
-                                            value={searchtext}
-                                            onChange={handleOnChange}
-                                            className='p-2 border border-grayscale rounded bg-white w-full focus:outline-none focus:border-didalla'
-                                        />
-                                            {errors.searchtext && dirty.searchtext && (
-                                                <p className='text-red-500 text-xs'>{errors.searchtext}</p>
-                                            )}
+                                {
+                                    searchArrived &&
+                                    <div>
+                                        {
+                                            !searchBoosters[0] ?
+                                            <div className='md:flex items-center justify-between mb-1 hidden '>
+                                                <div className=''><p className='text-base text-didallablack font-bold text-center'>No matching results</p></div>
+                                            </div> :
+                                            <div className='md:flex items-center justify-between mb-1 hidden '>
+                                                <div className=''><p className='text-base text-didallablack font-bold'>Search Results</p></div>
+                                            </div>
+                                        }
                                     </div>
-                                </form> */}
+                                }
+
+                                {
+                                    searchLoading ?
+                                    <div className='flex justify-center items-center px-20 py-32'>
+                                        <BeatLoader color={color}  loading={searchLoading} css={override} size={40} />
+                                    </div> :
+                                    <div className='mb-8'>
+                                            <div className='hidden md:grid md:grid-cols-1 lg:grid-cols-2 gap-4'>
+                                                
+                                                {
+                                                    searchBoosters.map(item=>(
+                                                        <div className='border border-grayborder p-4 rounded bg-white' key={item.id}>
+                                                            <div>
+                                                                <img className='h-10 w-10 rounded-full' src={item.photo_url} alt="creator avatar"/>
+                                                            </div>
+                                                            <div className='flex items-center justify-between mt-1'>
+                                                                <div>
+                                                                    <h1 className='text-didallablack text-base md:text-xl font-bold'>{item.user.first_name} - {item.user.last_name}</h1>
+                                                                </div>
+                                                                <div>
+                                                                    <p className='text-didallabody'>{item.basic_plan}-{item.premium_plan}</p>
+                                                                </div>
+
+                                                            </div>
+                                                            <div>
+                                                                <p className='text-didallabody mb-2'>{item.city}-{item.country}</p>
+                                                                <p className='text-didallabody mb-2'>{item.bio}</p>
+                                                            </div>
+
+                                                            <div className='grid grid-cols-2 lg:grid-cols-2 gap-4 md:gap-2 mb-3'>
+                                                                {
+                                                                    item.facebook && 
+                                                                    <div className='flex items-center '>
+                                                                        <div className=' w-1/5'>
+                                                                            <img className='w-16' src="/images/FacebookLogoRegister.svg" alt="facebook logo"/>
+                                                                        </div>
+                                                                        <div className='w-4/5 pl-4'>
+                                                                            <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
+                                                                                <span className='text-didallabody'>followers</span>
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                }
+                                                                {
+                                                                    item.twitter && 
+                                                                    <div className='flex items-center '>
+                                                                        <div className='w-1/5'>
+                                                                            <img className='w-16' src="/images/TwitterLogoBlack.svg" alt="twitter logo"/>
+                                                                        </div>
+                                                                        <div className='w-4/5 pl-4'>
+                                                                            <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
+                                                                                <span className='text-didallabody'>followers</span>
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                }
+                                                                {
+                                                                    <div className='flex items-center '>
+                                                                        <div className='w-1/5'>
+                                                                            <img className='w-16' src="/images/YoutubeLogoBlack.svg" alt="youtube logo"/>
+                                                                        </div>
+                                                                        <div className='w-4/5 pl-4'>
+                                                                            <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
+                                                                                <span className='text-didallabody'>subscribers</span>
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                }
+
+                                                            </div>
+
+                                                            <div className='flex items-center flex-nowrap'>
+
+                                                                <div className='flex items-center justify-end'>
+                                                                    <button type='submit' onClick={()=>{
+                                                                        setsingleBooster(item);
+                                                                        showSendOffer();
+                                                                    }} className="block w-full md:w-auto py-3 px-6  text-center bg-didalla rounded border border-didalla
+                                                                        font-bold text-white hover:bg-green-600 focus:outline-none text-xs md:text-sm">
+                                                                        Send offer
+                                                                    </button>
+                                                                </div>
+
+                                                                <div className='ml-2'>
+                                                                    <button type='button' onClick={()=>{
+                                                                        setsingleBooster(item);
+                                                                        showViewProfile();
+                                                                    }} className="block w-full md:w-auto py-3 px-6 text-center bg-transparent text-didalla rounded 
+                                                                    font-bold hover:text-green-600  focus:outline-none  text-sm md:text-base"  
+                                                                        
+                                                                    >
+                                                                        View profile
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    ))
+                                                    
+                                                } 
+                                                
+                                            </div>
+
+                                        </div>
+
+
+                                }
+
                                 <div className='md:hidden mb-6'>
                                     <div className=' md:hidden'><p className='text-base text-didallablack font-bold mb-2'>Top Creators</p></div>
                                     <CreatorsSlide showViewProfile={showViewProfile} hideViewProfile={hideViewProfile} addSingleBooster={addSingleBooster}
@@ -290,115 +436,112 @@ const VendorDashHome = ({
                                     </div>
                                 </div>
 
-                                <div className='mb-8'>
-                                    <div className='md:flex items-center justify-between mb-1 hidden '>
-                                        <div className=''><p className='text-base text-didallablack font-bold'>Top Creators</p></div>
-                                        <div>
-                                            <Link href="/result/topcreators">
-                                                <a className='text-sm text-didallablack mb-10'>View more</a>
-                                            </Link>
+                                {
+                                    !searchArrived &&
+                                    <div className='mb-8'>
+                                            <div className='md:flex items-center justify-between mb-1 hidden '>
+                                                <div className=''><p className='text-base text-didallablack font-bold'>Top Creators</p></div>
+                                            </div>
+                                            <div className='hidden md:grid md:grid-cols-1 lg:grid-cols-2 gap-4'>
+                                                {
+                                                    boosters.map(item=>(
+                                                        <div className='border border-grayborder p-4 rounded bg-white' key={item.id}>
+                                                            <div>
+                                                                <img className='h-10 w-10 rounded-full' src={item.photo_url} alt="creator avatar"/>
+                                                            </div>
+                                                            <div className='flex items-center justify-between mt-1'>
+                                                                <div>
+                                                                    <h1 className='text-didallablack text-base md:text-xl font-bold'>{item.user.first_name} - {item.user.last_name}</h1>
+                                                                </div>
+                                                                <div>
+                                                                    <p className='text-didallabody'>{item.basic_plan}-{item.premium_plan}</p>
+                                                                </div>
+
+                                                            </div>
+                                                            <div>
+                                                                <p className='text-didallabody mb-2'>{item.city}-{item.country}</p>
+                                                                <p className='text-didallabody mb-2'>{item.bio}</p>
+                                                            </div>
+
+                                                            <div className='grid grid-cols-2 lg:grid-cols-2 gap-4 md:gap-2 mb-3'>
+                                                                {
+                                                                    item.facebook && 
+                                                                    <div className='flex items-center '>
+                                                                        <div className=' w-1/5'>
+                                                                            <img className='w-16' src="/images/FacebookLogoRegister.svg" alt="facebook logo"/>
+                                                                        </div>
+                                                                        <div className='w-4/5 pl-4'>
+                                                                            <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
+                                                                                <span className='text-didallabody'>followers</span>
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                }
+                                                                {
+                                                                    item.twitter && 
+                                                                    <div className='flex items-center '>
+                                                                        <div className='w-1/5'>
+                                                                            <img className='w-16' src="/images/TwitterLogoBlack.svg" alt="twitter logo"/>
+                                                                        </div>
+                                                                        <div className='w-4/5 pl-4'>
+                                                                            <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
+                                                                                <span className='text-didallabody'>followers</span>
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                }
+                                                                {
+                                                                    <div className='flex items-center '>
+                                                                        <div className='w-1/5'>
+                                                                            <img className='w-16' src="/images/YoutubeLogoBlack.svg" alt="youtube logo"/>
+                                                                        </div>
+                                                                        <div className='w-4/5 pl-4'>
+                                                                            <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
+                                                                                <span className='text-didallabody'>subscribers</span>
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                }
+
+                                                            </div>
+
+                                                            <div className='flex items-center flex-nowrap'>
+
+                                                                <div className='flex items-center justify-end'>
+                                                                    <button type='submit' onClick={()=>{
+                                                                        setsingleBooster(item);
+                                                                        showSendOffer();
+                                                                    }} className="block w-full md:w-auto py-3 px-6  text-center bg-didalla rounded border border-didalla
+                                                                        font-bold text-white hover:bg-green-600 focus:outline-none text-xs md:text-sm">
+                                                                        Send offer
+                                                                    </button>
+                                                                </div>
+
+                                                                <div className='ml-2'>
+                                                                    <button type='button' onClick={()=>{
+                                                                        setsingleBooster(item);
+                                                                        showViewProfile();
+                                                                    }} className="block w-full md:w-auto py-3 px-6 text-center bg-transparent text-didalla rounded 
+                                                                    font-bold hover:text-green-600  focus:outline-none  text-sm md:text-base"  
+                                                                        
+                                                                    >
+                                                                        View profile
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    ))
+                                                } 
+                                                
+                                            </div>
+
                                         </div>
-
-                                    </div>
-                                    <div className='hidden md:grid md:grid-cols-1 lg:grid-cols-2 gap-4'>
-                                        {
-                                            boosters.map(item=>(
-                                                <div className='border border-grayborder p-4 rounded bg-white' key={item.id}>
-                                                    <div>
-                                                        <img className='h-10 w-10 rounded-full' src={item.photo_url} alt="creator avatar"/>
-                                                    </div>
-                                                    <div className='flex items-center justify-between mt-1'>
-                                                        <div>
-                                                            <h1 className='text-didallablack text-base md:text-xl font-bold'>{item.user.first_name} - {item.user.last_name}</h1>
-                                                        </div>
-                                                        <div>
-                                                            <p className='text-didallabody'>{item.basic_plan}-{item.premium_plan}</p>
-                                                        </div>
-
-                                                    </div>
-                                                    <div>
-                                                        <p className='text-didallabody mb-2'>{item.city}-{item.country}</p>
-                                                        <p className='text-didallabody mb-2'>{item.bio}</p>
-                                                    </div>
-
-                                                    <div className='grid grid-cols-2 lg:grid-cols-2 gap-4 md:gap-2 mb-3'>
-                                                        {
-                                                            item.facebook && 
-                                                            <div className='flex items-center '>
-                                                                <div className=' w-1/5'>
-                                                                    <img className='w-16' src="/images/FacebookLogoRegister.svg" alt="facebook logo"/>
-                                                                </div>
-                                                                <div className='w-4/5 pl-4'>
-                                                                    <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
-                                                                        <span className='text-didallabody'>followers</span>
-                                                                    </p>
-                                                                </div>
-
-                                                            </div>
-                                                        }
-                                                        {
-                                                            item.twitter && 
-                                                            <div className='flex items-center '>
-                                                                <div className='w-1/5'>
-                                                                    <img className='w-16' src="/images/TwitterLogoBlack.svg" alt="twitter logo"/>
-                                                                </div>
-                                                                <div className='w-4/5 pl-4'>
-                                                                    <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
-                                                                        <span className='text-didallabody'>followers</span>
-                                                                    </p>
-                                                                </div>
-
-                                                            </div>
-                                                        }
-                                                        {
-                                                            <div className='flex items-center '>
-                                                                <div className='w-1/5'>
-                                                                    <img className='w-16' src="/images/YoutubeLogoBlack.svg" alt="youtube logo"/>
-                                                                </div>
-                                                                <div className='w-4/5 pl-4'>
-                                                                    <p className='text-didallablack mb-1 text-sm font-bold'>1K<br/>
-                                                                        <span className='text-didallabody'>subscribers</span>
-                                                                    </p>
-                                                                </div>
-
-                                                            </div>
-                                                        }
-
-                                                    </div>
-
-                                                    <div className='flex items-center flex-nowrap'>
-
-                                                        <div className='flex items-center justify-end'>
-                                                            <button type='submit' onClick={()=>{
-                                                                setsingleBooster(item);
-                                                                showSendOffer();
-                                                            }} className="block w-full md:w-auto py-3 px-6  text-center bg-didalla rounded border border-didalla
-                                                                font-bold text-white hover:bg-green-600 focus:outline-none text-xs md:text-sm">
-                                                                Send offer
-                                                            </button>
-                                                        </div>
-
-                                                        <div className='ml-2'>
-                                                            <button type='button' onClick={()=>{
-                                                                setsingleBooster(item);
-                                                                showViewProfile();
-                                                            }} className="block w-full md:w-auto py-3 px-6 text-center bg-transparent text-didalla rounded 
-                                                            font-bold hover:text-green-600  focus:outline-none  text-sm md:text-base"  
-                                                                
-                                                            >
-                                                                View profile
-                                                            </button>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            ))
-                                        } 
-                                        
-                                    </div>
-
-                                </div>
+                                }
 
                                 {/* <div className='pl-0'>
                                     <p className='text-base text-didallablack font-bold mb-10'>Popular interests</p>

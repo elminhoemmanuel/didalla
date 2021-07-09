@@ -75,6 +75,8 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
         enddate:{value:"" , error:""},
         campaignbrief:{value:"" , error:""},
         campaigngoal:{value:"" , error:""},
+        task1:{value:"" , error:""},
+        task2:{value:"" , error:""},
         
     }
 
@@ -122,6 +124,20 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
                 error:"Must be more than two character "
             }
         },
+        task1:{
+            required:true,
+            validator:{
+                func: value=> /^(?=.*[a-zA-Z0-9]).{2,}$/.test(value),
+                error:"Must be more than two characters "
+            }
+        },
+        task2:{
+            required:true,
+            validator:{
+                func: value=> /^(?=.*[a-zA-Z0-9]).{2,}$/.test(value),
+                error:"Must be more than two characters "
+            }
+        },
         campaigngoal:{
             required:true,
             validator:{
@@ -135,7 +151,7 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
     
 
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema);
-    const {campaignname, brandbudget, startdate, enddate, campaignbrief ,campaigngoal} = values;
+    const {campaignname, brandbudget, startdate, enddate, campaignbrief ,campaigngoal, task1 , task2} = values;
 
     // user body details
     const [userDetails, setUserDetails] = useState({country:'',city:'',interests:[]});
@@ -156,6 +172,7 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
         // console.log(startdate);
         // console.log(campaignbrief);
         // console.log(allowBid);
+        // console.log(task1, task2);
         setIsSubmitting(!isSubmitting);
 
         const userToken = localStorage.getItem('userToken');
@@ -172,7 +189,10 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
             setbidValue(0)
         }
 
-        console.log(bidValue);
+        const tasks = [task1, task2]
+
+        // console.log(bidValue);
+        console.log(tasks);
 
         const formdata = new FormData();
         formdata.append("name", campaignname)
@@ -185,6 +205,7 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
         formdata.append("network", JSON.stringify(interests))
         formdata.append("file", picObject)
         formdata.append("allow_bid", bidValue)
+        formdata.append("tasks", JSON.stringify(tasks))
         
 
         axios.post('https://api.didalla.com/api/campaign/create',formdata,{
@@ -383,6 +404,50 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
                                 )}
                             </div>
                         </div>
+                        <div className='mt-5'>
+                            <h1 className='text-sm text-black font-bold mb-2'>Campaign Tasks</h1>
+                            <p className='text-didallabody text-sm mb-2'>Spell out atleast one task to be carried out by the content creator for this campaign.</p>            
+                        </div>
+                        <div className='mb-2'>
+                            <div className='mb-3'>
+                                <label htmlFor="task1" className='text-black text-sm font-bold'>Task 1</label>
+
+                            </div>
+                            <div className=''>
+                                <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
+                                    type="text"
+                                    id='task1'
+                                    name="task1"
+                                    value={task1}
+                                    onChange={handleOnChange}
+                                    placeholder='Create an instagram skit about my product'
+                                    required
+                                />
+                                {errors.task1 && dirty.task1 && (
+                                    <p className='text-red-500 text-xs'>{errors.task1}</p>
+                                )}
+                            </div>
+                        </div>
+                        <div className='mb-2'>
+                            <div className='mb-3'>
+                                <label htmlFor="task2" className='text-black text-sm font-bold'>Task 2</label>
+
+                            </div>
+                            <div className=''>
+                            <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
+                                    type="text"
+                                    id='task2'
+                                    name="task2"
+                                    value={task2}
+                                    onChange={handleOnChange}
+                                    placeholder='Do a twitter thread about my product'
+                                    required
+                                />
+                                {errors.task2 && dirty.task2 && (
+                                    <p className='text-red-500 text-xs'>{errors.task2}</p>
+                                )}
+                            </div>
+                        </div>
 
                         <div className='relative flex mb-2'>
                             <div className=''>
@@ -458,8 +523,8 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
                                     {
                                         campaignname.length === 0|| brandbudget <= 0 || selectedCity.length === 0 ||
                                         selectedCountry.length === 0 || startdate.length === 0 || enddate.length === 0 || campaignbrief.length === 0 ||
-                                        campaigngoal.length === 0 || errors.campaignname  || errors.brandbudget
-                                        || errors.startdate || errors.enddate || errors.campaignbrief || errors.campaigngoal || picObject === undefined
+                                        campaigngoal.length === 0 ||task1.length === 0 || errors.campaignname  || errors.brandbudget
+                                        || errors.startdate || errors.enddate || errors.campaignbrief || errors.campaigngoal ||errors.task1 || picObject === undefined
                                         || interestsBox === [] || interestsBox === undefined
                                         
                                         ?

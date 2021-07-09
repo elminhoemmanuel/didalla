@@ -25,8 +25,7 @@ const index = () => {
             </Head>
 
             <div className=''>
-                <VendorDashHome 
-                />
+                <VendorDashHome />
 
             </div>
         </>

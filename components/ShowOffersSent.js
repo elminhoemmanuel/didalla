@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Select from 'react-select';
 
 
-const ShowCreatorBids = ({ openShowBids, closeShowBids, bids, singleCampaign}) => {
+const ShowSentOffers = ({ openShowOffers, closeShowOffers, offers, singleCampaign}) => {
 
     return (
         <div className='absolute py-6 px-8 md:px-52 lg:px-80 w-full h-full bg-gray-700 bg-opacity-50 
@@ -11,25 +11,25 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids, bids, singleCampaign}) =
                 <div className='px-6 py-2 border-b border-grayborder'>
                     <div className='flex items-center'>
                         <div className='mr-3'>
-                            <button className='focus:outline-none block' onClick={closeShowBids}>
+                            <button className='focus:outline-none block' onClick={closeShowOffers}>
                                 <img className='' src="/images/ModalClose.svg" alt="close icon" />
                             </button>
                         </div>
-                        <div><h1 className='text-lg text-black font-bold'>Creator bids</h1></div>
+                        <div><h1 className='text-lg text-black font-bold'>Sent Offers</h1></div>
                     </div>
                 </div>
 
                 <div>
         
                     {
-                        bids.length === 0 ?
+                        offers.length === 0 ?
                         <div className='text-didallabody text-sm px-6 py-4'>
-                            There are no bids yet
+                            There are no sent Offers yet
                         </div>
                         :
                         <div>
                         {
-                            bids.map(item=>(
+                            offers.map(item=>(
                                 <div className='px-6 py-4 border-b border-grayborder mb-3' key={item.id}>
                                     <h1 className='text-sm text-black font-bold mb-2'>{singleCampaign.name}</h1>
                                     <p className='text-didallabody mb-3'>marvel's place - <span className='text-didallabody'>posted {singleCampaign.created_at.substr(0,10)}</span></p>
@@ -51,18 +51,10 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids, bids, singleCampaign}) =
 
                                         <div className='flex items-center justify-end'>
                                             <button onClick={()=>{
-                                                closeShowBids();
+                                                closeShowOffers();
                                             }} type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
                                                 font-bold text-white text-sm hover:bg-green-600 focus:outline-none mb-2">
-                                                Accept Bid
-                                            </button>
-                                        </div>
-
-                                        <div>
-                                            <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-transparent text-didalla rounded 
-                                                font-bold hover:text-green-600 text-sm  focus:outline-none mr-2 text-sm md:text-base"  
-                                                onClick={closeShowBids}>
-                                                Reject Bid
+                                                Close
                                             </button>
                                         </div>
 
@@ -80,4 +72,4 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids, bids, singleCampaign}) =
     )
 }
 
-export default ShowCreatorBids
+export default ShowSentOffers

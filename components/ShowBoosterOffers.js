@@ -114,7 +114,7 @@ const ShowBoosterOffers = ({ openShowOffers, closeShowOffers, offers }) => {
 
                                     <div className='flex items-center justify-end'>
                                         <button onClick={()=>{
-                                            acceptOffer();
+                                            acceptOffer(item.id);
                                         }} type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
                                             font-bold text-white text-sm hover:bg-green-600 focus:outline-none mb-2">
                                             {isSubmitting ? <BeatLoader color={color}  loading={isSubmitting} css={override} size={15} />:<span>Accept Offer</span>}
@@ -125,7 +125,7 @@ const ShowBoosterOffers = ({ openShowOffers, closeShowOffers, offers }) => {
                                         <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-transparent text-didalla rounded 
                                             font-bold hover:text-green-600 text-sm  focus:outline-none mr-2 text-sm md:text-base"  
                                             onClick={()=>{
-                                                rejectOffer();
+                                                rejectOffer(item.id);
                                             }}>
                                             {isSubmitting2 ? <BeatLoader color={color2}  loading={isSubmitting2} css={override} size={15} />:<span>Reject Offer</span>}
                                         </button>

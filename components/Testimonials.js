@@ -24,7 +24,7 @@ const Testimonials = () => {
     }
 
     return ( 
-        <div className='px-6 md:px-10 lg:px-16 pt-20'>
+        <div className='px-6 md:px-10 lg:px-16 pt-20 pb-10'>
             <HeaderTemplate headerObj={headerObjThree} />
             <Swiper breakpoints={{
                 // when window width is >= 640px

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router'
 import {campaignObjOne} from './CampaignData'
 import ShowCreatorBids from './ShowCreatorBids';
+import ShowOffersSent from './ShowOffersSent';
 import StartCampaign from './StartCampaign';
 import axios from 'axios';
 import { css } from "@emotion/core";
@@ -29,8 +30,9 @@ const VendorCampaigns = ({
     const [isLoading4, setisLoading4] = useState(true);
     const [campaigns, setcampaigns] = useState([])
     const [countries, setcountries] = useState([]);
-    const [user, setuser] = useState();
-    const [bids, setbids] = useState([])
+    const [bids, setbids] = useState()
+    const [offers, setoffers] = useState()
+    const [singleCampaign, setsingleCampaign] = useState()
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -49,7 +51,7 @@ const VendorCampaigns = ({
           console.log(error)
         });
 
-        axios.get(`https://api.didalla.com/api/campaign`, 
+        axios.get(`https://api.didalla.com/api/campaign/vendor`, 
             {
                 headers: {
                 'Authorization': `Bearer ${userToken}`
@@ -60,7 +62,7 @@ const VendorCampaigns = ({
                 response.data.data.data.map(item =>{
                     campaigns.push(item);
                  })
-                // console.log(campaigns);
+                console.log(campaigns);
                 setisLoading2(!isLoading2)
             }, (error) => {
             console.log(error)
@@ -69,27 +71,6 @@ const VendorCampaigns = ({
                 
     }, [])
 
-
-    // useEffect(() => {
-    //     const userToken = localStorage.getItem('userToken');
-    //     //axios call for user details
-    //     axios.get(`https://api.didalla.com/api/user`, 
-    //         {
-    //             headers: {
-    //             'Authorization': `Bearer ${userToken}`
-    //             }}
-    //         )
-    //         .then((response) => {
-    //             console.log(response.data);
-    //             setuser(response.data)
-    //             console.log(user);
-    //             setisLoading4(!isLoading4)
-    //         }, (error) => {
-    //         console.log(error)          
-    //     });
-        
-    // }, [isLoading4])
-
     const [showBids, setshowBids] = useState(false);
     const openShowBids = () =>{
         setshowBids(!showBids);
@@ -97,6 +78,16 @@ const VendorCampaigns = ({
     }
     const closeShowBids = () =>{
         setshowBids(!showBids);
+        document.body.style.overflowY= 'visible';
+    }
+
+    const [showOffers, setshowOffers] = useState(false);
+    const openShowOffers = () =>{
+        setshowOffers(!showOffers);
+        document.body.style.overflowY= 'hidden';
+    }
+    const closeShowOffers = () =>{
+        setshowOffers(!showOffers);
         document.body.style.overflowY= 'visible';
     }
     
@@ -136,7 +127,10 @@ const VendorCampaigns = ({
                         startCampaign && <StartCampaign countries={countries} openStartCampaign={openStartCampaign} closeStartCampaign={closeStartCampaign}/>
                     }
                     {
-                        showBids && <ShowCreatorBids openShowBids={openShowBids} closeShowBids={closeShowBids}/>
+                        showBids && <ShowCreatorBids openShowBids={openShowBids} closeShowBids={closeShowBids} bids={bids} singleCampaign={singleCampaign}/>
+                    }
+                    {
+                        showOffers && <ShowOffersSent openShowOffers={openShowOffers} closeShowOffers={closeShowOffers} offers={offers} singleCampaign={singleCampaign}/>
                     }
 
                     <div className='bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20'>
@@ -153,7 +147,7 @@ const VendorCampaigns = ({
                                     <div className='pr-2 md:pr-5'>
                                         <button 
                                         className='focus:outline-none block whitespace-nowrap border-b-2 border-didalla py-2 ' type='button'>
-                                            Active campaigns (4)
+                                            Active campaigns
                                         </button>
                                     </div>
 
@@ -203,8 +197,37 @@ const VendorCampaigns = ({
 
                                                         <div className=''>
                                                             <p className='text-didallabody text-sm mb-1 lg:text-right'>Creators engaged</p>
-                                                            <p className='text-didallablack text-base lg:text-right'>10</p>
+                                                            <p className='text-didallablack text-base lg:text-right'>{item.bids.length + item.offers.length}</p>
                                                         </div>
+
+                                                    </div>
+                                                    <div className='flex flex-row  items-center mb-4 mt-6'>
+
+                                                                <div className='flex items-center justify-end'>
+                                                                    <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
+                                                                        font-bold text-white text-sm hover:bg-green-600 focus:outline-none mb-2"
+                                                                        onClick={()=>{
+                                                                            setbids(item.bids)
+                                                                            setsingleCampaign(item)
+                                                                            openShowBids();
+                                                                        }}
+                                                                        >
+                                                                        View Bids
+                                                                    </button>
+                                                                </div>
+
+                                                                <div>
+                                                                    <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-transparent text-didalla rounded 
+                                                                        font-bold hover:text-green-600 text-sm  focus:outline-none mr-2 text-sm md:text-base"  
+                                                                        onClick={()=>{
+                                                                            setoffers(item.offers)
+                                                                            setsingleCampaign(item)
+                                                                            openShowOffers();
+                                                                        }}
+                                                                        >
+                                                                        View Offers
+                                                                    </button>
+                                                                </div>
 
                                                     </div>
                                                 </a>
@@ -240,15 +263,6 @@ const VendorCampaigns = ({
                                     </button>
 
                                 </div>
-
-                                <button onClick={openShowBids} className='text-black mb-3 p-3 lg:p-4 rounded font-bold text-sm text-center flex flex-row items-center justify-between w-full bg-white hover:bg-gray-300 whitespace-nowrap'>
-                                    <div>
-                                        Creator bids
-                                    </div> 
-                                    <div>
-                                        <svg className="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                                    </div>
-                                </button>
 
                             </div>
 

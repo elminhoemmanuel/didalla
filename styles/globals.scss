@@ -60,18 +60,22 @@ html, body{
 }
 
 /* styles for carousel */
-.dash .swiper-container{
+.swiper-wrapper{
+    padding: 5rem 0rem ;
+}
+
+.swiper-container{
     width:100%;
     height:auto !important;
     padding: 0rem 3rem 5rem 3rem !important;
     position: relative;
 }
 
-.dash .swiper-wrapper{
+.swiper-wrapper{
     padding-inline-start: 0;
 }
 
-.dash .swiper-button-prev{
+.swiper-button-prev{
     background-color: white !important;
     color:black !important;
     position: absolute !important;
@@ -81,11 +85,11 @@ html, body{
     background-position: center;
 }
 
-.dash .swiper-button-prev::after {
+.swiper-button-prev::after {
     display: none;
 }
 
-.dash .swiper-button-next{
+.swiper-button-next{
     background-color: white !important;
     color:black !important;
     position: absolute !important;
@@ -95,7 +99,7 @@ html, body{
     background-position: center;
 }
 
-.dash .swiper-button-next::after {
+.swiper-button-next::after {
     display: none;
 }
 
