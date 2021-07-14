@@ -32,6 +32,7 @@ const VendorDashHome = ({
     const [isLoading3, setisLoading3] = useState(true);   
     const [searchLoading, setSearchLoading] = useState(false);
     const [searchArrived, setSearchArrived] = useState(false);   
+    const [showFilter, setshowFilter] = useState(false);   
 
     const [boosters, setboosters] = useState([]);
     const [searchBoosters, setSearchBoosters] = useState([]);
@@ -68,18 +69,18 @@ const VendorDashHome = ({
                 }}
             )
             .then((response) => {
-                // console.log(response.data.data.data);
+                console.log(response);
                 response.data.data.data.map(item =>{
                     boosters.push(item);
                 })
-                // console.log(boosters);
+                console.log(boosters);
                 localStorage.setItem("boosters",JSON.stringify(response.data.data.data))
                 setisLoading2(!isLoading2);
             }, (error) => {
             console.log(error)
         });  
 
-        axios.get(`https://api.didalla.com/api/campaign`, 
+        axios.get(`https://api.didalla.com/api/campaign/vendor`, 
             {
                 headers: {
                 'Authorization': `Bearer ${userToken}`
@@ -151,7 +152,7 @@ const VendorDashHome = ({
                 }}
             )
             .then((response) => {
-                // console.log(response.data.data.data);
+                console.log(response);
                 setSearchBoosters(response.data.data.data);
                 // response.data.data.data.map(item =>{
                 //     searchBoosters.push(item);
@@ -196,7 +197,7 @@ const VendorDashHome = ({
                         viewProfile && <ViewProfile booster={singleBooster} showSendOffer={showSendOffer} showViewProfile={showViewProfile} hideViewProfile={hideViewProfile} addSingleBooster={addSingleBooster}/>
                         }
 
-                        <div  className='bg-onboardinggray px-6 md:px-10 lg:px-10 pt-32 pb-20 flex flex-col-reverse md:flex-row '>
+                        <div  className='bg-onboardinggray px-6 md:px-10 pt-32 pb-64 flex flex-col-reverse md:flex-row '>
 
 
                             {/* discover box */}
@@ -206,7 +207,7 @@ const VendorDashHome = ({
                                         <h1 className='font-bold text-didallablack text-lg md:text-xl lg:text-xl'>Discover</h1>
                                     </div>
                                     <div className='md:hidden'>
-                                        <button className='p-2 rounded text-sm text-center flex flex-row items-center justify-between w-full bg-white hover:bg-gray-300 whitespace-nowrap'>
+                                        <button onClick={()=>{setshowFilter(!showFilter)}} className='p-2 rounded text-sm text-center flex flex-row items-center justify-between w-full bg-white hover:bg-gray-300 whitespace-nowrap'>
                                             <div>
                                                 <img src="/images/Funnel.svg" alt="filter icon" />
                                             </div>
@@ -218,7 +219,7 @@ const VendorDashHome = ({
                                     </div>
                                 </div>
 
-                                <div className='mb-5 hidden md:block'>
+                                <div className={showFilter ? 'mb-5' : 'mb-5 hidden md:block'}>
                                     <form action="" className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2'>
                                         <div className=''>
                                             <select id=''
@@ -290,10 +291,10 @@ const VendorDashHome = ({
                                     <div>
                                         {
                                             !searchBoosters[0] ?
-                                            <div className='md:flex items-center justify-between mb-1 hidden '>
+                                            <div className='flex items-center justify-between mb-1'>
                                                 <div className=''><p className='text-base text-didallablack font-bold text-center'>No matching results</p></div>
                                             </div> :
-                                            <div className='md:flex items-center justify-between mb-1 hidden '>
+                                            <div className='flex items-center justify-between mb-1 '>
                                                 <div className=''><p className='text-base text-didallablack font-bold'>Search Results</p></div>
                                             </div>
                                         }
@@ -436,13 +437,14 @@ const VendorDashHome = ({
                                     </div>
                                 </div>
 
-                                {
-                                    !searchArrived &&
-                                    <div className='mb-8'>
+                                
+                                <div className='mb-8'>
                                             <div className='md:flex items-center justify-between mb-1 hidden '>
                                                 <div className=''><p className='text-base text-didallablack font-bold'>Top Creators</p></div>
                                             </div>
-                                            <div className='hidden md:grid md:grid-cols-1 lg:grid-cols-2 gap-4'>
+                                            {
+                                                boosters[0] ?
+                                                <div className='hidden md:grid md:grid-cols-1 lg:grid-cols-2 gap-4'>
                                                 {
                                                     boosters.map(item=>(
                                                         <div className='border border-grayborder p-4 rounded bg-white' key={item.id}>
@@ -538,10 +540,12 @@ const VendorDashHome = ({
                                                     ))
                                                 } 
                                                 
+                                            </div> :
+                                            <div className='hidden md:block'>
+                                                <h1 className='text-didallablack text-sm mb-6 font-bold'>No content creators yet</h1>
                                             </div>
-
-                                        </div>
-                                }
+                                            }
+                                </div>
 
                                 {/* <div className='pl-0'>
                                     <p className='text-base text-didallablack font-bold mb-10'>Popular interests</p>

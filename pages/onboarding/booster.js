@@ -206,7 +206,7 @@ const booster = () => {
             {others:userInterests.others},
         ]
 
-        const interests2 =[1,2,3]
+        const interests2 =[1,2,3,4]
 
         const formdata = new FormData();
         formdata.append("image", userDetails.pic)

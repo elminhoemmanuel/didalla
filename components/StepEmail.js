@@ -25,7 +25,7 @@ const StepEmail = ({
                         <p className='text-xs text-didallabody mb-3'>Sign Up to your free account to access our services</p>
                     </div>
 
-                    <Link href="">
+                    {/* <Link href="">
                         <a className='block mb-4'>
                             <button type='button' className="p-3 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
                             font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
@@ -47,7 +47,7 @@ const StepEmail = ({
                         </a>
                     </Link>
 
-                    <p className='text-center text-black text-sm'>OR</p>
+                    <p className='text-center text-black text-sm'>OR</p> */}
 
                     <form action="" className='mt-4 mb-3' onSubmit={handleEmailSubmit}>
                         <div className=''>

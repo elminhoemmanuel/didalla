@@ -106,10 +106,10 @@ const VendorCampaigns = ({
     return (
         <div>
             {
-                isLoading && isLoading2 && isLoading3 && isLoading4 ? 
+                isLoading2 && isLoading3 ? 
 
                 <div className='flex justify-center items-center px-20 py-32'>
-                <BeatLoader color={color}  loading={isLoading} css={override} size={40} />
+                <BeatLoader color={color}  loading={isLoading2 && isLoading3} css={override} size={40} />
                 </div> 
                 
                 : 
@@ -126,14 +126,13 @@ const VendorCampaigns = ({
                     {
                         startCampaign && <StartCampaign countries={countries} openStartCampaign={openStartCampaign} closeStartCampaign={closeStartCampaign}/>
                     }
-                    {
-                        showBids && <ShowCreatorBids openShowBids={openShowBids} closeShowBids={closeShowBids} bids={bids} singleCampaign={singleCampaign}/>
-                    }
-                    {
-                        showOffers && <ShowOffersSent openShowOffers={openShowOffers} closeShowOffers={closeShowOffers} offers={offers} singleCampaign={singleCampaign}/>
-                    }
+                    
 
-                    <div className='bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20'>
+                    <div className={
+                        campaigns[0] ?
+                        'bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-64' :
+                        'bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20 h-screen'
+                    }>
                         <div className='w-full md:w-3/4 flex flex-col md:flex-row md:items-center justify-start md:justify-between mb-4 px-0 md:px-5'>
                             <div className='mb-1 md:mb-0'>
                                 <div><h1 className='font-bold text-didallablack text-lg md:text-xl lg:text-xl'>Campaigns</h1></div>
@@ -153,10 +152,12 @@ const VendorCampaigns = ({
 
                                 </div>
 
-                                <div className='mt-2'>
+                                {
+                                    campaigns[0] ?
+                                    <div className='mt-2'>
                                     {
                                         campaigns.map(item =>(
-                                            <Link href='/dashboard/vendor/campaigns' key={item.id}>
+                                            <Link href={`/dashboard/vendor/campaigns/single/${item.id}`} key={item.id}>
                                                 <a  className='bg-white rounded p-4 mb-5 block'>
                                                     <div className='flex items-center justify-between mb-2'>
                                                         <div>
@@ -201,7 +202,7 @@ const VendorCampaigns = ({
                                                         </div>
 
                                                     </div>
-                                                    <div className='flex flex-row  items-center mb-4 mt-6'>
+                                                    {/* <div className='flex flex-row  items-center mb-4 mt-6'>
 
                                                                 <div className='flex items-center justify-end'>
                                                                     <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
@@ -229,12 +230,16 @@ const VendorCampaigns = ({
                                                                     </button>
                                                                 </div>
 
-                                                    </div>
+                                                    </div> */}
                                                 </a>
                                             </Link>
                                         ))
                                     }
+                                </div> :
+                                <div>
+                                    <h1 className='text-didallablack text-sm mb-6 font-bold'>No campaigns yet</h1>
                                 </div>
+                                }
                             </div>
                             <div className='w-full md:w-1/4 pl-0 md:pl-3 mt-12'>
 

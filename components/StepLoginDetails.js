@@ -24,7 +24,7 @@ const StepLoginDetails = ({
                         <p className='text-xs text-didallabody mb-3'>Login to your account to continue using our services</p>
                     </div>
 
-                    <Link href="">
+                    {/* <Link href="">
                         <a className='block mb-5'>
                             <button type='button' className="p-4 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
                             font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
@@ -35,7 +35,7 @@ const StepLoginDetails = ({
                         </a>
                     </Link>
 
-                    <p className='text-center text-black text-sm'>OR</p>
+                    <p className='text-center text-black text-sm'>OR</p> */}
 
                     <form action="" className='mt-6 mb-3' onSubmit={handleFormSubmit}>
                         <div className=''>

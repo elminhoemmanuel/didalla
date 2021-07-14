@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-const ShowBoosterOffers = ({ openShowOffers, closeShowOffers, offers }) => {
+const ShowCampaignBids = ({ openShowBids, closeShowBids, bids, singleCampaign }) => {
 
     // Can be a string as well. Need to ensure each key-value pair ends with ;
     const override = css`
@@ -22,22 +22,22 @@ const ShowBoosterOffers = ({ openShowOffers, closeShowOffers, offers }) => {
     const [errMsg, seterrMsg] = useState('');
     const [successMsg, setsuccessMsg] = useState();
 
-    const acceptOffer =(id)=>{
+    const acceptBid =(id)=>{
 
         setIsSubmitting(!isSubmitting);
         const userToken = localStorage.getItem('userToken');
 
-        axios.get(`https://api.didalla.com/api/offer/accept_offer/${id}`,{
+        axios.get(`https://api.didalla.com/api/bid/accept_bid/${id}`,{
             headers: {
             'Authorization': `Bearer ${userToken}`
             }})
         .then((response) => {
             setIsSubmitting(false)
             console.log(response);
-            setsuccessMsg('Offer sent successfully')
+            setsuccessMsg('Success')
             if(isSubmitting === false && errMsg === ''){
                 setTimeout(() => {
-                    closeShowOffers();
+                    closeShowBids();
                 }, 4000);
             }
 
@@ -48,22 +48,22 @@ const ShowBoosterOffers = ({ openShowOffers, closeShowOffers, offers }) => {
             
         });
     }
-    const rejectOffer =(id)=>{
+    const rejectBid =(id)=>{
 
         setIsSubmitting2(!isSubmitting2);
         const userToken = localStorage.getItem('userToken');
 
-        axios.get(`https://api.didalla.com/api/offer/reject_offer/${id}`,{
+        axios.get(`https://api.didalla.com/api/bid/reject_bid/${id}`,{
             headers: {
             'Authorization': `Bearer ${userToken}`
             }})
         .then((response) => {
             setIsSubmitting2(false)
             console.log(response);
-            setsuccessMsg('Offer sent successfully')
+            setsuccessMsg('Successful')
             if(isSubmitting2 === false && errMsg === ''){
                 setTimeout(() => {
-                    closeShowOffers();
+                    closeShowBids();
                 }, 4000);
             }
 
@@ -82,17 +82,17 @@ const ShowBoosterOffers = ({ openShowOffers, closeShowOffers, offers }) => {
                 <div className='px-6 py-2 border-b border-grayborder'>
                     <div className='flex items-center'>
                         <div className='mr-3'>
-                            <button className='focus:outline-none block' onClick={closeShowOffers}>
+                            <button className='focus:outline-none block' onClick={closeShowBids}>
                                 <img className='' src="/images/ModalClose.svg" alt="close icon" />
                             </button>
                         </div>
-                        <div><h1 className='text-lg text-black font-bold'>Offers</h1></div>
+                        <div><h1 className='text-lg text-black font-bold'>Bids Recieved</h1></div>
                     </div>
                 </div>
 
                 <div>
                     {
-                        offers.map(item=>(
+                        bids.map(item=>(
                             <div className='px-6 py-4 border-b border-grayborder mb-3' key={item.id}>
                                 <h1 className='text-sm text-black font-bold mb-2'>{item.campaign.name}</h1>
                                 <p className='text-didallabody mb-3'><span className='text-didallabody'>posted {item.created_at.substr(0,10)}</span></p>
@@ -114,7 +114,7 @@ const ShowBoosterOffers = ({ openShowOffers, closeShowOffers, offers }) => {
 
                                     <div className='flex items-center justify-end'>
                                         <button onClick={()=>{
-                                            acceptOffer(item.id);
+                                            acceptBid(item.id);
                                         }} type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla
                                             font-bold text-white text-sm hover:bg-green-600 focus:outline-none mb-2">
                                             {isSubmitting ? <BeatLoader color={color}  loading={isSubmitting} css={override} size={15} />:<span>Accept Offer</span>}
@@ -125,7 +125,7 @@ const ShowBoosterOffers = ({ openShowOffers, closeShowOffers, offers }) => {
                                         <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-transparent text-didalla rounded 
                                             font-bold hover:text-green-600 text-sm  focus:outline-none mr-2 text-sm md:text-base"  
                                             onClick={()=>{
-                                                rejectOffer(item.id);
+                                                rejectBid(item.id);
                                             }}>
                                             {isSubmitting2 ? <BeatLoader color={color2}  loading={isSubmitting2} css={override} size={15} />:<span>Reject Offer</span>}
                                         </button>
@@ -152,4 +152,4 @@ const ShowBoosterOffers = ({ openShowOffers, closeShowOffers, offers }) => {
     )
 }
 
-export default ShowBoosterOffers
+export default ShowCampaignBids

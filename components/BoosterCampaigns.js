@@ -29,15 +29,15 @@ const BoosterCampaigns = ({
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
 
-        axios.get(`https://api.didalla.com/api/campaign`, 
+        axios.get(`https://api.didalla.com/api/campaign/get_booster_campaigns`, 
             {
                 headers: {
                 'Authorization': `Bearer ${userToken}`
                 }}
             )
             .then((response) => {
-                // console.log(response.data.data.data);
-                response.data.data.data.map(item =>{
+                console.log(response.data.data);
+                response.data.data.map(item =>{
                     campaigns.push(item);
                  })
                 console.log(campaigns);
@@ -89,7 +89,11 @@ const BoosterCampaigns = ({
                     messagesColour = ""
                     />
 
-                    <div className='bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20'>
+                    <div className={
+                        campaigns[0] ?
+                        'bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-64' :
+                        'bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20 h-screen'
+                    }>
                         <div className='w-full md:w-3/4 flex flex-col md:flex-row md:items-center justify-start md:justify-between mb-4 px-0 md:px-5'>
                             <div className='mb-1 md:mb-0'>
                                 <div><h1 className='font-bold text-didallablack text-lg md:text-xl lg:text-xl'>Campaigns</h1></div>
@@ -101,17 +105,18 @@ const BoosterCampaigns = ({
                             <div className='w-full md:w-4/5 '>
                                 <div className='flex flex-row items-center'>
                                     <div className='pr-2 md:pr-5'>
-                                        <button 
-                                        className='focus:outline-none block whitespace-nowrap border-b-2 border-didalla py-2 ' type='button'>
-                                            Active ({campaigns.length})
-                                        </button>
+                                        {
+                                            campaigns[0] ?
+                                            <button 
+                                            className='focus:outline-none block whitespace-nowrap border-b-2 border-didalla py-2 ' type='button'>
+                                                Active ({campaigns.length})
+                                            </button> :
+                                            <div>
+                                                <h1 className='text-didallablack text-sm mb-6 font-bold'>No campaigns yet</h1>
+                                            </div>
+                                        }
                                     </div>
-                                    <div className='pr-2 md:pr-5'>
-                                        <button 
-                                        className='focus:outline-none block whitespace-nowrap py-2 ' type='button'>
-                                            Completed
-                                        </button>
-                                    </div>
+                                    
 
                                 </div>
 

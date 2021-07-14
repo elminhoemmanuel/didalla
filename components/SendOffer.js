@@ -18,7 +18,7 @@ const SendOffer = ({ hideSendOffer, booster, campaigns}) => {
     let [color, setColor] = useState("#FFFFFF");
 
     const [interestsBox, setinterestsBox] = useState([]);
-    const [selectedCampaign, setselectedCampaign] = useState();
+    const [selectedCampaign, setselectedCampaign] = useState(campaigns[0].id);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errMsg, seterrMsg] = useState('');
     const [successMsg, setsuccessMsg] = useState();

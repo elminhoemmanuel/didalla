@@ -108,14 +108,14 @@ const CampaignDescription = ({ openShowSubmitProposal, closeShowCampaignDesc, si
 
                 <div className='flex flex-row items-center justify-end mb-3 mt-6 px-6'>
 
-                                <div>
+                                {/* <div>
                                     <button type='button' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-transparent text-didalla rounded 
                                     font-bold hover:text-green-600 text-sm  focus:outline-none mr-2 text-sm md:text-base"  
                                     onClick={closeShowCampaignDesc}  
                                     >
                                         Save Campaign
                                     </button>
-                                </div>
+                                </div> */}
 
                                 <div className='flex items-center justify-end'>
                                     <button type='submit' className="block w-full md:w-auto py-3 px-6 md:px-12 text-center bg-didalla rounded border border-didalla

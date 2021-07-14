@@ -32,7 +32,7 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids, bids, singleCampaign}) =
                             bids.map(item=>(
                                 <div className='px-6 py-4 border-b border-grayborder mb-3' key={item.id}>
                                     <h1 className='text-sm text-black font-bold mb-2'>{singleCampaign.name}</h1>
-                                    <p className='text-didallabody mb-3'>marvel's place - <span className='text-didallabody'>posted {singleCampaign.created_at.substr(0,10)}</span></p>
+                                    <p className='text-didallabody mb-3'><span className='text-didallabody'>posted {singleCampaign.created_at.substr(0,10)}</span></p>
 
                                     <div className='flex items-center justify-start mb-4 text-sm'>
                                         <div className='mr-4 md:mr-6'>
@@ -41,7 +41,7 @@ const ShowCreatorBids = ({ openShowBids, closeShowBids, bids, singleCampaign}) =
                                         </div>
 
                                         <div className=''>
-                                            <h1 className=' text-didallablack font-bold'>{singleCampaign.start_date.substr(0,10)} - {singleCampaign.end_date.substr(0,10)}</h1>
+                                            <h1 className=' text-didallablack font-bold'>{singleCampaign.start_date.substr(0,10)} to {singleCampaign.end_date.substr(0,10)}</h1>
                                             <p className='text-didallabody'>Campaign duration</p>
                                         </div>
 

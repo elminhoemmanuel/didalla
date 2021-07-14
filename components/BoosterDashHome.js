@@ -166,10 +166,15 @@ const BoosterDashHome = () => {
                         showSubmitProposal && <SubmitProposal openShowSubmitProposal={openShowSubmitProposal} closeShowSubmitProposal={closeShowSubmitProposal} singleCampaign={singleCampaign}/>
                     }
 
-                    <div  className='bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20 flex flex-col-reverse md:flex-row '>
+                    <div  className={
+                        campaigns[0] ? 'bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-64 flex flex-col-reverse md:flex-row ' :
+                        'bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-20 flex flex-col-reverse md:flex-row h-screen'
+                    }>
                         <div className='w-full md:w-4/5 pt-6'>
                             <h1 className='text-didallablack text-2xl mb-6 font-bold'>My Feed</h1>
-                            <div className='mt-2 grid grid-cols-1 lg:grid-cols-2 gap-4'>
+                            {
+                                campaigns[0] ?
+                                <div className='mt-2 grid grid-cols-1 lg:grid-cols-2 gap-4'>
                                     {
                                         campaigns.map(item =>(
                                             <button onClick={()=>{
@@ -219,7 +224,11 @@ const BoosterDashHome = () => {
                                             </button>
                                         ))
                                     }
+                                </div> :
+                                <div>
+                                    <h1 className='text-didallablack text-sm mb-6 font-bold'>No campaigns yet</h1>
                                 </div>
+                            }
 
                         </div>
                         <div className='w-full md:w-1/5'>
