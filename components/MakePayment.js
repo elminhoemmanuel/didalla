@@ -104,16 +104,15 @@ const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
                         </form>
 
                         <div className='flex justify-end'>
-                                    {
-                                        isSubmitting === false && errMsg && <div className='text-sm text-red-400'>{errMsg}</div> 
-                                    }
+                            {
+                                isSubmitting === false && errMsg && <div className='text-sm text-red-400'>{errMsg}</div> 
+                            }
                         </div>
                         <div className='flex justify-end'>
-                                    {
-                                        successMsg && <div className='text-sm text-didalla'>Successful</div> 
-                                    }
+                            {
+                                successMsg && <div className='text-sm text-didalla'>Successful</div> 
+                            }
                         </div>
-
                     </div>
                 </div>
             </div>
