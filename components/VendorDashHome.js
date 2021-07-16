@@ -212,7 +212,7 @@ const VendorDashHome = ({
                                                 <img src="/images/Funnel.svg" alt="filter icon" />
                                             </div>
                                             <div>
-                                                &nbsp;Filter
+                                                &nbsp;Search
                                             </div> 
                                             
                                         </button>

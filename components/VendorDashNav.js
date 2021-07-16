@@ -11,7 +11,8 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
     
 
     const [menuclick, setMenuClick] = useState(false);
-    const [user, setuser] = useState();
+    const [userFirstName, setuserFirstName] = useState('');
+    const [userLastName, setuserLastName] = useState('');
 
     const handleClick = () => {
         setMenuClick(!menuclick);
@@ -22,6 +23,14 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
         setMenuClick(!menuclick);
         document.body.style.overflowY= 'visible';
     }
+
+    useEffect(() => {
+        setuserFirstName(localStorage.getItem('userFirstName'))
+        setuserLastName(localStorage.getItem('userLastName'))
+        
+    }, [])
+
+    
 
     return ( 
 
@@ -39,14 +48,14 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                         <div className='mr-4' onClick={handleClickMobile}>
                         <Link href="/dashboard/vendor">
                                 <div className='cursor-pointer h-10 w-10 rounded-full bg-didalla text-white text-lg font-bold text-center pt-1'>
-                                {localStorage.getItem('userFirstName')[0]}{localStorage.getItem('userLastName')[0]}
+                                    {userFirstName[0]}{userLastName[0]}
                                 </div>
                             </Link>
                         </div>
                         <div onClick={handleClickMobile}>
                             <Link href="/dashboard/vendor">
                                 <a className=''>
-                                {localStorage.getItem('userFirstName')}{localStorage.getItem('userLastName')}
+                                {userFirstName} {userLastName}
                                 </a>
                             </Link>
                         </div>
@@ -164,7 +173,7 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                         <div className='mr-3'>
                             <Link href="/dashboard/vendor">
                                 <div className='cursor-pointer h-10 w-10 rounded-full bg-didalla text-white text-lg font-bold text-center pt-1'>
-                                    {localStorage.getItem('userFirstName')[0]}{localStorage.getItem('userLastName')[0]}
+                                    {userFirstName[0]}{userLastName[0]}
                                 </div>
                             </Link>
                         </div>
