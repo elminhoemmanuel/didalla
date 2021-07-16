@@ -140,7 +140,7 @@ const BoosterDashHome = () => {
                 isLoading2 && isLoading && isLoading3 ? 
 
                 <div className='flex justify-center items-center px-20 py-32'>
-                <BeatLoader color={color}  loading={isLoading2} css={override} size={40} />
+                <BeatLoader color={color}  loading={isLoading2&& isLoading && isLoading3} css={override} size={40} />
                 </div>
 
                 :

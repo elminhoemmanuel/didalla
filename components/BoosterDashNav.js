@@ -24,11 +24,6 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
         document.body.style.overflowY= 'visible';
     }
 
-    // useEffect(() => {
-    //     setuser(localStorage.getItem('user'))
-    //     console.log(user)
-    // }, [])
-
     return ( 
 
         <>
@@ -40,24 +35,24 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                         <button onClick={handleClickMobile} className='block focus:outline-none outline-none' type='button'><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
                     </div>
 
-                    {/* <div className='flex flex-row items-center justify-start text-white px-4 pb-10
+                    <div className='flex flex-row items-center justify-start text-white px-4 pb-10
                     border-b border-grayborder'>
                         <div className='mr-4' onClick={handleClickMobile}>
                             <Link href="/dashboard/booster">
                                 <div className='cursor-pointer h-10 w-10 rounded-full bg-didalla text-white text-lg font-bold text-center pt-1'>
-                                    {user.user.first_name[0]} {user.user.last_name[0]}
+                                    {localStorage.getItem('userFirstName')[0]}{localStorage.getItem('userLastName')[0]}
                                 </div>
                             </Link>
                         </div>
                         <div onClick={handleClickMobile}>
                             <Link href="/dashboard/booster">
                                 <a className=''>
-                                    {user.user.first_name} {user.user.last_name}
+                                {localStorage.getItem('userFirstName')} {localStorage.getItem('userLastName')}
                                 </a>
                             </Link>
                         </div>
 
-                    </div> */}
+                    </div>
 
                     <div className='pt-6 '>
                         <Link href="/dashboard/booster" className="cursor-pointer " >
@@ -166,23 +161,23 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                         </div>
 
                     </div>
-                    {/* <div className='flex flex-row items-center justify-start'>
+                    <div className='flex flex-row items-center justify-start'>
 
                         <div className='mr-3'>
                             <Link href="/dashboard/booster">
                                 <div className='cursor-pointer h-10 w-10 rounded-full bg-didalla text-white text-lg font-bold text-center pt-1'>
-                                    {user.user.first_name[0]} {user.user.last_name[0]}
+                                    {localStorage.getItem('userFirstName')[0]}{localStorage.getItem('userLastName')[0]}
                                 </div>
                             </Link>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <button className='focus:outline-none block'>
                             <svg className="w-6 h-6 text-didalla" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
                             </button>
-                        </div>
+                        </div> */}
 
-                    </div> */}
+                    </div>
             </nav>
         </>
 

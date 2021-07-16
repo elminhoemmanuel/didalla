@@ -87,8 +87,8 @@ const Login = () => {
                 setIsLoading(false)
                 console.log(response);
                 localStorage.setItem('userToken',response.data.access_token)
-                // setresponsegotten(response.data.message)
-                localStorage.setItem('user',response.data)
+                localStorage.setItem('userFirstName',response.data.user.first_name)
+                localStorage.setItem('userLastName',response.data.user.last_name)
                 setUserRole(response.data.user.role)
                 setIsOnboarded(response.data.user.reg_completed)
                 console.log(userRole);

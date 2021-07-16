@@ -14,11 +14,11 @@ const ForVendors = () => {
                 <VendorCard vendorObj={vendorObjThree}/>
 
                 {/* concave and convex curves */}
-                <img src='/images/convex.svg' alt='convex curve' className='hidden md:inline w-16 lg:w-32 absolute convex' />
-                <img src='/images/concave.svg' alt='concave curve' className='hidden md:inline w-16 lg:w-32 absolute concave' />
+                {/* <img src='/images/convex.svg' alt='convex curve' className='hidden md:inline w-16 lg:w-32 absolute convex' />
+                <img src='/images/concave.svg' alt='concave curve' className='hidden md:inline w-16 lg:w-32 absolute concave' /> */}
                 {/* Mobile view curves */}
-                <img src='/images/right-curve.svg' alt='concave curve' className='md:hidden w-8 absolute right-curve' />
-                <img src='/images/left-curve.svg' alt='convex curve' className='md:hidden w-8 absolute left-curve' />
+                {/* <img src='/images/right-curve.svg' alt='concave curve' className='md:hidden w-8 absolute right-curve' />
+                <img src='/images/left-curve.svg' alt='convex curve' className='md:hidden w-8 absolute left-curve' /> */}
             </div>
 
         </div>

@@ -10,7 +10,7 @@ const messages = () => {
         const userToken = localStorage.getItem('userToken');
 
         if(!userToken){
-            router.push('/login')
+            router.replace('/login')
         }
         
     }, [])

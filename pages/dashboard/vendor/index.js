@@ -11,7 +11,7 @@ const index = () => {
         const userToken = localStorage.getItem('userToken');
 
         if(!userToken){
-            router.push('/login')
+            router.replace('/login')
         }
         
     }, [])
