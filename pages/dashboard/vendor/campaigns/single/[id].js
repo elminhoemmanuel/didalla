@@ -152,10 +152,10 @@ const SingleCampaignPage = ({
                     />
 
                     {
-                        showBids && <ShowCampaignBids openShowBids={openShowBids} closeShowBids={closeShowBids} bids={campaign.data.bids_accepted} singleCampaign={campaign.data}/>
+                        showBids && <ShowCampaignBids openShowBids={openShowBids} closeShowBids={closeShowBids} bids={campaign.data.bids} singleCampaign={campaign.data}/>
                     }
                     {
-                        showOffers && <ShowCampaignOffers openShowOffers={openShowOffers} closeShowOffers={closeShowOffers} offers={campaign.data.offers_accepted} singleCampaign={campaign.data}/>
+                        showOffers && <ShowCampaignOffers openShowOffers={openShowOffers} closeShowOffers={closeShowOffers} offers={campaign.data.offers} singleCampaign={campaign.data}/>
                     }
                     {
                         showMakePayment && <MakePayment closeShowMakePayment={closeShowMakePayment} singleCampaign={campaign.data} creator={engagedCreator}/>
@@ -234,8 +234,11 @@ const SingleCampaignPage = ({
                                             <p className="text-base font-bold text-didallatitle mb-1">Campaign Tasks</p>
                                             <div>
                                                 {
-                                                    campaign.data.tasks.map(item=>(
-                                                        <p className='text-sm text-didallabody' key={item.id}>Task </p>
+                                                    campaign.data.tasks.map((item)=>(
+                                                        <p className='text-sm text-didallabody mb-2' key={item.id}>
+                                                            <span className='font-bold mb-1'>Task  :</span> <br/> 
+                                                            <span>{item.task}</span> 
+                                                        </p>
                                                     ))
                                                 }
                                             </div>
@@ -277,14 +280,14 @@ const SingleCampaignPage = ({
                                                             <div className=''>
                                                                 <p className="text-base font-bold text-didallatitle mb-1">Tasks Submissions</p>
                                                                 {
-                                                                    hasSubmitted && hasPaid ?
+                                                                    item.tasks[0].submissions.length!==0 || item.tasks[1].submissions.length!==0 && hasPaid ?
                                                                     <div>
                                                                         {
-                                                                            campaign.data.tasks.map((item , x=1)=>(
+                                                                            item.tasks.map((item , x=1)=>(
                                                                                 <div key={item.id}>
                                                                                     <div className='mb-6'>
                                                                                         <p className='text-sm text-didallabody font-bold' >Task {x++}</p>
-                                                                                        <p className='text-sm text-didallabody' >https://www.instagram.com/p/</p>
+                                                                                        <p className='text-sm text-didallabody' >{item.submissions[0]}</p>
                                                                                     </div>
                                                                                     
                                                                                 </div>

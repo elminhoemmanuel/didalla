@@ -8,6 +8,8 @@
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.16.0",
     "axios": "^0.21.1",
     "next": "10.0.9",
     "next-images": "^1.7.0",
@@ -21,6 +23,7 @@
     "react-phone-number-input": "^3.1.19",
     "react-select": "^4.3.1",
     "react-spinners": "^0.10.6",
+    "react-stripe-checkout": "^2.6.3",
     "sass": "^1.32.8",
     "swiper": "^6.5.0"
   },

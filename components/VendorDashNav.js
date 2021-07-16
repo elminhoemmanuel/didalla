@@ -101,7 +101,7 @@ const VendorDashNav = ({homeColour, campaignColour , creatorsColour, messagesCol
                                         <img src="/images/Target.svg" alt="campaigns icon"/>
                                     </div>
                                     <div>
-                                        Campaigns
+                                        My Campaigns
                                     </div> 
                                 </div>
                             </a>

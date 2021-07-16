@@ -32,7 +32,7 @@ const AllBoosterCampaigns = ({campaigns, openShowSingleCampaign, closeShowAllCam
 
                                                         <div className='flex flex-row flex-nowrap items-center mb-3'>
                                                             <div className='mr-4'>
-                                                                <p className='text-didallablack text-base font-bold text-left'>{item.budget}</p>
+                                                                <p className='text-didallablack text-base font-bold text-left'>${item.budget}</p>
                                                                 <p className='text-didallabody text-sm mb-1 text-left'>Budget</p>
                                                                 
                                                             </div>
@@ -43,10 +43,15 @@ const AllBoosterCampaigns = ({campaigns, openShowSingleCampaign, closeShowAllCam
                                                             </div>
 
                                                         </div>
+                                                        <div className='flex flex-row flex-nowrap items-center mb-3'>
+                                                            <div className='text-sm text-didallabody'>
+                                                                    <p className='font-bold text-left'>{item.brief}</p>
+                                                                    <p className='text-base text-left'>Campaign Brief</p>
+                                                            </div>
 
-                                                        <div>
-                                                            <p className='text-didallabody text-sm mb-1 text-left'>{item.brief}</p>
                                                         </div>
+
+                                                        
 
                                                     </div>
                                                 </div>

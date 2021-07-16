@@ -22,9 +22,11 @@ const BoosterCampaigns = ({
     let [color, setColor] = useState("#39B54A");
 
     const [isLoading2, setisLoading2] = useState(true);
+    const [isLoading3, setisLoading3] = useState(true);
     const [countries, setCountries] = useState([]);
     const [campaigns, setcampaigns] = useState([]);
     const [singleCampaign, setSingleCampaign] = useState();
+    const [booster_id, setbooster_id] = useState();
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -36,7 +38,7 @@ const BoosterCampaigns = ({
                 }}
             )
             .then((response) => {
-                console.log(response.data.data);
+                console.log(response);
                 response.data.data.map(item =>{
                     campaigns.push(item);
                  })
@@ -48,6 +50,27 @@ const BoosterCampaigns = ({
         });       
                 
     }, [])
+
+    useEffect(() => {
+        const userToken = localStorage.getItem('userToken');
+
+        axios.get(`https://api.didalla.com/api/user`, 
+            {
+                headers: {
+                'Authorization': `Bearer ${userToken}`
+                }}
+            )
+            .then((response) => {
+                console.log(response);
+                setbooster_id(response.data.id)
+                console.log(booster_id);
+                setisLoading3(!isLoading3)
+            }, (error) => {
+            console.log(error)
+            
+        });       
+                
+    }, [booster_id])
 
     const [showAllCampaigns, setshowAllCampaigns] = useState(true);
     const openShowAllCampaigns = () =>{
@@ -73,10 +96,10 @@ const BoosterCampaigns = ({
     return (
         <div>
             {
-                isLoading2 ? 
+                isLoading2 && isLoading3 ? 
 
                 <div className='flex justify-center items-center px-20 py-32'>
-                <BeatLoader color={color}  loading={isLoading2} css={override} size={40} />
+                <BeatLoader color={color}  loading={isLoading2 && isLoading3} css={override} size={40} />
                 </div> 
                 
                 : 
@@ -129,7 +152,7 @@ const BoosterCampaigns = ({
                                {
                                   showSingleCampaign && 
                                   <SingleBoosterCampaign closeShowSingleCampaign={closeShowSingleCampaign} singleCampaign={singleCampaign} 
-                                  openShowAllCampaigns={openShowAllCampaigns}
+                                  openShowAllCampaigns={openShowAllCampaigns} booster_id={booster_id}
                                   /> 
                                } 
                             </div>

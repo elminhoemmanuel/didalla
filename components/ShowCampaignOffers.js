@@ -39,7 +39,7 @@ const ShowCampaignOffers = ({ openShowOffers, closeShowOffers, offers, singleCam
                                         <h1 className=' text-didallablack font-bold'>
                                             { item.status===1 ? 
                                                 <span className='text-didalla'>Accepted</span> :
-                                                <span className='text-red-500'>not Yet Accepted</span>
+                                                <span className='text-red-500'>Not Yet Accepted</span>
                                             }
                                         </h1>
                                         <p className='text-didallabody'>Offer status</p>

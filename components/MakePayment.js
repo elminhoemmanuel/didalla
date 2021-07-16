@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
 import axios from 'axios';
+import {useRouter} from 'next/router';
+import { CardElement } from '@stripe/react-stripe-js';
+import StripeCheckout from 'react-stripe-checkout';
 
 
 
@@ -14,14 +17,44 @@ const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
     border-color: white;
     `;
 
+    const router = useRouter()
     let [color, setColor] = useState("#FFFFFF");
     const [stripe, setStripe] = useState(true);
     const [paystack, setPaystack] = useState(true);
     const [bitpay, setBitpay] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errMsg, seterrMsg] = useState('');
+    const [successMsg, setsuccessMsg] = useState();
     
 
     const paySubmit = (e) =>{
         e.preventDefault();
+        // console.log(creator.user.id,creator.cost,singleCampaign.id)
+
+        setIsSubmitting(!isSubmitting);
+        const userToken = localStorage.getItem('userToken');
+
+        const formdata = new FormData();
+        formdata.append("amount", creator.cost)
+        formdata.append("booster_id", creator.id)
+        formdata.append("campaign_id", singleCampaign.id)
+
+        axios.post('https://api.didalla.com/api/payment/stripe_pay_web',formdata,{
+            headers: {
+            'Authorization': `Bearer ${userToken}`
+            }})
+        .then((response) => {
+            setIsSubmitting(false)
+            console.log(response);
+            setsuccessMsg('Successful')
+            
+
+        }, (error) => {
+            setIsSubmitting(false)
+            seterrMsg('Something went wrong, try again')
+            console.log(error);
+            
+        });
     }
     
 
@@ -41,10 +74,10 @@ const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
                 </div>
 
                 <div className='px-6 py-2'>
-                    <p className='text-didallabody text-sm mb-3'>You are about to make a payment of ${singleCampaign.budget} to Obinna Chukwu for the completion of assigned tasks </p>
+                    <p className='text-didallabody text-sm mb-3'>You are about to make a payment of ${creator.cost} to Obinna Chukwu for the completion of assigned tasks </p>
                     
                     <p className='text-didallabody text-sm mb-1'>Amount </p>
-                    <p className='p-2 rounded text-didallabody text-sm font-bold mb-6 border border-grayborder'>{singleCampaign.budget}</p>
+                    <p className='p-2 rounded text-didallabody text-sm font-bold mb-6 border border-grayborder'>${creator.cost}</p>
 
                     <div>
                         <form onSubmit={paySubmit}>
@@ -65,10 +98,21 @@ const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
                             <div className=''>
                                 <button type='submit' className='focus:outline-none rounded bg-didalla text-white text-center px-5 py-3 hover:bg-green-600 w-full'
                                 >
-                                    Continue
+                                    {isSubmitting ? <BeatLoader color={color}  loading={isSubmitting} css={override} size={15} />:<span>Continue</span>}
                                 </button>
                             </div>
                         </form>
+
+                        <div className='flex justify-end'>
+                                    {
+                                        isSubmitting === false && errMsg && <div className='text-sm text-red-400'>{errMsg}</div> 
+                                    }
+                        </div>
+                        <div className='flex justify-end'>
+                                    {
+                                        successMsg && <div className='text-sm text-didalla'>Successful</div> 
+                                    }
+                        </div>
 
                     </div>
                 </div>
