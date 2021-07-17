@@ -2,7 +2,7 @@ import '../styles/globals.scss'
 import {loadStripe} from '@stripe/stripe-js'
 import {Elements} from '@stripe/react-stripe-js'
 
-const stripePromise = loadStripe('pk_test_51J7IfLCLwwAP7KBP86KI6ZO9Th1dOmZzb4I68X2ObU3eorLETInEbt6gEgSEMGQkLY6SyR8SObvaU2eqRnJVcSME00rCpoM1WM')
+const stripePromise = loadStripe('pk_test_51IvSPMBq5sNbHqP6J56AYkbuw7SrA2sybQFBhs4Nf5WOg3nwFlJVTn4Wc18lzr55T2GVBoEuwc7mUnCIfEPMKK6T00x05Amhvw')
 
 function MyApp({ Component, pageProps }) {
   return (

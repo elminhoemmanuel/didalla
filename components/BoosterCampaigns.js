@@ -54,7 +54,7 @@ const BoosterCampaigns = ({
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
 
-        axios.get(`https://api.didalla.com/api/user`, 
+        axios.get(`https://api.didalla.com/api/campaign/get_booster_campaigns`, 
             {
                 headers: {
                 'Authorization': `Bearer ${userToken}`
@@ -62,7 +62,7 @@ const BoosterCampaigns = ({
             )
             .then((response) => {
                 console.log(response);
-                setbooster_id(response.data.id)
+                setbooster_id(response.data.booster_id)
                 console.log(booster_id);
                 setisLoading3(!isLoading3)
             }, (error) => {

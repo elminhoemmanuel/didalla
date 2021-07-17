@@ -39,10 +39,10 @@ const VendorDashHome = ({
     const [countries, setcountries] = useState([]);
     const [campaigns, setcampaigns] = useState([]);
     const [singleBooster, setsingleBooster] = useState()
-    const [selectedCountry, setSelectedCountry] = useState()
-    const [selectedPlatform, setSelectedPlatform] = useState()
-    const [selectedBudget, setSelectedBudget] = useState()
-    const [selectedTopic, setSelectedTopic] = useState()
+    const [selectedCountry, setSelectedCountry] = useState('all')
+    const [selectedPlatform, setSelectedPlatform] = useState('all')
+    const [selectedBudget, setSelectedBudget] = useState('all')
+    const [selectedTopic, setSelectedTopic] = useState('all')
 
 
     useEffect(() => {

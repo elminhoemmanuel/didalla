@@ -3,6 +3,7 @@ import VendorDashNav from '../../../../../components/VendorDashNav'
 import ShowCampaignBids from '../../../../../components/ShowCampaignBids';
 import ShowCampaignOffers from '../../../../../components/ShowCampaignOffers';
 import MakePayment from '../../../../../components/MakePayment';
+import LeaveComment from '../../../../../components/LeaveComment';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import axios from 'axios';
@@ -23,7 +24,7 @@ const SingleCampaignPage = ({
     let [color, setColor] = useState("#39B54A");
     const [isLoading, setisLoading] = useState(true);
     const [hasSubmitted, setHasSubmitted] = useState(true);
-    const [hasPaid, setHasPaid] = useState(false);
+    const [hasPaid, setHasPaid] = useState(true);
     const [engagedCreator, setEngagedCreator] = useState();
     const [campaign, setCampaign] = useState({});
     const router = useRouter();
@@ -90,6 +91,15 @@ const SingleCampaignPage = ({
     }
     const closeShowMakePayment = () =>{
         setshowMakePayment(!showMakePayment);
+        document.body.style.overflowY= 'visible';
+    }
+    const [showLeaveComment, setShowLeaveComment] = useState(false);
+    const openShowLeaveComment = () =>{
+        setShowLeaveComment(!showLeaveComment);
+        document.body.style.overflowY= 'hidden';
+    }
+    const closeShowLeaveComment = () =>{
+        setShowLeaveComment(!showLeaveComment);
         document.body.style.overflowY= 'visible';
     }
     
@@ -159,6 +169,9 @@ const SingleCampaignPage = ({
                     }
                     {
                         showMakePayment && <MakePayment closeShowMakePayment={closeShowMakePayment} singleCampaign={campaign.data} creator={engagedCreator}/>
+                    }
+                    {
+                        showLeaveComment && <LeaveComment closeShowLeaveComment={closeShowLeaveComment} singleCampaign={campaign.data} creator={engagedCreator}/>
                     }
 
                     <div className='bg-onboardinggray px-6 md:px-10 lg:px-16 pt-32 pb-64'>
@@ -280,21 +293,28 @@ const SingleCampaignPage = ({
                                                             <div className=''>
                                                                 <p className="text-base font-bold text-didallatitle mb-1">Tasks Submissions</p>
                                                                 {
-                                                                    item.tasks[0].submissions.length!==0 || item.tasks[1].submissions.length!==0 && hasPaid ?
+                                                                    item.tasks[0].submissions.length!==0 || item.tasks[1].submissions.length!==0 && item.paid === 1 ?
                                                                     <div>
-                                                                        {
-                                                                            item.tasks.map((item , x=1)=>(
-                                                                                <div key={item.id}>
-                                                                                    <div className='mb-6'>
-                                                                                        <p className='text-sm text-didallabody font-bold' >Task {x++}</p>
-                                                                                        <p className='text-sm text-didallabody' >{item.submissions[0]}</p>
+                                                                        <div>
+                                                                            {
+                                                                                item.tasks.map((item , x)=>(
+                                                                                    <div key={item.id}>
+                                                                                        <div className='mb-6'>
+                                                                                            <p className='text-xs text-didallabody font-bold' >Task {x+1}</p>
+                                                                                            <p className='text-xs text-didallabody' >{item.submissions[0].submission}</p>
+                                                                                        </div>
+                                                                                        
                                                                                     </div>
-                                                                                    
-                                                                                </div>
-                                                                            ))
-                                                                        }
+                                                                                ))
+                                                                            }
+                                                                        </div>
                                                                         <div className='text-center'>
-                                                                            <button className='rounded bg-didalla text-white text-center px-5 py-2 hover:bg-green-600'>
+                                                                            <button className='rounded bg-didalla text-white text-center px-5 py-2 hover:bg-green-600 focus:outline-none'
+                                                                            onClick={()=>{
+                                                                                setEngagedCreator(item);
+                                                                                openShowLeaveComment();
+                                                                            }}
+                                                                            >
                                                                                 Leave a Comment
                                                                             </button>
                                                                         </div>
@@ -302,7 +322,7 @@ const SingleCampaignPage = ({
                                                                     :
                                                                     <div>
                                                                         {
-                                                                            hasSubmitted ?
+                                                                            item.tasks[0].submissions.length!==0 || item.tasks[1].submissions.length!==0 ?
                                                                             <div>
                                                                                 <p className='text-sm text-didallabody mb-6' >This content creator has carried out the required task. Please pay the required 
                                                                                 charge by clicking the button below. <br/>

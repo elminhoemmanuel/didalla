@@ -3,12 +3,15 @@ import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
 import axios from 'axios';
 import {useRouter} from 'next/router';
-import { CardElement } from '@stripe/react-stripe-js';
 import StripeCheckout from 'react-stripe-checkout';
+import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+
 
 
 
 const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
+
+    const stripe = useStripe()
 
     // Can be a string as well. Need to ensure each key-value pair ends with ;
     const override = css`
@@ -19,7 +22,7 @@ const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
 
     const router = useRouter()
     let [color, setColor] = useState("#FFFFFF");
-    const [stripe, setStripe] = useState(true);
+    const [stripePay, setStripePay] = useState(true);
     const [paystack, setPaystack] = useState(true);
     const [bitpay, setBitpay] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,7 +50,12 @@ const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
             setIsSubmitting(false)
             console.log(response);
             setsuccessMsg('Successful')
-            
+
+            stripe.redirectToCheckout({
+                sessionId: response.data.id,
+            });
+
+            localStorage.setItem('fromDashboard', true)
 
         }, (error) => {
             setIsSubmitting(false)
@@ -59,9 +67,9 @@ const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
     
 
     return (
-        <div className='absolute py-6 px-8 md:px-52 lg:px-80 w-full h-full bg-gray-700 bg-opacity-50 
-        flex flex-col z-20 '>
-            <div className='modal-box fixed w-4/5 lg:w-3/5 bg-white border border-gray-100 overflow-y-auto'>
+        <div className='absolute py-6  w-full h-screen bg-gray-700 bg-opacity-50 
+        flex flex-col items-center justify-center z-20 '>
+            <div className='modal-box fixed w-4/5 lg:w-3/5 h-full bg-white border border-gray-100 overflow-y-auto'>
                 <div className='px-6 py-2 border-b border-grayborder'>
                     <div className='flex items-center'>
                         <div className='mr-3'>
@@ -74,7 +82,7 @@ const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
                 </div>
 
                 <div className='px-6 py-2'>
-                    <p className='text-didallabody text-sm mb-3'>You are about to make a payment of ${creator.cost} to Obinna Chukwu for the completion of assigned tasks </p>
+                    <p className='text-didallabody text-sm mb-3'>You are about to make a payment of ${creator.cost} to {creator.user.first_name} {creator.user.last_name} for the completion of assigned tasks </p>
                     
                     <p className='text-didallabody text-sm mb-1'>Amount </p>
                     <p className='p-2 rounded text-didallabody text-sm font-bold mb-6 border border-grayborder'>${creator.cost}</p>
@@ -83,7 +91,7 @@ const MakePayment = ({ closeShowMakePayment, singleCampaign, creator }) => {
                         <form onSubmit={paySubmit}>
                             <div className='grid grid-cols-3 gap-3 mb-6'>
                                 <button type='button' className=' rounded p-3 border bg-grayscale border-didalla flex items-center justify-center'
-                                onClick={()=>{setStripe(true)}}
+                                onClick={()=>{setStripePay(true)}}
                                 >
                                     <div><img className='' src='/images/StripeLogo.svg' alt='stripe logo' /></div>
                                 </button>

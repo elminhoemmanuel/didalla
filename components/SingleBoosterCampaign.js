@@ -54,18 +54,20 @@ const SingleBoosterCampaign = ({singleCampaign, closeShowSingleCampaign , openSh
         e.preventDefault();
         setIsSubmitting(!isSubmitting)
         setIsSubmitting2(!isSubmitting2)
+        
+        const formdata ={
+           booster_id : booster_id,
+           task_id: singleCampaign.tasks[0].id,
+           submission: submission1
+        };
 
-        const formdata = new FormData();
-        formdata.append("booster_id", booster_id)
-        formdata.append("task_id", singleCampaign.tasks[0].id)
-        formdata.append("submission", submission1)
-        console.log(booster_id, singleCampaign.tasks[0].id, submission1)
-
-        const formdata2 = new FormData();
-        formdata.append("booster_id", booster_id)
-        formdata.append("task_id", singleCampaign.tasks[1].id)
-        formdata.append("submission", submission2)
-        console.log(booster_id, singleCampaign.tasks[1].id, submission2)
+        const formdata2 ={
+           booster_id : booster_id,
+           task_id: singleCampaign.tasks[1].id,
+           submission: submission2
+        };
+        
+        console.log(formdata, formdata2);
 
         const userToken = localStorage.getItem('userToken');
         
@@ -78,6 +80,7 @@ const SingleBoosterCampaign = ({singleCampaign, closeShowSingleCampaign , openSh
             console.log(response);
             setsuccessMsg('Successful')
 
+            
         }, (error) => {
             setIsSubmitting(false)
             seterrMsg('Something went wrong, try again')
@@ -208,7 +211,7 @@ const SingleBoosterCampaign = ({singleCampaign, closeShowSingleCampaign , openSh
             </div>
             <div className='flex justify-end pr-2 py-1'>
                 {
-                    successMsg && successMsg2 && <div className='text-sm text-didalla'>Campaign created successfully</div> 
+                    successMsg && successMsg2 && <div className='text-sm text-didalla'>Task submitted successfully</div> 
                 }
             </div>
            </form>

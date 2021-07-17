@@ -5,9 +5,9 @@ import Select from 'react-select';
 const ShowBoosterProposals = ({ openShowProposals, closeShowProposals , bids }) => {
 
     return (
-        <div className='absolute py-6 px-8 md:px-52 lg:px-80 w-full h-full bg-gray-700 bg-opacity-50 
-        flex flex-col z-20 '>
-            <div className='modal-box fixed w-4/5 lg:w-3/5 bg-white border border-gray-100 overflow-y-auto'>
+        <div className='absolute py-6  w-full h-screen bg-gray-700 bg-opacity-50 
+        flex flex-col items-center justify-center z-20 '>
+            <div className='modal-box fixed w-4/5 lg:w-3/5 h-full bg-white border border-gray-100 overflow-y-auto'>
                 <div className='px-6 py-2 border-b border-grayborder'>
                     <div className='flex items-center'>
                         <div className='mr-3'>

@@ -234,9 +234,9 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
     }
 
     return (
-        <div className='absolute py-6 px-8 md:px-52 lg:px-80 w-full h-full bg-gray-700 bg-opacity-50 
-        flex flex-col z-20 '>
-            <div className='modal-box fixed w-4/5 lg:w-3/5 bg-white border border-gray-100 overflow-y-auto'>
+        <div className='absolute py-6  w-full h-screen bg-gray-700 bg-opacity-50 
+        flex flex-col items-center justify-center z-20 '>
+            <div className='modal-box fixed w-4/5 lg:w-3/5 h-full h-full bg-white border border-gray-100 overflow-y-auto'>
                 <div className='px-6 py-2 border-b border-grayborder'>
                     <div className='flex items-center'>
                         <div className='mr-3'>
@@ -523,8 +523,8 @@ const StartCampaign = ({ closeStartCampaign, countries }) => {
                                     {
                                         campaignname.length === 0|| brandbudget <= 0 || selectedCity.length === 0 ||
                                         selectedCountry.length === 0 || startdate.length === 0 || enddate.length === 0 || campaignbrief.length === 0 ||
-                                        campaigngoal.length === 0 ||task1.length === 0 || errors.campaignname  || errors.brandbudget
-                                        || errors.startdate || errors.enddate || errors.campaignbrief || errors.campaigngoal ||errors.task1 || picObject === undefined
+                                        campaigngoal.length === 0 ||task1.length === 0 ||task2.length === 0 || errors.campaignname  || errors.brandbudget
+                                        || errors.startdate || errors.enddate || errors.campaignbrief || errors.campaigngoal ||errors.task1 ||errors.task2 || picObject === undefined
                                         || interestsBox === [] || interestsBox === undefined
                                         
                                         ?
