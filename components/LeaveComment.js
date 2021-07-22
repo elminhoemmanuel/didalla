@@ -6,6 +6,9 @@ import {useRouter} from 'next/router';
 import StripeCheckout from 'react-stripe-checkout';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import useForm from './useForm';
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 
 
@@ -23,12 +26,10 @@ const LeaveComment = ({ closeShowLeaveComment, singleCampaign, creator }) => {
 
     const router = useRouter()
     let [color, setColor] = useState("#FFFFFF");
-    const [stripePay, setStripePay] = useState(true);
-    const [paystack, setPaystack] = useState(true);
-    const [bitpay, setBitpay] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errMsg, seterrMsg] = useState('');
     const [successMsg, setsuccessMsg] = useState();
+    const [value, setValue] = React.useState(2);
 
     const stateSchema = {
         ratingText:{value:"" , error:""},
@@ -101,11 +102,20 @@ const LeaveComment = ({ closeShowLeaveComment, singleCampaign, creator }) => {
                         <div><h1 className='text-lg text-black font-bold'>Rate {creator.user.first_name} {creator.user.last_name}</h1></div>
                     </div>
                 </div>
-
                 <div className='px-6 py-4'>
                     <p className='text-didallabody text-sm mb-1'>How did the creator fare</p>
                     
-                    <div className='flex flex-row flex-nowrap items-center mb-8'>
+                    <Box component="fieldset" mb={3} borderColor="transparent">
+                        <Typography component="legend">Controlled</Typography>
+                        <Rating
+                        name="simple-controlled"
+                        value={value}
+                        onChange={(event, newValue) => {
+                            setValue(newValue);
+                        }}
+                        />
+                    </Box>
+                    {/* <div className='flex flex-row flex-nowrap items-center mb-8'>
                         <button className='mr-3 block focus:outline-none'>
                             <img src="/images/YellowStar.svg" alt="star rating" />
                         </button>
@@ -121,7 +131,7 @@ const LeaveComment = ({ closeShowLeaveComment, singleCampaign, creator }) => {
                         <button className='mr-3 block focus:outline-none'>
                             <img src="/images/YellowStar.svg" alt="star rating" />
                         </button>
-                    </div>
+                    </div> */}
 
                     <div>
                         <form onSubmit={paySubmit}>

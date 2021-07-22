@@ -34,25 +34,21 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                 <div className=''>
                     <div className='md:hidden flex flex-row justify-between px-4 mb-6'>
                         <button onClick={handleClickMobile} className='block focus:outline-none outline-none' type='button'><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
-                        <div className='flex flex-row'>
-                            {footerObjThree.map(item =>{
-                                return <div key={item.id} className='pt-2 pl-2' onClick={handleClickMobile}>
-                                    <Link href={item.url} >
-                                        <a ><img src={`/images/${item.value}.svg`} alt='brand-logos' className='h-6 w-6'/></a>
-                                    </Link>
-                                </div>
-                            })}
-
-                        </div>
                     </div>
                     <Link href="/login" className="cursor-pointer " >
-                        <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
+                        <a onClick={handleClickMobile} className="px-4 py-2 block w-full cursor-pointer hover:bg-didalla">
                             <div className='text-2xl'>Login</div>
                         </a>
                     </Link>
 
+                    <Link href="/register" className="cursor-pointer " >
+                        <a onClick={handleClickMobile} className="px-4 py-2 block w-full cursor-pointer hover:bg-didalla">
+                            <div className='text-2xl'>Sign Up</div>
+                        </a>
+                    </Link>
+
                     <Link href="/" className="cursor-pointer ">
-                        <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla border-b border-gray-800">
+                        <a onClick={handleClickMobile} className="px-4 pt-2 pb-8 block w-full cursor-pointer hover:bg-didalla border-b border-gray-600 underline">
                             <div className='text-2xl'>Get the App</div>
                         </a>
                     </Link>
@@ -102,10 +98,20 @@ const Navbar = ({handleCreatorLarge, creatorclicklarge, exploreclicklarge , hand
                         </a>
                     </Link>
                     <Link href="/" className="cursor-pointer " >
-                        <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
+                        <a onClick={handleClickMobile} className="mb-16 px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
                             <div>FAQS</div>
                         </a>
                     </Link>
+                    <div className='flex flex-row px-4 py-4'>
+                            {footerObjThree.map(item =>{
+                                return <div key={item.id} className='pr-2' onClick={handleClickMobile}>
+                                    <Link href={item.url} >
+                                        <a ><img src={`/images/${item.value}.svg`} alt='brand-logos' className='h-8 w-8'/></a>
+                                    </Link>
+                                </div>
+                            })}
+
+                    </div>
                 </div>
                 
             </div>
