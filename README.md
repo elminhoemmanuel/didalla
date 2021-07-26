@@ -1,1 +1,1 @@
-Didalla
+Didalla, A content creator's marketplace web application(frontend) built with Next.js 
