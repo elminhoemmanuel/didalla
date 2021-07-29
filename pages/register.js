@@ -69,7 +69,7 @@ const Register = () => {
                 showSpinner
                 />
             case 2:
-                return <StepComplete handleSetActiveStep={handleSetActiveStep} responsegotten={responsegotten} isloading={isloading} showSpinner={showSpinner}/>
+                return <StepComplete email={email} handleSetActiveStep={handleSetActiveStep} responsegotten={responsegotten} isloading={isloading} showSpinner={showSpinner}/>
         }
     }
 

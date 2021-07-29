@@ -61,17 +61,20 @@ export default function Home() {
         {
           showCookie && 
           <div className='fixed bg-gray-800 bottom-0 left-0 w-screen h-auto px-6 md:px-10 lg:px-16 py-8'>
-            <p className='mb-6 text-white'>We use cookies to deliver the best experience on didalla, to provide our services
-              , for advertising and analytics and to personalize content. You can edit your settings to adjust this.By using
-              our website you are agreeing to out cookie policy.
-
+            <p className='mb-6 text-white'>We use cookies to deliver the best experience on Didalla, to provide our services, for advertising and analytics and to personalize content. You can edit your settings to adjust this. By using our website you are agreeing to our cookie policy.
             </p>
-            <div className='mb-4'>
-              <button  type='button' className='w-full md:w-auto whitespace-nowrap py-3 px-12 bg-didalla
+            <div className='mb-4 flex flex-start flex-col md:flex-row'>
+              <button  type='button' className='block w-full md:w-auto whitespace-nowrap py-3 px-12 bg-didalla
                 border border-didalla rounded text-white hover:bg-green-600 hover:border-green-600
-                focus:outline-none shadow-2xl'
+                focus:outline-none shadow-2xl mb-3 md:mb-0 mr-0 md:mr-3'
                 onClick={()=>{setShowCookie(false)}}
                 >Accept
+              </button>
+              <button  type='button' className='block w-full md:w-auto whitespace-nowrap py-3 px-12 bg-transparent
+                border border-didalla rounded text-white hover:bg-didalla 
+                focus:outline-none shadow-2xl'
+                onClick={()=>{setShowCookie(false)}}
+                >Decline
               </button>
             </div>
           </div>
