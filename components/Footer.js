@@ -17,7 +17,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="flex flex-col md:mt-0 md:pl-0">
-                    <div><h2 className='font-black text-base mb-4'>Company</h2></div>
+                    <div><h2 className='font-black text-base mb-4'>Terms</h2></div>
                     {footerObjOne.map(item =>{
                         return <div key={item.id} className='pt-6 text-sm'>
                                 <Link href={item.url} className='block'>
@@ -37,7 +37,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="flex flex-col lg:mt-0 ">
-                    <div><h2 className='font-black text-base mb-4'>Terms</h2></div>
+                    <div><h2 className='font-black text-base mb-4'>Support</h2></div>
                     {footerObjTwo.map(item =>{
                         return <div key={item.id} className='pt-6 text-sm'>
                                 <Link href={item.url} className='block'>
