@@ -62,6 +62,7 @@ const Register = () => {
                 firstname={firstname}
                 lastname={lastname}
                 password={password}
+                confpassword={confpassword}
                 handleSetLoading={handleSetLoading}
                 handleSetResponse={handleSetResponse}
                 responsegotten={responsegotten}
@@ -78,7 +79,8 @@ const Register = () => {
         email:{value:"" , error:""},
         firstname:{value:"" , error:""},
         lastname:{value:"" , error:""},
-        password:{value:"" , error:""}
+        password:{value:"" , error:""},
+        confpassword:{value:"" , error:""}
     }
 
     const stateValidatorSchema ={
@@ -109,11 +111,18 @@ const Register = () => {
                 func: value=> /^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(value),
                 error:"password must be up to 6 characters and contain atleast one special character e.g '@,#,$,%,^,&,?,>,<'"
             }
+        },
+        confpassword:{
+            required:true,
+            validator:{
+                func: value=> /^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(value),
+                error:"password must be up to 6 characters and contain atleast one special character e.g '@,#,$,%,^,&,?,>,<'"
+            }
         }
     }
 
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema)
-    const {email, firstname, lastname, password} = values;
+    const {email, firstname, lastname, password, confpassword} = values;
 
     return (
         <>

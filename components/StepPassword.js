@@ -13,6 +13,7 @@ const StepPassword = ({
     lastname,
     email,
     password,
+    confpassword,
     handleSetLoading,
     handleSetResponse,
     responsegotten,
@@ -21,8 +22,10 @@ const StepPassword = ({
 
     const [userType, setUserType] = useState('')
     const [checkboxValue, setCheckboxValue] = useState(false)
+    const [newsletter, setNewsletter] = useState(false)
 
     const checkbox = <input type="checkbox" id="termsAgree" name="terms" value={checkboxValue} onClick={() => setCheckboxValue(!checkboxValue)} className='checked:bg-didalla checked:border-transparent' required/>
+    const newsletterBox = <input type="checkbox" id="newsletter" name="newsletter" value={newsletter} onClick={() => setNewsletter(!newsletter)} className='checked:bg-didalla checked:border-transparent' required/>
 
     const handleFormSubmit = event => {
         event.preventDefault()
@@ -127,6 +130,30 @@ const StepPassword = ({
                                 )}
                             </div>
                         </div>
+
+                        <div className='mb-2'>
+                            <div className='mb-1'><label htmlFor="confpassword" className='text-didallabody text-sm'>Confirm Password</label></div>
+                            <div>
+                                <input className='p-3 border border-grayborder rounded w-full focus:outline-none focus:border-didalla'
+                                 type="password"
+                                 id='confpassword'
+                                 name="confpassword"
+                                 value={confpassword}
+                                 onChange={handleOnChange}
+                                 placeholder='Confirm your password'
+                                 required
+                                />
+                                {/* {errors.confpassword && dirty.confpassword && (
+                                    <p className='text-red-500 text-xs'>{errors.confpassword}</p>
+                                )} */}
+                                { dirty.password && confpassword !== password ? 
+                                    <p className='text-red-500 text-xs'>
+                                        Passwords do not match
+                                    </p> :
+                                    <p></p>
+                                }
+                            </div>
+                        </div>
                         <p className='text-center text-black text-sm my-1'>I want to :</p>
 
                         <div className='mt-2 mb-4 flex justify-center items-center flex-nowrap'>
@@ -143,14 +170,19 @@ const StepPassword = ({
                             </button>)}
                         </div>
 
-                        <div className='mb-2'>
+                        <div className='mb-3'>
                             {checkbox}&nbsp;
                             <label htmlFor="terms" className='text-xs'>Yes, I understand and agree to the <a className='text-didalla' href="">Didalla Terms of service</a>, Including the <a className='text-didalla' href="">User Agreement</a> and <a className='text-didalla' href="">Privacy Policy</a> </label>
                         </div>
 
+                        <div className='mb-3'>
+                            {newsletterBox}&nbsp;
+                            <label htmlFor="terms" className='text-xs'>Add me to newsletter to receive exclusive news and updates on Didalla </label>
+                        </div>
+
                         {/* {responsegotten !== "" ? <p className='text-red-400 mb-2 text-center text-sm'>{responsegotten}</p> : null} */}
 
-                        {firstname.length === 0 || lastname.length === 0 || password.length===0 || errors.firstname ||errors.lastname || errors.password|| userType==='' || checkboxValue === false
+                        {firstname.length === 0 || lastname.length === 0 || password.length===0 || errors.firstname ||errors.lastname || errors.password|| userType==='' || checkboxValue === false || password !== confpassword
                         ? (<AuthButtonDisabled buttonText='Create my Account'/>) : 
                         (<AuthButton buttonText='Create my Account' />)}
 
