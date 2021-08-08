@@ -99,7 +99,7 @@ const Login = () => {
                 setIsLoading(false)
                 setShowSpinner(false);
                 console.log(error);
-                setresponsegotten("Something went wrong check your email and password or your connection")
+                setresponsegotten("Something went wrong check your email and password or your connection, also ensure your account was not created using social login")
             });
     }
 
