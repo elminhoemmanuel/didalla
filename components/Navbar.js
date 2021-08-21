@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
+import { FaInstagram, FaTwitterSquare } from 'react-icons/fa';
 import { footerObjThree } from './FooterData';
 import { exploreDrop, creatorDrop } from './DropDownData'
 

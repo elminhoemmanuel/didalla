@@ -154,14 +154,14 @@ const Contact = () => {
                         <h1 className='text-lg font-bold text-didallatitle mb-3'>
                             Places to find <span className='text-didalla'>Didalla</span>
                         </h1>
-                        <Link href='mailto:hello@didalla.com'>
+                        <Link href='https://www.instagram.com/didallahq/?ltclid=b6dadda5-a6af-409f-bf7c-7782b11dea4a'>
                             <a className='whitespace-nowrap block mb-2'><img className='w-5 h-5 inline' src='/images/InstagramLogoBlack.svg' alt='contact page instagram link icon'/>&nbsp; Instagram</a>
                         </Link>
-                        <Link href='mailto:hello@didalla.com'>
+                        <Link href='https://twitter.com/DidallaHq?ltclid=c501b315-3d84-4471-89a2-35bcb33b1ded'>
                             <a className='whitespace-nowrap block mb-2'><img className='w-5 h-5 inline' src='/images/TwitterLogoBlack.svg' alt='contact page twitter link icon'/>&nbsp; Twitter</a>
                         </Link>
-                        <Link href='mailto:hello@didalla.com'>
-                            <a className='whitespace-nowrap block mb-2'><img className='w-5 h-5 inline' src='/images/LinkedInLogoBlack.svg' alt='contact page linkedin link icon'/>&nbsp; Linkedin</a>
+                        <Link href='https://web.facebook.com/people/Didalla-HQ/100071154535504'>
+                            <a className='whitespace-nowrap block mb-2'><img className='w-5 h-5 inline text-black' src='/images/FacebookLogoRegister.svg' alt='contact page linkedin link icon'/>&nbsp; Facebook</a>
                         </Link>
                     </div>
                 </div>
