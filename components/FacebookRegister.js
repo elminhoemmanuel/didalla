@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 
 
-const FacebookRegister = ({ facebookProfile }) => {
+const FacebookRegister = ({ facebookProfile, openShowFacebookReg, setLoader }) => {
 
     // Can be a string as well. Need to ensure each key-value pair ends with ;
     const override = css`
@@ -69,7 +69,11 @@ const FacebookRegister = ({ facebookProfile }) => {
                         <div className='flex justify-center items-center px-20 py-32'>
                             <div className=''>There seems to be a problem with your internet connection/Facebook account. Ensure you have a good internet connect and that your account is verified and try again.
                                 <button 
-                                onClick={router.replace('/register')}
+                                onClick={ ()=>{
+                                    setLoader("second");
+                                    openShowFacebookReg();
+                                }
+                                }
                                 type='submit' className="block p-3 my-4 text-center w-full bg-transparent rounded text-sm
                                     font-bold bg-didalla text-white hover:bg-green-600 " >
                                     Try Again

@@ -20,14 +20,24 @@ const StepEmail = ({
     const [facebookProfile, setFacebookProfile] = useState({})
     const [showGoogleReg, setShowGoogleReg] = useState(false);
     const [authload, setAuthLoad] = useState(false);
+    const [authload2, setAuthLoad2] = useState(false);
     const [showFacebookReg, setShowFacebookReg] = useState(false);
     const openShowGoogleReg = () => {
         setShowGoogleReg(!showGoogleReg);
-        document.body.style.overflowY = 'hidden';
+        // document.body.style.overflowY = 'hidden';
     }
+    
     const openShowFacebookReg = () => {
         setShowFacebookReg(!showFacebookReg);
-        document.body.style.overflowY = 'hidden';
+        // document.body.style.overflowY = 'hidden';
+    }
+    const setLoader = (loader) => {
+        if(loader === "first"){
+            setAuthLoad(false) 
+        }
+        if(loader === "second"){
+            setAuthLoad2(false) 
+        }
     }
 
     const handleEmailSubmit = (e) => {
@@ -36,9 +46,13 @@ const StepEmail = ({
     }
 
     const googleFailure = response => {
+        setAuthLoad2(false)
         console.log(response);
+        setGoogleProfile(response);
+        openShowGoogleReg()
     };
     const googleSuccess = response => {
+        setAuthLoad2(false)
         console.log(response);
         setGoogleProfile(response.profileObj);
         openShowGoogleReg()
@@ -55,11 +69,11 @@ const StepEmail = ({
         <div >
             {
                 showGoogleReg &&
-                <GoogleRegister googleProfile={googleProfile} />
+                <GoogleRegister googleProfile={googleProfile} openShowGoogleReg={openShowGoogleReg} setLoader={setLoader} />
             }
             {
                 showFacebookReg &&
-                <FacebookRegister facebookProfile={facebookProfile} />
+                <FacebookRegister facebookProfile={facebookProfile} openShowFacebookReg={openShowFacebookReg} setLoader={setLoader}/>
             }
             <div className='w-3/4 md:w-1/2 lg:w-2/6 mx-auto' >
                 <div className='mb-5 text-center'>
@@ -70,11 +84,26 @@ const StepEmail = ({
                 <GoogleLogin
                     clientId="501372228445-875831oflieocogs7dh94nslf2fmb1ie.apps.googleusercontent.com"
                     render={renderProps => (
-                        <button onClick={renderProps.onClick} disabled={renderProps.disabled}
+                        <button 
+                            onClick={()=>{
+                                setAuthLoad2(true)
+                                renderProps.onClick()
+                            }} disabled={renderProps.disabled}
                             type='button' className="p-3 mb-6 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
-                        font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
-                            <div className='mr-2'><img className='' src="images/GoogleLogo.svg" alt="Google logo" /></div>
-                            <div>Continue with Google</div>
+                            font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
+                            <div className='mr-2'>
+                                {
+                                    authload2 ?
+                                    "" : <img className='' src="images/GoogleLogo.svg" alt="Google logo" />
+                                }
+                                
+                            </div>
+                            <div>
+                                {
+                                    authload2 ?
+                                    <div className='spinner-page'></div> : "Continue with Google"
+                                }
+                            </div>
                         </button>
                     )}
                     onSuccess={googleSuccess}
