@@ -30,12 +30,14 @@ const FacebookRegister = ({ facebookProfile }) => {
         setsuccessMsg('')
         seterrMsg('')
 
+        let names = facebookProfile.name.split(" ");
+
         const formdata = new FormData();
-        formdata.append("email", googleProfile.email)
-        formdata.append("first_name", googleProfile.givenName)
-        formdata.append("last_name", googleProfile.familyName)
+        formdata.append("email", facebookProfile.email)
+        formdata.append("first_name", names[0])
+        formdata.append("last_name", names[1])
         formdata.append("role", userRole)
-        formdata.append("provider", "google")
+        formdata.append("provider", "facebook")
 
 
         axios.post('https://api.didalla.com/api/social_login', formdata)
