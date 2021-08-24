@@ -5,6 +5,8 @@ import AuthButtonDisabled from '../components/AuthButtonDisabled';
 import Link from 'next/link';
 import { GoogleLogin } from 'react-google-login';
 import GoogleRegister from './GoogleRegister';
+import FacebookRegister from './FacebookRegister';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 const StepEmail = ({
     handleNext,
@@ -14,11 +16,17 @@ const StepEmail = ({
     email
 }) => {
 
-    const [googleProfile , setGoogleProfile] = useState({})
+    const [googleProfile, setGoogleProfile] = useState({})
+    const [facebookProfile, setFacebookProfile] = useState({})
     const [showGoogleReg, setShowGoogleReg] = useState(false);
-    const openShowGoogleReg = () =>{
+    const [showFacebookReg, setShowFacebookReg] = useState(false);
+    const openShowGoogleReg = () => {
         setShowGoogleReg(!showGoogleReg);
-        document.body.style.overflowY= 'hidden';
+        document.body.style.overflowY = 'hidden';
+    }
+    const openShowFacebookReg = () => {
+        setShowFacebookReg(!showFacebookReg);
+        document.body.style.overflowY = 'hidden';
     }
 
     const handleEmailSubmit = (e) => {
@@ -34,6 +42,12 @@ const StepEmail = ({
         setGoogleProfile(response.profileObj);
         openShowGoogleReg()
     };
+
+    const responseFacebook = (response) => {
+        console.log(response);
+        setFacebookProfile(response);
+        openShowFacebookReg
+    }
 
     return (
         <div >
@@ -51,7 +65,7 @@ const StepEmail = ({
                     clientId="501372228445-875831oflieocogs7dh94nslf2fmb1ie.apps.googleusercontent.com"
                     render={renderProps => (
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled}
-                        type='button' className="p-3 mb-6 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
+                            type='button' className="p-3 mb-6 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
                         font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
                             <div className='mr-2'><img className='' src="images/GoogleLogo.svg" alt="Google logo" /></div>
                             <div>Continue with Google</div>
@@ -60,7 +74,21 @@ const StepEmail = ({
                     onSuccess={googleSuccess}
                     onFailure={googleFailure}
                     cookiePolicy={'single_host_origin'}
-                />,
+                />
+
+                <FacebookLogin
+                    appId="1700953750292205"
+                    autoLoad
+                    callback={responseFacebook}
+                    render={renderProps => (
+                        <button onClick={renderProps.onClick} 
+                            type='button' className="p-3 mb-6 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
+                        font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
+                            <div className='mr-2'><img className='' src="images/FacebookLogoRegister.svg" alt="Facebook logo" /></div>
+                            <div>Continue with Facebook</div>
+                        </button>
+                    )}
+                />
 
                 {/* <Link href="">
                         <a className='block mb-4'>

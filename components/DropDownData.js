@@ -35,7 +35,7 @@ export const exploreDrop = [
     {
         id:6,
         icon:<FaRedditSquare className='w-6 h-6 text-didalla' />,
-        text:'Redit',
+        text:'Reddit',
         url:'https://www.reddit.com/user/DidallaHQ?ltclid=a3500f3a-2a3b-439a-8ae5-349b872c92d9'
     },
     
