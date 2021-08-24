@@ -123,7 +123,7 @@ const FacebookRegister = ({ facebookProfile }) => {
                                         </button> :
 
                                         <button type='button' className='focus:outline-none rounded bg-didalla text-white text-center px-5 py-3 hover:bg-green-600 w-full'
-                                        // onClick={AuthSubmit}
+                                        onClick={AuthSubmit}
                                         >
                                             {isSubmitting ? <BeatLoader color={color} loading={isSubmitting} css={override} size={15} /> : <span>Continue</span>}
                                         </button>
