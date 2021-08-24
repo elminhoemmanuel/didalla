@@ -40,11 +40,6 @@ const StepEmail = ({
         }
     }
 
-    const handleEmailSubmit = (e) => {
-        e.preventDefault();
-        handleNext();
-    }
-
     const googleFailure = response => {
         setAuthLoad2(false)
         console.log(response);
@@ -63,6 +58,11 @@ const StepEmail = ({
         console.log(response);
         setFacebookProfile(response);
         openShowFacebookReg()
+    }
+
+    const handleEmailSubmit = (e) => {
+        e.preventDefault();
+        handleNext();
     }
 
     return (

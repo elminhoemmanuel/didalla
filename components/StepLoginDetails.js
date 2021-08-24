@@ -4,6 +4,8 @@ import AuthButtonDisabled from '../components/AuthButtonDisabled';
 import Link from 'next/link';
 import { GoogleLogin } from 'react-google-login';
 import GoogleRegister from './GoogleRegister';
+import FacebookRegister from './FacebookRegister';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 const StepLoginDetails = ({
     values,
@@ -17,21 +19,49 @@ const StepLoginDetails = ({
     responsegotten
 }) => {
 
-    const [googleProfile , setGoogleProfile] = useState({})
+    const [googleProfile, setGoogleProfile] = useState({})
+    const [facebookProfile, setFacebookProfile] = useState({})
     const [showGoogleReg, setShowGoogleReg] = useState(false);
-    const openShowGoogleReg = () =>{
+    const [authload, setAuthLoad] = useState(false);
+    const [authload2, setAuthLoad2] = useState(false);
+    const [showFacebookReg, setShowFacebookReg] = useState(false);
+    const openShowGoogleReg = () => {
         setShowGoogleReg(!showGoogleReg);
-        document.body.style.overflowY= 'hidden';
+        // document.body.style.overflowY = 'hidden';
+    }
+
+    const openShowFacebookReg = () => {
+        setShowFacebookReg(!showFacebookReg);
+        // document.body.style.overflowY = 'hidden';
+    }
+    const setLoader = (loader) => {
+        if (loader === "first") {
+            setAuthLoad(false)
+        }
+        if (loader === "second") {
+            setAuthLoad2(false)
+        }
     }
 
     const googleFailure = response => {
+        setAuthLoad2(false)
         console.log(response);
+        setGoogleProfile(response);
+        openShowGoogleReg()
     };
     const googleSuccess = response => {
+        setAuthLoad2(false)
         console.log(response);
         setGoogleProfile(response.profileObj);
         openShowGoogleReg()
     };
+
+    const responseFacebook = (response) => {
+        setAuthLoad(false)
+        console.log(response);
+        setFacebookProfile(response);
+        openShowFacebookReg()
+    }
 
     return (
         <div>
@@ -39,7 +69,11 @@ const StepLoginDetails = ({
 
             {
                 showGoogleReg &&
-                <GoogleRegister googleProfile={googleProfile} />
+                <GoogleRegister googleProfile={googleProfile} openShowGoogleReg={openShowGoogleReg} setLoader={setLoader} />
+            }
+            {
+                showFacebookReg &&
+                <FacebookRegister facebookProfile={facebookProfile} openShowFacebookReg={openShowFacebookReg} setLoader={setLoader} />
             }
 
             <div className='w-3/4 md:w-1/2 lg:w-2/6 my-0 mx-auto block'>
@@ -51,17 +85,64 @@ const StepLoginDetails = ({
                 <GoogleLogin
                     clientId="501372228445-875831oflieocogs7dh94nslf2fmb1ie.apps.googleusercontent.com"
                     render={renderProps => (
-                        <button onClick={renderProps.onClick} disabled={renderProps.disabled}
+                        <button
+                            onClick={() => {
+                                setAuthLoad2(true)
+                                renderProps.onClick()
+                            }} disabled={renderProps.disabled}
                             type='button' className="p-3 mb-6 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
-                        font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
-                            <div className='mr-2'><img className='' src="images/GoogleLogo.svg" alt="Google logo" /></div>
-                            <div>Continue with Google</div>
+                            font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
+                            <div className='mr-2'>
+                                {
+                                    authload2 ?
+                                        "" : <img className='' src="images/GoogleLogo.svg" alt="Google logo" />
+                                }
+
+                            </div>
+                            <div>
+                                {
+                                    authload2 ?
+                                        <div className='spinner-page'></div> : "Continue with Google"
+                                }
+                            </div>
                         </button>
                     )}
                     onSuccess={googleSuccess}
                     onFailure={googleFailure}
                     cookiePolicy={'single_host_origin'}
-                />,
+                />
+
+                <FacebookLogin
+                    appId="1700953750292205"
+                    // autoLoad
+                    fields="name,email,picture"
+                    scope="public_profile,email"
+                    callback={responseFacebook}
+                    render={renderProps => (
+                        <button onClick={() => {
+                            setAuthLoad(true)
+                            renderProps.onClick()
+                        }
+
+                        }
+                            type='button' className="p-3 mb-6 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
+                        font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
+                            <div className='mr-2'>
+                                {
+                                    authload ?
+                                        "" : <img className='' src="images/FacebookLogoRegister.svg" alt="Facebook logo" />
+                                }
+
+                            </div>
+                            <div>
+                                {
+                                    authload ?
+                                        <div className='spinner-page'></div> : "Continue with Facebook"
+                                }
+                            </div>
+                        </button>
+                    )}
+                />
 
                 <p className='text-center text-black text-sm'>OR</p>
 
