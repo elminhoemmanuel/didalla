@@ -66,7 +66,12 @@ const FacebookRegister = ({ facebookProfile }) => {
                     facebookProfile.error || facebookProfile.email === undefined ?
                         <div className='flex justify-center items-center px-20 py-32'>
                             <div className=''>There seems to be a problem with your internet connection/Facebook account. Ensure you have a good internet connect and that your account is verified and try again.
-                                <Link href="/register"><a className='text-didalla text-sm'>Try again</a></Link>
+                                <button 
+                                onClick={router.replace('/register')}
+                                type='submit' className="block p-3 my-4 text-center w-full bg-transparent rounded text-sm
+                                    font-bold bg-didalla text-white hover:bg-green-600 " >
+                                    Try Again
+                                </button>
                             </div>
                         </div> :
                         <div>
