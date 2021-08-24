@@ -84,6 +84,7 @@ const StepEmail = ({
                     appId="1700953750292205"
                     // autoLoad
                     fields="name,email,picture"
+                    scope="public_profile,email"
                     callback={responseFacebook}
                     render={renderProps => (
                         <button onClick={renderProps.onClick} 
