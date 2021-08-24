@@ -97,7 +97,13 @@ const StepEmail = ({
                         } 
                             type='button' className="p-3 mb-6 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
                         font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
-                            <div className='mr-2'><img className='' src="images/FacebookLogoRegister.svg" alt="Facebook logo" /></div>
+                            <div className='mr-2'>
+                                {
+                                    authload ?
+                                    "" : <img className='' src="images/FacebookLogoRegister.svg" alt="Facebook logo" />
+                                }
+                                
+                            </div>
                             <div>
                                 {
                                     authload ?
