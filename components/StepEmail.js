@@ -46,7 +46,7 @@ const StepEmail = ({
     const responseFacebook = (response) => {
         console.log(response);
         setFacebookProfile(response);
-        openShowFacebookReg
+        openShowFacebookReg()
     }
 
     return (
@@ -54,6 +54,10 @@ const StepEmail = ({
             {
                 showGoogleReg &&
                 <GoogleRegister googleProfile={googleProfile} />
+            }
+            {
+                showFacebookReg &&
+                <FacebookRegister facebookProfile={facebookProfile} />
             }
             <div className='w-3/4 md:w-1/2 lg:w-2/6 mx-auto' >
                 <div className='mb-5 text-center'>
@@ -78,7 +82,8 @@ const StepEmail = ({
 
                 <FacebookLogin
                     appId="1700953750292205"
-                    autoLoad
+                    // autoLoad
+                    fields="name,email,picture"
                     callback={responseFacebook}
                     render={renderProps => (
                         <button onClick={renderProps.onClick} 
