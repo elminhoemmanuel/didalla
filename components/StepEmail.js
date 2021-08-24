@@ -19,6 +19,7 @@ const StepEmail = ({
     const [googleProfile, setGoogleProfile] = useState({})
     const [facebookProfile, setFacebookProfile] = useState({})
     const [showGoogleReg, setShowGoogleReg] = useState(false);
+    const [authload, setAuthLoad] = useState(false);
     const [showFacebookReg, setShowFacebookReg] = useState(false);
     const openShowGoogleReg = () => {
         setShowGoogleReg(!showGoogleReg);
@@ -44,6 +45,7 @@ const StepEmail = ({
     };
 
     const responseFacebook = (response) => {
+        setAuthLoad(false)
         console.log(response);
         setFacebookProfile(response);
         openShowFacebookReg()
@@ -87,11 +89,21 @@ const StepEmail = ({
                     scope="public_profile,email"
                     callback={responseFacebook}
                     render={renderProps => (
-                        <button onClick={renderProps.onClick} 
+                        <button onClick={()=>{
+                            setAuthLoad(true)
+                            renderProps.onClick()
+                        }
+                            
+                        } 
                             type='button' className="p-3 mb-6 flex flex-row items-center justify-center w-full bg-transparent rounded text-sm border border-grayborder
                         font-bold text-didallatitle hover:shadow-lg transform hover:scale-105 focus:outline-none">
                             <div className='mr-2'><img className='' src="images/FacebookLogoRegister.svg" alt="Facebook logo" /></div>
-                            <div>Continue with Facebook</div>
+                            <div>
+                                {
+                                    authload ?
+                                    <div className='spinner-page'></div> : "Continue with Facebook"
+                                }
+                            </div>
                         </button>
                     )}
                 />
