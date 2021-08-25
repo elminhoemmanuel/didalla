@@ -4,10 +4,12 @@ import useForm from '../components/useForm'
 import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
 import Link from 'next/link'
+import axios from 'axios'
 
 const Contact = () => {
 
     const [showSpinner , setShowSpinner] = useState(false);
+    const [responsegotten, setresponsegotten] = useState("");
 
     // Can be a string as well. Need to ensure each key-value pair ends with ;
     const override = css`
@@ -22,11 +24,19 @@ const Contact = () => {
     const stateSchema = {
         email: { value: "", error: "" },
         fullname: { value: "", error: "" },
-        message: { value: "", error: "" }
+        message: { value: "", error: "" },
+        phone: { value: "", error: "" },
     }
 
     const stateValidatorSchema = {
         fullname: {
+            required: true,
+            validator: {
+                func: value => /^(?=.*[a-zA-Z0-9]).{1,}$/.test(value),
+                error: "must contain atleast one character"
+            }
+        },
+        phone: {
             required: true,
             validator: {
                 func: value => /^(?=.*[a-zA-Z0-9]).{1,}$/.test(value),
@@ -50,11 +60,28 @@ const Contact = () => {
     }
 
     const { values, errors, dirty, handleOnChange } = useForm(stateSchema, stateValidatorSchema)
-    const { email, fullname, message } = values;
+    const { email, fullname, message, phone } = values;
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        setShowSpinner(true)
+        setShowSpinner(true);
+
+        axios.post('https://api.didalla.com/api/misc/send_mail', {
+                email: email,
+                name: fullname,
+                message: message,
+                phone: phone
+            })
+            .then((response) => {
+                console.log(response);
+                setShowSpinner(false);
+                setresponsegotten("Great !! We got your message")
+                
+            }, (error) => {
+                setShowSpinner(false);
+                console.log(error);
+                setresponsegotten("Something went wrong check your connection.")
+        });
     }
 
     return (
@@ -85,6 +112,24 @@ const Contact = () => {
                                 />
                                 {errors.fullname && dirty.fullname && (
                                     <p className='text-red-500 text-xs'>{errors.fullname}</p>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className='mb-4'>
+                            <div className='mb-1'><label htmlFor="phone" className='text-didallabody text-sm'>Phone*</label></div>
+                            <div>
+                                <input className='p-3 border border-grayborder rounded w-full md:w-3/5 focus:outline-none focus:border-didalla'
+                                    type="text"
+                                    id='phone'
+                                    name="phone"
+                                    value={phone}
+                                    onChange={handleOnChange}
+                                    placeholder='+2349048079556'
+                                    required
+                                />
+                                {errors.phone && dirty.phone && (
+                                    <p className='text-red-500 text-xs'>{errors.phone}</p>
                                 )}
                             </div>
                         </div>
@@ -135,6 +180,19 @@ const Contact = () => {
                                     {showSpinner ? <BeatLoader color={color} loading={showSpinner} css={override} size={20} /> : <span>Send</span>}
                                 </button>
                             )}
+
+                        <div>
+                            { responsegotten && 
+                            <div className='my-3'>
+                                {
+                                    responsegotten === "Great !! We got your message" ?
+                                    <p className='text-didalla text-sm'>Great !! We got your message</p> :
+                                    <p className='text-red-500 text-sm'>Something went wrong check your connection.</p> 
+
+                                }
+                            </div>
+                            }
+                        </div>
 
                     </form>
 
