@@ -65,7 +65,7 @@ const FacebookRegister = ({ facebookProfile, openShowFacebookReg, setLoader }) =
 
             <div className='modal-box pt-10 w-full bg-white border border-gray-100 overflow-y-auto'>
                 {
-                    facebookProfile.error || facebookProfile.email === undefined ?
+                    facebookProfile.error || facebookProfile.email === undefined && facebookProfile.error !== "idpiframe_initialization_failed"?
                         <div className='flex justify-center items-center px-20 py-32'>
                             <div className=''>There seems to be a problem with your internet connection/Facebook account. Ensure you have a good internet connect and that your account is verified and try again.
                                 <button 
