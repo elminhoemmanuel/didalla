@@ -63,7 +63,7 @@ const GoogleRegister = ({ googleProfile, openShowGoogleReg, setLoader }) => {
         flex flex-col items-center justify-center z-50 '>
             <div className='modal-box pt-10 w-full bg-white border border-gray-100 overflow-y-auto'>
                 {
-                    googleProfile.error ?
+                    googleProfile.error && googleProfile.error !== "idpiframe_initialization_failed" ?
                         <div className='flex justify-center items-center px-20 py-32'>
                             <div className=''>Something went wrong. Please try again below.
                                 <button
