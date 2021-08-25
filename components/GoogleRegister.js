@@ -63,20 +63,37 @@ const GoogleRegister = ({ googleProfile, openShowGoogleReg, setLoader }) => {
         flex flex-col items-center justify-center z-50 '>
             <div className='modal-box pt-10 w-full bg-white border border-gray-100 overflow-y-auto'>
                 {
-                    googleProfile.error && googleProfile.error !== "idpiframe_initialization_failed" ?
+                    googleProfile.error ?
                         <div className='flex justify-center items-center px-20 py-32'>
-                            <div className=''>Something went wrong. Please try again below.
-                                <button
-                                    onClick={ ()=>{
-                                        setLoader("first");
-                                        openShowGoogleReg();
-                                    }
-                                    }
-                                    type='submit' className="block p-3 my-4 text-center w-full bg-transparent rounded text-sm
-                            font-bold bg-didalla text-white hover:bg-green-600 " >
-                                    Try Again
-                                </button>
-                            </div>
+                            {
+                                googleProfile.error === "idpiframe_initialization_failed" ?
+                                    <div className=''>Cookies are not enabled in current environment. This may affect performance.
+                                        <button
+                                            onClick={() => {
+                                                setLoader("first");
+                                                openShowGoogleReg();
+                                            }
+                                            }
+                                            type='submit' className="block p-3 my-4 text-center w-full bg-transparent rounded text-sm
+                                            font-bold bg-didalla text-white hover:bg-green-600 " >
+                                            Continue Anyway
+                                        </button>
+                                    </div> :
+                                    <div className=''>Something went wrong. Please try again below.
+                                        <button
+                                            onClick={() => {
+                                                setLoader("first");
+                                                openShowGoogleReg();
+                                            }
+                                            }
+                                            type='submit' className="block p-3 my-4 text-center w-full bg-transparent rounded text-sm
+                                            font-bold bg-didalla text-white hover:bg-green-600 " >
+                                            Try Again
+                                        </button>
+                                    </div>
+
+                            }
+
                         </div> :
                         <div>
                             <div className='mb-5 text-center'>
