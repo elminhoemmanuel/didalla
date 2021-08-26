@@ -7,7 +7,7 @@ const Hero = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) =>{
             // console.log(data.enteredValue);
-            router.push(`/search/`)    
+            router.push(`/register?email=${data.enteredValue}`)    
     }
 
     const router = useRouter()
@@ -26,7 +26,7 @@ const Hero = () => {
                     <div className='block md:inline-block mb-2 md:mb-0 relative'>
                         <input
                         {...register("enteredValue", { required: true })} name='enteredValue'
-                         type="text" className='w-full md:w-96 rounded p-4 border border-didalla 
+                         type="email" className='w-full md:w-96 rounded p-4 border border-didalla 
                         focus:border-didalla focus:outline-none mr-3 text-base
                         bg-footergray' placeholder='Email address'/>
                         {/* <img className='absolute search-icon' src="/images/MagnifyingGlass.svg" alt="search icon"/> */}

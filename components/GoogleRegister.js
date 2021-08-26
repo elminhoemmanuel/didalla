@@ -151,7 +151,12 @@ const GoogleRegister = ({ googleProfile, openShowGoogleReg, setLoader }) => {
 
                             <div className='flex justify-center mt-3'>
                                 {
-                                    isSubmitting === false && errMsg && <div className='text-sm text-red-400'>{errMsg}</div>
+                                    isSubmitting === false && errMsg && <div className='text-sm text-red-400'>
+                                        {errMsg}
+                                        <button
+                                        onClick={openShowGoogleReg} 
+                                        className='bg-transparent text-didalla text-sm p-2 focus:outline-none'>here</button>
+                                    </div>
                                 }
                             </div>
                             <div className='flex justify-center mt-3'>

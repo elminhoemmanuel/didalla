@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import StepEmail from '../components/StepEmail'
 import StepPassword from '../components/StepPassword'
 import StepComplete from '../components/StepComplete'
@@ -6,17 +6,23 @@ import Head from 'next/head'
 import LogoNavbar from '../components/LogoNavbar'
 import Link from 'next/link';
 import useForm from '../components/useForm'
+import { useRouter } from 'next/router'
 
 
 const Register = () => {
 
 
     //React hooks used 
+    const { query } = useRouter(null);
+    const [fromLanding, setFromLanding] = useState({})
     const [activeStep, setActiveStep] = useState(0);
     const [isloading, setIsLoading] = useState(false);
     const [responsegotten, setresponsegotten] = useState("");
 
     const [showSpinner , setShowSpinner] = useState(false);
+    useEffect(() => {
+        setFromLanding(query)
+    }, [query]);
 
     const handleSetActiveStep = () =>{
         setActiveStep(0);
@@ -76,7 +82,7 @@ const Register = () => {
 
     //Define the state schema used for validation
     const stateSchema = {
-        email:{value:"" , error:""},
+        email:{value: query.email ? query.email : "" , error:""},
         firstname:{value:"" , error:""},
         lastname:{value:"" , error:""},
         password:{value:"" , error:""},
