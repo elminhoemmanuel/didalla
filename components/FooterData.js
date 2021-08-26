@@ -27,16 +27,16 @@ export const footerObjThree = [
     {
         id:1,
         value:'TwitterLogo',
-        url:'/'
+        url:'https://twitter.com/DidallaHq?ltclid=c501b315-3d84-4471-89a2-35bcb33b1ded'
     },
     {
         id:2,
         value:'FacebookLogo',
-        url:'/'
+        url:'https://web.facebook.com/people/Didalla-HQ/100071154535504'
     },
     {
         id:3,
         value:'InstagramLogo',
-        url:'/'
+        url:'https://www.instagram.com/didallahq/?ltclid=b6dadda5-a6af-409f-bf7c-7782b11dea4a'
     }
 ]

@@ -48,11 +48,11 @@ const Navbar = ({ handleCreatorLarge, creatorclicklarge, exploreclicklarge, hand
                         </a>
                     </Link>
 
-                    <Link href="/" className="cursor-pointer ">
+                    {/* <Link href="/" className="cursor-pointer ">
                         <a onClick={handleClickMobile} className="px-4 pt-2 pb-8 block w-full cursor-pointer hover:bg-didalla border-b border-gray-600 underline">
                             <div className='text-2xl'>Get the App</div>
                         </a>
-                    </Link>
+                    </Link> */}
 
                     <div className="px-4 py-4 flex flex-row justify-between w-full cursor-pointer hover:bg-didalla" onClick={() => { setExploreClick(!exploreclick) }}>
                         <div>Explore</div>
@@ -93,12 +93,12 @@ const Navbar = ({ handleCreatorLarge, creatorclicklarge, exploreclicklarge, hand
                         </div>) : null
                     }
 
-                    <Link href="/" className="cursor-pointer " >
+                    <Link href="/contact" className="cursor-pointer " >
                         <a onClick={handleClickMobile} className="px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
-                            <div>Contact</div>
+                            <div>Contact Us</div>
                         </a>
                     </Link>
-                    <Link href="/" className="cursor-pointer " >
+                    <Link href="/faqs" className="cursor-pointer " >
                         <a onClick={handleClickMobile} className="mb-16 px-4 py-4 block w-full cursor-pointer hover:bg-didalla">
                             <div>FAQS</div>
                         </a>

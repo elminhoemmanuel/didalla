@@ -26,16 +26,16 @@ const Hero = () => {
                     <div className='block md:inline-block mb-2 md:mb-0 relative'>
                         <input
                         {...register("enteredValue", { required: true })} name='enteredValue'
-                         type="text" className='w-full md:w-96 rounded p-4 pl-10 border border-didalla 
-                        focus:border-didalla focus:outline-none mr-3 text-xs
-                        bg-footergray' placeholder='What do you want to promote'/>
-                        <img className='absolute search-icon' src="/images/MagnifyingGlass.svg" alt="search icon"/>
+                         type="text" className='w-full md:w-96 rounded p-4 border border-didalla 
+                        focus:border-didalla focus:outline-none mr-3 text-base
+                        bg-footergray' placeholder='Email address'/>
+                        {/* <img className='absolute search-icon' src="/images/MagnifyingGlass.svg" alt="search icon"/> */}
                     </div>
                     
                     <div className='block md:inline-block'>
-                        <button  type='submit' className='w-full md:w-52 whitespace-nowrap p-3 bg-didalla
+                        <button  type='submit' className='w-full md:w-52 whitespace-nowrap p-4 bg-didalla
                                 border border-didalla rounded text-white hover:bg-green-600 hover:border-green-600
-                                focus:outline-none shadow-2xl'>Book a content creator
+                                focus:outline-none shadow-2xl text-base'>Get Started
                         </button>
                     </div>
 
