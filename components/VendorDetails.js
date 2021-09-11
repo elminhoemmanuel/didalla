@@ -33,4 +33,3 @@ export const boosterObjFour = {
     bold:'Customer support',
     description:'Dessert marzipan, halvah sweet chocolate bar, cookie icing. Chocolate cake lemon.'
 }
-
