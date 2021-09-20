@@ -13,9 +13,9 @@ const VendorFeedCard = ({ data }) => {
                 <div className="flex items-center">
                     <div className="mr-3">
                         {
-                            data.profile_url !== undefined ?
-                                <div className='cursor-pointer h-12 w-12 rounded-full bg-didalla text-white text-lg font-bold text-center pt-1'>
-                                    <img src={data.profile_url} alt="user avatar" />
+                            data.photo_url !== undefined ?
+                                <div className='cursor-pointer'>
+                                    <img className="h-12 w-12 rounded-full" src={data.photo_url} alt="user avatar" />
                                 </div> :
                                 <div className='cursor-pointer h-12 w-12 rounded-full bg-didalla text-white text-lg font-bold text-center pt-1'>
                                     {first_name[0]}{last_name[0]}
@@ -23,30 +23,30 @@ const VendorFeedCard = ({ data }) => {
                         }
                     </div>
                     <div>
-                        <div><p className="text-didallatitle text-base font-bold">{data.name}</p></div>
+                        <div><p className="text-didallatitle text-base font-bold whitespace-nowrap">{data.user.first_name} {data.user.first_name}</p></div>
                         <div className="flex items-center">
                             {
                                 data.facebook &&
                                 <div className="flex items-center mr-3">
                                     <div className="h-6 w-6"><img className="h-6 w-6" src="/images/FacebookLogoGreen.svg" alt="Facebook Icon" /></div>
-                                    <div><p className="text-sm hidden md:block">{data.facebook} followers</p></div>
+                                    <div><p className="text-sm hidden md:block">2Kfollowers</p></div>
                                 </div>
                             }
                             {
                                 data.youtube &&
                                 <div className="flex items-center mr-3">
                                     <div className="h-6 w-6"><img className="h-6 w-6" src="/images/YoutubeLogoGreen.svg" alt="youtube Icon" /></div>
-                                    <div><p className="text-sm hidden md:block">{data.youtube} subscribers</p></div>
+                                    <div><p className="text-sm hidden md:block">1k subscribers</p></div>
                                 </div>
                             }
                             {
                                 data.twitter &&
                                 <div className="flex items-center mr-3">
                                     <div className="h-6 w-6"><img className="h-6 w-6" src="/images/TwitterLogoGreen.svg" alt="Twitter Icon" /></div>
-                                    <div><p className="text-sm hidden md:block">{data.twitter} followers</p></div>
+                                    <div><p className="text-sm hidden md:block">4.5Kfollowers</p></div>
                                 </div>
                             }
-                            <div><p className="text-sm">+2 others</p></div>
+                            {/* <div><p className="text-sm">+2 others</p></div> */}
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ const VendorFeedCard = ({ data }) => {
                 <div className="flex items-center flex-wrap">
 
                     <div className="flex items-center">
-                        <div><p className="text-sm mr-2">Starting at <span className="font-bold">${data.rate}</span></p></div>
+                        <div><p className="text-sm mr-2">Starting at <span className="font-bold">${data.basic_plan}</span></p></div>
                         <div className="mr-2">
                             <VscDebugStackframeDot className="w-3 h-3" />
                         </div>
@@ -85,7 +85,7 @@ const VendorFeedCard = ({ data }) => {
                     <div className="flex items-center">
                         <div className="flex items-center mr-2">
                             <div className="h-6 w-6"><img src="/images/star.svg" alt="rating icon" /></div>
-                            <div className=""><p className="text-sm ">{data.rating}</p></div>
+                            <div className=""><p className="text-sm ">{data.rating ? data.rating : "0(0)"}</p></div>
                         </div>
                         <div className="mr-2">
                             <VscDebugStackframeDot className="w-3 h-3" />
