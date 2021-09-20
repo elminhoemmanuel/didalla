@@ -40,40 +40,6 @@ html, body{
     animation: s3 1s infinite linear;
   }
   @keyframes s3 {to{transform: rotate(1turn)}}
-  
-
-
-
-/* footer */
-.footer-box{
-    border-bottom: 1px solid white;
-}
-
-/* hero search icon */
-.search-icon{
-    left:2.3%;
-    bottom: 24%;
-}
-
-.convex{
-    left:26%;
-    top: 35%;
-}
-.concave{
-    right:26%;
-    top: 47%;
-}
-
-//how it works section
-.right-curve{
-    top: 28%;
-    right: 0%;
-}
-
-.left-curve{
-    bottom: 28%;
-    left: 0%;
-}
 
 .booster-holder{
     h1, p{
@@ -157,35 +123,6 @@ html, body{
     transition-property: display;
 }
 
-//onboarding
-.onboarding-container{
-    flex-wrap:wrap !important;
-}
-
-//booster onboarding
-.PhoneInputInput, .PhoneInputCountry{
-    padding: 0.75rem;
-    border:1px solid #D6D8E7;
-    border-radius: 0.3rem;
-
-}
-
-.PhoneInputInput:focus{
-    outline: none;
-}
-
-//dashboard carousel
-.dash .swiper-container{
-    width:100%;
-    height:auto !important;
-    padding: 0rem !important;
-    position: relative;
-}
-
-.dash .swiper-wrapper{
-    padding-inline-start: 0;
-}
-
 
 //vendor Dashboard
 .modal-box{
@@ -210,6 +147,21 @@ html, body{
         background-repeat: no-repeat;
         background-position: bottom;
         background-size: contain;
+    }
+    
+}
+
+//dashboard cta area
+.pic-box{
+    width:6% !important;
+}
+.text-box{
+    width:92% !important;
+}
+
+@media screen and (max-width:767px){
+    .text-box{
+        width:100% !important;
     }
     
 }

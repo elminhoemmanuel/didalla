@@ -7,12 +7,15 @@ import axios from 'axios'
 import StepLoginDetails from '../components/StepLoginDetails';
 import StepLoginComplete from '../components/StepLoginComplete';
 import { useRouter } from 'next/router'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../redux/actions/auth'
 
 
 const Login = () => {
 
     const router = useRouter()
+    const dispatch = useDispatch()
+    
 
     //React hooks used 
     const [activeStep, setActiveStep] = useState(0);
@@ -85,35 +88,31 @@ const Login = () => {
             })
             .then((response) => {
                 setIsLoading(false)
-                console.log(response);
+                // console.log(response);
                 localStorage.setItem('userToken',response.data.access_token)
                 localStorage.setItem('userFirstName',response.data.user.first_name)
                 localStorage.setItem('userLastName',response.data.user.last_name)
                 setUserRole(response.data.user.role)
                 setIsOnboarded(response.data.user.reg_completed)
-                console.log(userRole);
-                console.log(isOnboarded);
+                dispatch(login(response.data));
+                // console.log(userRole);
+                // console.log(isOnboarded);
                 setShowSpinner(false);
                 
             }, (error) => {
                 setIsLoading(false)
                 setShowSpinner(false);
-                console.log(error);
+                // console.log(error);
                 setresponsegotten("Something went wrong check your email and password or your connection, also ensure your account was not created using social login")
             });
     }
 
     useEffect(() => {
-        if (userRole==="vendor" && isOnboarded===1){
+        if (userRole==="vendor"){
             router.push('/dashboard/vendor/')
-        }else if (userRole==="vendor" && isOnboarded===0){
-            router.push('/dashboard/vendor/')
-        }else if (userRole==="booster" && isOnboarded===1){
-            router.push('/dashboard/booster')
-        }else if (userRole==="booster" && isOnboarded===0){
-            router.push('/onboarding/booster')
+        }else if (userRole==="booster"){
+            router.push('/dashboard/booster/')
         }
-
         
     }, [userRole, isOnboarded])
 
