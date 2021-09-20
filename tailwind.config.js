@@ -15,7 +15,10 @@ module.exports = {
         didallateal:'#CDEFD1',
         downloadgray:'#F7F7FC',
         grayborder:'#D6D8E7',
-        grayscale:'#EFF0F6'
+        grayscale:'#EFF0F6',
+        alertbg:"#ECF9ED",
+        progresstext:"#A26B00",
+        progressbg:"#FFF0D4",
       }
     },
 
