@@ -1,30 +1,27 @@
-import { GET_FEED_BOOSTERS, START_FETCH, STOP_FETCH, SET_ERROR, SET_SORTER } from "../types";
+import { GET_FEED_BOOSTERS, START_FETCH, STOP_FETCH, SET_ERROR, SET_SORTER, SHOW_FILTER,
+  RESET_ERROR, GET_NOTIFS,TOGGLE_NOTIF, NOTIF_VIEWED
+
+} 
+
+from "../types";
 
 const initialState = {
   boosters: [],
   boostersResponse:{},
   loading: true,
   error: "",
-  sorter: {}
+  showFilter:false,
+  notifs:[],
+  toggleNotif:false,
+  notifViewed:false,
 };
 
 export const vendorFeedReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_SORTER:
-      // if(action.sortField === "platform"){
-      //   return {
-      //     ...state,
-      //     sorter:{platform:action.sortValue , location: "all", topic: "all", budget: "all"},
-      //   };
-      // }else if(action.sortField === "location"){
-      //   return {
-      //     ...state,
-      //     sorter:{platform:action.sortValue , location: "all", topic: "all", budget: "all"},
-      //   };
-      // }
+    case SHOW_FILTER:
       return {
         ...state,
-        sorter: action.payload,
+        showFilter: !state.showFilter,
       };
       
     case START_FETCH:
@@ -42,11 +39,31 @@ export const vendorFeedReducer = (state = initialState, action) => {
         ...state,
         error: "Something went wrong could not fetch feed. Refresh page to try again ",
       };
+    case RESET_ERROR:
+      return {
+        ...state,
+        error: "",
+      };
     case GET_FEED_BOOSTERS:
       return {
         ...state,
         boostersResponse: action.payload,
         boosters:action.payload.data
+      };
+    case GET_NOTIFS:
+      return {
+        ...state,
+        notifs:action.payload,
+      };
+    case TOGGLE_NOTIF:
+      return {
+        ...state,
+        toggleNotif: !state.toggleNotif,
+      };
+    case NOTIF_VIEWED:
+      return {
+        ...state,
+        notifViewed: !state.notifViewed,
       };
     default:
       return state;

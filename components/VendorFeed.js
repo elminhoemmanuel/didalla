@@ -1,4 +1,4 @@
-import React, {useEffect , useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import DashMobileSearch from './DashMobileSearch'
 import DashSort from './DashSort'
 import { useSelector, useDispatch } from 'react-redux'
@@ -6,16 +6,17 @@ import { SHOW_FILTER } from '../redux/types';
 import { vendorFeed } from "./VendorFeedData"
 import VendorFeedCard from './VendorFeedCard';
 import { getFeedBoosters } from "../redux/actions/vendorFeed";
+import SpinnerPage from './SpinnerPage';
 
 const VendorFeed = () => {
 
     const dispatch = useDispatch();
     const { loading, error, boosters, sorter } = useSelector(state => state.vendorFeed);
     // console.log(sorter);
-    
+
 
     // useEffect(() => {
-        
+
     // }, [sorter])
 
     return (
@@ -40,14 +41,36 @@ const VendorFeed = () => {
             <DashMobileSearch />
             <DashSort />
             <div className="my-3">
+
                 {
-                    boosters.map(item => (
-                        <VendorFeedCard key={item.id} data={item} />
-                    ))
+                    loading ?
+                    <SpinnerPage />
+                    :
+                        <div className="">
+                            {
+
+                                boosters[0] ?
+
+                                    <div>
+                                        {
+                                            boosters.map(item => (
+                                                <VendorFeedCard key={item.id} data={item} />
+                                            ))
+                                        }
+                                    </div>
+                                    :
+
+                                    <div>
+                                        <p className="text-center">{error ? error : "No results found"}</p>
+                                    </div>
+                            }
+                        </div>
                 }
             </div>
         </div>
     )
 }
+
+
 
 export default VendorFeed

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { BiUser } from "react-icons/bi"
 import { RiSettings3Line } from "react-icons/ri"
 import { VscBell, VscBellDot } from "react-icons/vsc"
+import { TOGGLE_NOTIF } from "../redux/types"
  
 const VendorDashNav = ({ homeColour, campaignColour, creatorsColour, messagesColour }) => {
 
@@ -15,8 +16,9 @@ const VendorDashNav = ({ homeColour, campaignColour, creatorsColour, messagesCol
 
 
     const [menuclick, setMenuClick] = useState(false);
-    const [notify, setnotify] = useState(true);
     const { first_name, last_name, profile_url } = useSelector(state => state.auth.user)
+    const { notifs } = useSelector(state => state.vendorFeed);
+    const dispatch = useDispatch();
 
     const handleClick = () => {
         setMenuClick(!menuclick);
@@ -184,9 +186,13 @@ const VendorDashNav = ({ homeColour, campaignColour, creatorsColour, messagesCol
                 <div className='flex flex-row items-center justify-start'>
 
                     <div className="mr-3">
-                        <button className='focus:outline-none block'>
+                        <button 
+                        onClick={()=>{
+                            dispatch({type:TOGGLE_NOTIF})
+                        }}
+                        className='focus:outline-none block'>
                             {
-                                notify ?
+                                notifs[0] ?
                                 <VscBellDot className="h-6 w-6 text-didalla" /> :
                                 <VscBell className="h-6 w-6" />
                             }
