@@ -1,12 +1,14 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import PriBtn from './PriBtn';
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from 'react-redux'
+import { SHOW_START_CAMP } from '../redux/types';
 
 const DashCta = () => {
 
     const { first_name, last_name, profile_url } = useSelector(state => state.auth.user);
-    const router = useRouter()
+    const router = useRouter();
+    const dispatch = useDispatch();
 
     return (
         <div className="rounded border border-gray-200 p-3 ">
@@ -40,7 +42,7 @@ const DashCta = () => {
                     router.pathname.includes("vendor") &&
                     <PriBtn
                         btnType="button"
-                        clicked={() => { }}
+                        clicked={() => { dispatch({ type:SHOW_START_CAMP }) }}
                         btnText="Post your campaign"
                         addStyle="px-3 md:px-4"
                     />

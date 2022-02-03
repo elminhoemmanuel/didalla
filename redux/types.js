@@ -12,9 +12,12 @@ export const SET_SORTER = "SET_SORTER"
 export const RESET_SORTER = "RESET_SORTER"
 
 // misc types
-export const GET_COUNTRIES = "GET_COUNTRIES"
 
 // notifications
 export const GET_NOTIFS = "GET_NOTIFS"
 export const TOGGLE_NOTIF = "TOGGLE_NOTIF"
 export const NOTIF_VIEWED = "NOTIF_VIEWED"
+
+// vendor campaigns
+export const SHOW_START_CAMP = "SHOW_START_CAMP"
+export const GET_COUNTRIES = "GET_COUNTRIES"

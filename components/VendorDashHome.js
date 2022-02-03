@@ -7,16 +7,18 @@ import VendorDashNav from './VendorDashNav'
 import VendorFeed from './VendorFeed';
 import { useSelector, useDispatch } from 'react-redux'
 import NotifsModal from './NotifsModal'
+import StartCampaign from './StartCampaign'
 
 const VendorDashHome = () => {
 
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.auth);
     const { toggleNotif } = useSelector(state => state.vendorFeed);
+    const { showStartCamp } = useSelector(state => state.vendorCampaigns);
     console.log(toggleNotif);
 
     const controlScrollbar = () => {
-        if (toggleNotif) {
+        if (toggleNotif || showStartCamp) {
             document.body.style.overflowY = 'hidden';
         } else {
             document.body.style.overflowY = 'visible';
@@ -60,6 +62,7 @@ const VendorDashHome = () => {
 
             {/* Modals */}
             { toggleNotif && <NotifsModal /> }
+            { showStartCamp && <StartCampaign /> }
         </div>
     )
 }
